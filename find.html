@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>長照資訊網</title>
+</head>
+
+<body>
+    <div class="site-wrapper">
+        <!-- 頁首2個導覽列 -->
+        <header>
+            <div class="header-top"></div>
+            <div class="main-nav"></div>
+        </header>
+
+        <!-- 內容區 -->
+        <main>
+            <!-- 標題區 -->
+            <div class="title">
+                <h1>長照服務資源搜尋</h1>
+                <p>選取地區，需求及服務類型，快速找到適合的長照資源</p>
+            </div>
+
+            <!-- 搜尋篩選區 -->
+            <div class="filter-panel">
+                <label class="field"></label>
+                <span>關鍵字</span>
+                <input type="search">
+                <label class="field"></label>
+                <span>縣市</span>
+                <select id="citySelect">
+                    <option value="所有縣市">所有縣市</option>
+                    <option value="台北市">台北市</option>
+                    <option value="新北市">新北市</option>
+                    <option value="桃園市">桃園市</option>
+                </select>
+                <label class="field"></label>
+                <span>行政區</span>
+                <select id="citySelect">
+                    <option value="所有行政區">所有行政區</option>
+                    <option value="大安區">大安區</option>
+                    <option value="信義區">信義區</option>
+                    <option value="中山區">中山區</option>
+                </select>
+                <div class="field">
+                    <span>主要需求</span>
+                    <label>
+                        <input type="radio" name="service" value="失智照護">失智照護
+                    </label>
+                    <label>
+                        <input type="radio" name="service" value="居家服務">居家服務
+                    </label>
+                    <label>
+                        <input type="radio" name="service" value="日照中心">日照中心
+                    </label>
+                    <label>
+                        <input type="radio" name="service" value="住宿機構">住宿機構
+                    </label>
+                </div>
+            </div>
+
+            <!-- 搜尋結果區 -->
+            <div class="result-panel">
+                <div class="category-filter">
+                    <label class="btn">
+                        <input type="radio" name="result-view" value="清單">清單
+                    </label>
+
+                    <label class="btn">
+                        <input type="radio" name="result-view" value="顯示地圖">顯示地圖
+                    </label>
+
+                    <button type="button" class="btn">下載結果（xlsx）</button>
+                </div>
+                <div class="map"></div>
+            </div>
+
+        </main>
+
+        <!-- 頁尾 -->
+        <footer>
+            <div class="footer-info"></div>
+            <div class="copyright"></div>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>長照資訊網</title>
+
+    <!-- Bootstrap5 CSS+Bundle -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+
+    <!-- Bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div class="site-wrapper">
+        <!-- 頁首2個導覽列 -->
+        <header>
+            <!-- ====== -->
+            <!-- 電腦版 -->
+            <!-- ====== -->
+            <div class="desktop-header">
+
+                <!-- 第1個導覽列 -->
+                <div class="header-top">
+
+                    <!-- logo -->
+                    <a class="logo" href="#">
+                        <h1><img src="./image/logo.png" alt="長照資訊網"></h1>
+                    </a>
+
+                    <!-- 上方選單最右側 -->
+                    <div class="desktop-quick-links">
+
+                        <!-- 工具連結 -->
+                        <div class="header-links">
+                            <a href="#">網站導覽</a>
+                            <a href="#">部長信箱</a>
+                            <a href="#">衛生福利部</a>
+                        </div>
+
+                        <!-- 搜尋 -->
+                        <form class="search-form">
+                            <input type="search" id="search" placeholder="請輸入關鍵字">
+                            <button type="submit"><i class="bi bi-search"></i></button>
+                        </form>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 第2個導覽列 -->
+                <nav class="main-nav">
+                    <ul>
+                        <!-- 公告訊息 -->
+                        <li>
+                            <button type="button">公告訊息</button>
+                            <ul class="submenu">
+                                <li><a href="#">最新消息</a></li>
+                                <li><a href="#">政策總覽</a></li>
+                                <li><a href="#">公開資訊</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 長照申請 -->
+                        <li>
+                            <a href="#">長照申請</a>
+                        </li>
+
+                        <!-- 資源地圖 -->
+                        <li>
+                            <button type="button">資源地圖</button>
+                            <ul class="submenu">
+                                <li><a href="#">找機構</a></li>
+                                <li><a href="#">長照方向小測驗</a></li>
+                            </ul>
+                        </li>
+
+
+                        <!-- 服務項目 -->
+                        <li>
+                            <button type="button">服務項目</button>
+                            <ul class="submenu">
+
+                                <!-- 照顧服務 -->
+                                <li>
+                                    <button type="button">照顧服務</button>
+                                    <ul class="submenu">
+                                        <li><a href="#">居家服務</a></li>
+                                        <li><a href="#">日間照顧</a></li>
+                                        <li><a href="#">家庭托顧</a></li>
+                                        <li><a href="#">住宿式長照</a></li>
+                                        <li><a href="#">小規模多機能</a></li>
+                                        <li><a href="#">社區整體照顧</a></li>
+                                    </ul>
+                                </li>
+
+                                <!-- 輔具相關 -->
+                                <li>
+                                    <button type="button">輔具相關</button>
+                                    <ul class="submenu">
+                                        <li><a href="#">輔具租借</a></li>
+                                        <li><a href="#">輔具補助</a></li>
+                                    </ul>
+                                </li>
+
+                                <!-- 其他服務 -->
+                                <li>
+                                    <button type="button">其他服務</button>
+                                    <ul class="submenu">
+                                        <li><a href="#">交通接送</a></li>
+                                        <li><a href="#">出院準備</a></li>
+                                        <li><a href="#">失智照護</a></li>
+                                        <li><a href="#">喘息服務</a></li>
+                                        <li><a href="#">外籍看護</a></li>
+                                        <li><a href="#">餐飲服務</a></li>
+                                        <li><a href="#">照顧指引</a></li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <!-- 常見問題 -->
+                        <li>
+                            <a href="#">常見問題</a>
+                        </li>
+
+                        <!-- 各式下載 -->
+                        <li>
+                            <button type="button">各式下載</button>
+                            <ul class="submenu">
+                                <!-- 統計專區 -->
+                                <li>
+                                    <button type="button">統計專區</button>
+                                    <ul class="submenu">
+                                        <li><a href="#">長照3.0相關統計表</a></li>
+                                        <li><a href="#">長照2.0相關統計表</a></li>
+                                    </ul>
+                                </li>
+                                <!-- 檔案下載 -->
+                                <li>
+                                    <button type="button">檔案下載</button>
+                                    <ul class="submenu">
+                                        <li><a href="#">長照識別LOGO及相關標章</a></li>
+                                        <li><a href="#">各式影音、平面文宣及活動</a></li>
+                                        <li><a href="#">授權說明</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- ====== -->
+            <!-- 手機版 -->
+            <!-- ====== -->
+            <div class="mobile-header">
+
+                <!-- 手機上方 -->
+                <div class="mobile-header-top">
+                    <!-- 搜尋 -->
+                    <button type="button" class="mobile-search">
+                        <i class="bi bi-search"></i>
+                    </button>
+                    <form>
+                        <label for="mobile-search">網站搜尋</label>
+                        <input type="search" id="mobile-search" placeholder="請輸入關鍵字">
+                        <button type="submit">搜尋</button>
+                    </form>
+                    <!-- Logo -->
+                    <a class="logo" href="#">
+                        <img src="./image/logo.png" alt="長照服務專區">
+                    </a>
+                    <!-- 漢堡按鈕 -->
+                    <button type="button" class="menu-button">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </div>
+
+
+                <!-- 手機選單 -->
+                <nav class="mobile-nav">
+
+                    <!-- 主要導覽列 -->
+                    <ul class="mobile-main-menu">
+
+                        <!-- 公告訊息 -->
+                        <li>
+                            <button type="button">
+                                公告訊息
+                            </button>
+                            <ul>
+                                <li><a href="#">最新消息</a></li>
+                                <li><a href="#">政策總覽</a></li>
+                                <li><a href="#">公開資訊</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 長照申請 -->
+                        <li>
+                            <a href="#">長照申請</a>
+                        </li>
+
+                        <!-- 資源地圖 -->
+                        <li>
+                            <button type="button">
+                                資源地圖
+                            </button>
+                            <ul>
+                                <li><a href="#">找機構</a></li>
+                                <li><a href="#">長照方向小測驗</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 服務項目 -->
+                        <li>
+                            <button type="button">
+                                服務項目
+                            </button>
+                            <ul>
+                                <li>
+                                    <button type="button">
+                                        照顧服務
+                                    </button>
+                                    <ul>
+                                        <li><a href="#">居家服務</a></li>
+                                        <li><a href="#">日間照顧</a></li>
+                                        <li><a href="#">家庭托顧</a></li>
+                                        <li><a href="#">住宿式長照</a></li>
+                                        <li><a href="#">小規模多機能</a></li>
+                                        <li><a href="#">社區整體照顧</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <button type="button">
+                                        輔具相關
+                                    </button>
+                                    <ul>
+                                        <li><a href="#">輔具租借</a></li>
+                                        <li><a href="#">輔具補助</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <button type="button">
+                                        其他服務
+                                    </button>
+                                    <ul>
+                                        <li><a href="#">交通接送</a></li>
+                                        <li><a href="#">出院準備</a></li>
+                                        <li><a href="#">失智照護</a></li>
+                                        <li><a href="#">喘息服務</a></li>
+                                        <li><a href="#">外籍看護</a></li>
+                                        <li><a href="#">餐飲服務</a></li>
+                                        <li><a href="#">照顧指引</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- 常見問題 -->
+                        <li>
+                            <a href="#">常見問題</a>
+                        </li>
+
+                        <!-- 各式下載 -->
+                        <li>
+                            <button type="button">
+                                各式下載
+                            </button>
+                            <ul>
+                                <li>
+                                    <button type="button">
+                                        統計專區
+                                    </button>
+                                    <ul>
+                                        <li><a href="#">長照3.0相關統計表</a></li>
+                                        <li><a href="#">長照2.0相關統計表</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <button type="button">
+                                        檔案下載
+                                    </button>
+                                    <ul>
+                                        <li><a href="#">長照識別LOGO及相關標章</a></li>
+                                        <li><a href="#">各式影音、平面文宣及活動</a></li>
+                                        <li><a href="#">授權說明</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!-- 次要導覽列 -->
+                    <div class="mobile-quick-links">
+                        <a href="#">網站導覽</a>
+                        <a href="#">部長信箱</a>
+                        <a href="#">衛生福利部</a>
+                    </div>
+                </nav>
+
+            </div>
+
+        </header>
+
+        <!-- 內容區 -->
+        <main>
+            <!-- 大標+主視覺 -->
+            <div class="hero-section">
+                <h2 class="title">長照3.0</h2>
+                <h2 class="subtitle">活得好，安心老</h2>
+                <div class="hero-button">
+                    <a href="#" class="btn1">查找附近長照服務</a>
+                    <a href="#" class="btn2">長照申請</a>
+                </div>
+            </div>
+            <!-- 自我檢測+重要文章區 -->
+            <div class="quick-links-section">
+                <h2>快速了解長照與補助方向</h2>
+                <p>簡單 1 分鐘，找出未來照顧方向、地方窗口及各項補助</p>
+                <a href="./self-check.html">1分鐘初步檢測</a>
+                <div class="cards">
+                    <div class="row justify-content-center g-4">
+                        <!-- 第一張卡片 -->
+                        <a href="#" class="col-md-4">
+                            <div class="card">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">This is a wider card with supporting text below as a
+                                                natural lead-in to additional content.</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins
+                                                    ago</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- 第二張卡片 -->
+                        <a href="#" class="col-md-4">
+                            <div class="card">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="./image/p2.jpg" class="img-fluid card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">This is a wider card with supporting text below as a
+                                                natural lead-in to additional content.</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins
+                                                    ago</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+                <!-- 服務項目 -->
+                <div class="service-section">
+                    <a href="#" class="service-item">
+                        <div class="service-icon">🛡️</div>
+                        <h3>照顧服務</h3>
+                        <p>日常照顧支持</p>
+                    </a>
+                    <a href="#" class="service-item">
+                        <div class="service-icon">🛡️</div>
+                        <h3>照顧服務</h3>
+                        <p>日常照顧支持</p>
+                    </a>
+                    <a href="#" class="service-item">
+                        <div class="service-icon">🛡️</div>
+                        <h3>照顧服務</h3>
+                        <p>日常照顧支持</p>
+                    </a>
+                    <a href="#" class="service-item">
+                        <div class="service-icon">🛡️</div>
+                        <h3>照顧服務</h3>
+                        <p>日常照顧支持</p>
+                    </a>
+                    <a href="#" class="service-item">
+                        <div class="service-icon">🛡️</div>
+                        <h3>照顧服務</h3>
+                        <p>日常照顧支持</p>
+                    </a>
+                    <a href="#" class="service-item">
+                        <div class="service-icon">🛡️</div>
+                        <h3>照顧服務</h3>
+                        <p>日常照顧支持</p>
+                    </a>
+                    <a href="#" class="service-item">
+                        <div class="service-icon">🛡️</div>
+                        <h3>照顧服務</h3>
+                        <p>日常照顧支持</p>
+                    </a>
+                    <a href="#" class="service-item">
+                        <div class="service-icon">🛡️</div>
+                        <h3>照顧服務</h3>
+                        <p>日常照顧支持</p>
+                    </a>
+                    <a href="#" class="service-item">
+                        <div class="service-icon">🛡️</div>
+                        <h3>照顧服務</h3>
+                        <p>日常照顧支持</p>
+                    </a>
+                    <a href="#" class="service-item">
+                        <div class="service-icon">🛡️</div>
+                        <h3>照顧服務</h3>
+                        <p>日常照顧支持</p>
+                    </a>
+                </div>
+                <!-- 公告 -->
+                <div class="notice-section">
+                    <h2>最新消息</h2>
+                    <div class="cards">
+                        <div class="row justify-content-center g-4">
+
+                            <!-- 第一張卡片 -->
+                            <a href="#" class="col-md-6">
+                                <div class="card">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">This is a wider card with supporting text below as
+                                                    a
+                                                    natural lead-in to additional content.</p>
+                                                <p class="card-text"><small class="text-muted">Last updated 3 mins
+                                                        ago</small>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- 第二張卡片 -->
+                            <a href="#" class="col-md-6">
+                                <div class="card">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">This is a wider card with supporting text below as
+                                                    a
+                                                    natural lead-in to additional content.</p>
+                                                <p class="card-text"><small class="text-muted">Last updated 3 mins
+                                                        ago</small>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- 第三張卡片 -->
+                            <a href="#" class="col-md-6">
+                                <div class="card">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">This is a wider card with supporting text below as
+                                                    a
+                                                    natural lead-in to additional content.</p>
+                                                <p class="card-text"><small class="text-muted">Last updated 3 mins
+                                                        ago</small>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- 第四張卡片 -->
+                            <a href="#" class="col-md-6">
+                                <div class="card">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">This is a wider card with supporting text below as
+                                                    a
+                                                    natural lead-in to additional content.</p>
+                                                <p class="card-text"><small class="text-muted">Last updated 3 mins
+                                                        ago</small>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+        </main>
+
+        <!-- 頁尾 -->
+        <footer>
+            <div class="footer-info">
+                <ul>
+                    <!-- 公告訊息 -->
+                    <li>
+                        <p>公告訊息</p>
+                        <ul>
+                            <li><a href="#">最新消息</a></li>
+                            <li><a href="#">政策總覽</a></li>
+                            <li><a href="#">公開資訊</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 長照申請 -->
+                    <li>
+                        <p>長照申請</p>
+                        <ul>
+                            <li><a href="#">長照申請</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 資源地圖 -->
+                    <li>
+                        <p>資源地圖</p>
+                        <ul>
+                            <li><a href="#">找機構</a></li>
+                            <li><a href="#">長照方向小測驗</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 服務項目 -->
+                    <li>
+                        <p>服務項目</p>
+                        <ul>
+                            <li><a href="#">照顧服務</a></li>
+                            <li><a href="#">交通接送</a></li>
+                            <li><a href="#">出院準備</a></li>
+                            <li><a href="#">輔具租借</a></li>
+                            <li><a href="#">輔具補助</a></li>
+                            <li><a href="#">失智照護</a></li>
+                            <li><a href="#">喘息服務</a></li>
+                            <li><a href="#">外籍看護</a></li>
+                            <li><a href="#">餐飲服務</a></li>
+                            <li><a href="#">照顧指引</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 常見問題 -->
+                    <li>
+                        <p>常見問題</p>
+                        <ul>
+                            <li><a href="#">常見問題</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 各式下載 -->
+                    <li>
+                        <p>各式下載</p>
+                        <ul>
+                            <li><a href="#">統計專區</a></li>
+                            <li><a href="#">檔案下載</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 長照資訊網</p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
