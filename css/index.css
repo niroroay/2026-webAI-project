@@ -23,7 +23,7 @@
 }
 
 html {
-    scroll-behavior: smooth
+    scroll-behavior: smooth;
 }
 
 body {
@@ -34,6 +34,10 @@ body {
     background-color: #fff;
     color: var(--ink);
 }
+
+/* ======= */
+/* 上方選單 */
+/* ======= */
 
 .header-top {
     display: flex;
@@ -84,10 +88,12 @@ a {
 
 .search-form>button {
     border: none;
+    background-color: transparent;
 }
 
 .search-form>button>i {
     font-size: 0.8em;
+    padding: 10px;
 }
 
 .search-form input,
@@ -95,9 +101,15 @@ a {
     margin-left: 5px;
 }
 
+/* ========= */
 /* 主要導覽列 */
-.main-nav{
+/* ========= */
+.main-nav {
     background-color: var(--deep-orange);
+    /* 永遠固定在頁面上方 */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .main-nav>ul {
@@ -111,9 +123,10 @@ a {
     position: relative;
 }
 
-.main-nav>ul>li>a,
-.main-nav>ul>li>button {
-    display: block;
+/* 第一層選單 */
+.main-nav > ul > li > a,
+.main-nav > ul > li > button {
+    display: flex;
     padding: 15px 25px;
     border: none;
     background: none;
@@ -121,30 +134,110 @@ a {
     font-size: 1.3rem;
     font-weight: 600;
     color: var(--soft);
+    align-items: center;
+    gap: 6px;
 }
 
-.submenu{
+/* 滑鼠移到第一層選單按鈕 顯示出淺色按鈕樣式 */
+.main-nav>ul>li>a:hover,
+.main-nav>ul>li>button:hover{
+    /* border: 1px solid red; */
+    background-color: var(--mustard);
+    border-radius: 10px;
+    /* height: 48px; */
+}
+
+/* 第一層選單三角形稍微縮小 */
+.bi {
+    font-size: .7rem;
+}
+
+/* 第二層選單 */
+.main-nav>ul>li>.submenu,
+.mega-menu>.mega-menu-list {
+    /* 預設隱藏 */
     display: none;
-}
 
-.main-nav>ul>li:hover>.submenu{
-    display: block;
-}
-
-.main-nav>ul>li>.submenu{
+    list-style: none;
     position: absolute;
     top: 100%;
     left: 0;
-    padding: 10px 20px;
+    margin-top: 5px;
+    padding: 10px;
     min-width: 180px;
-    list-style: none;
-    background-color: var(--surface);
+    background-color: #fff;
     box-shadow: var(--shadow);
-    border-radius: 10px;
+    border-radius: 20px;
+}
+
+/* 製作一個透明物件 避免滑鼠還沒移到第二層選單就跳掉 */
+.main-nav>ul>li>.submenu::before,
+.mega-menu>.mega-menu-list::before{
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+}
+
+/* 滑鼠移到第一層 顯示第二層 */
+.main-nav>ul>li:hover>.submenu {
+    display: block;
+}
+
+/* 第二層項目 */
+.main-nav .submenu>li{
+    position: relative;
+}
+
+.main-nav .submenu a,
+.main-nav .submenu button,
+.mega-menu .mega-menu-list a,
+.mega-menu .mega-menu-list button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    background: none;
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+/* 滑鼠移到megamenu 顯示第二層 */
+.mega-menu:hover > .mega-menu-list {
+    display: flex;
+    gap: 40px;
+}
+
+/* megamenu的第二層 */
+.mega-menu>.mega-menu-list{
+    width: 600px;
+    padding: 25px;
+}
+
+/* megamenu的第二層選單等寬 */
+.mega-menu-list>li{
+    flex: 1;
+}
+
+/* megamenu的第三層 */
+.mega-menu-list .mega-submenu{
+    display: block;
+    position: static;
+    padding: 0;
+    margin-top: 5px;
+    min-width: auto;
+    box-shadow: none;
+}
+
+/* megamenu的第三層項目 */
+.mega-submenu>li{
+    list-style: none;
 }
 
 /* 手機版 */
-/*
 .mobile-header {
     display: none;
 }
@@ -159,6 +252,10 @@ a {
         display: block;
     }
 
+    .main-nav {
+        display: none;
+    }
+
 }
 
 .card-img {
@@ -166,5 +263,3 @@ a {
     height: 200px;
     object-fit: cover;
 }
-
-*/
