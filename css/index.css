@@ -296,6 +296,7 @@ a {
 
     /* LOGO大小調整 */
     .mobile-header .logo img {
+        display: block;
         width: 140px;
     }
 
@@ -317,13 +318,20 @@ a {
 
     .mobile-search-form.active {
         /* 顯示搜尋框 */
-        display: block;
+        display: flex;
+        background-color: var(--deep-orange);
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 12px 20px;
     }
 
     /* ===== 漢堡選單 ===== */
     .mobile-nav {
         /* 隱藏漢堡選單 */
         display: none;
+        width: 100%;
+        background-color: var(--deep-orange);
     }
 
     .mobile-nav.active {
