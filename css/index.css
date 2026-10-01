@@ -20,6 +20,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* outline: 1px solid red; */
+}
+
+
+html,
+body{
+    width: 100%;
+    height: 100%;
+    /* overflow-x: hidden; */
 }
 
 html {
@@ -124,8 +133,8 @@ a {
 }
 
 /* 第一層選單 */
-.main-nav > ul > li > a,
-.main-nav > ul > li > button {
+.main-nav>ul>li>a,
+.main-nav>ul>li>button {
     display: flex;
     padding: 15px 25px;
     border: none;
@@ -140,7 +149,7 @@ a {
 
 /* 滑鼠移到第一層選單按鈕 顯示出淺色按鈕樣式 */
 .main-nav>ul>li>a:hover,
-.main-nav>ul>li>button:hover{
+.main-nav>ul>li>button:hover {
     /* border: 1px solid red; */
     background-color: var(--mustard);
     border-radius: 10px;
@@ -148,7 +157,7 @@ a {
 }
 
 /* 第一層選單三角形稍微縮小 */
-.bi {
+.main-nav .bi {
     font-size: .7rem;
 }
 
@@ -172,7 +181,7 @@ a {
 
 /* 製作一個透明物件 避免滑鼠還沒移到第二層選單就跳掉 */
 .main-nav>ul>li>.submenu::before,
-.mega-menu>.mega-menu-list::before{
+.mega-menu>.mega-menu-list::before {
     content: '';
     position: absolute;
     top: -5px;
@@ -187,7 +196,7 @@ a {
 }
 
 /* 第二層項目 */
-.main-nav .submenu>li{
+.main-nav .submenu>li {
     position: relative;
 }
 
@@ -206,24 +215,29 @@ a {
 }
 
 /* 滑鼠移到megamenu 顯示第二層 */
-.mega-menu:hover > .mega-menu-list {
+.mega-menu:hover>.mega-menu-list {
     display: flex;
     gap: 40px;
 }
 
 /* megamenu的第二層 */
-.mega-menu>.mega-menu-list{
+.mega-menu>.mega-menu-list {
     width: 600px;
     padding: 25px;
 }
 
+.mega-menu-list>li>button{
+    font-weight: 600;
+    color: var(--deep-orange);
+}
+
 /* megamenu的第二層選單等寬 */
-.mega-menu-list>li{
+.mega-menu-list>li {
     flex: 1;
 }
 
 /* megamenu的第三層 */
-.mega-menu-list .mega-submenu{
+.mega-menu-list .mega-submenu {
     display: block;
     position: static;
     padding: 0;
@@ -233,11 +247,13 @@ a {
 }
 
 /* megamenu的第三層項目 */
-.mega-submenu>li{
+.mega-submenu>li {
     list-style: none;
 }
 
+/* ====== */
 /* 手機版 */
+/* ====== */
 .mobile-header {
     display: none;
 }
@@ -258,8 +274,118 @@ a {
 
 }
 
+/* ===== */
+/* 內容區 */
+/* ===== */
 .card-img {
     width: 100%;
     height: 200px;
     object-fit: cover;
+}
+
+/* ===== */
+/* 頁尾區 */
+/* ===== */
+footer{
+    background-color: var(--mustard);
+    color: var(--ink);
+    margin-top: 50px;
+}
+
+/* 頁尾目錄 */
+.footer-info {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+/* 頁尾logo */
+.footer-info img{
+    width: 180px;
+    margin-bottom: 20px;
+}
+
+/* 右側三欄目錄 */
+.footer-menu{
+    flex: 1;
+    min-width: 0;
+    margin-left: 80px;
+    /* border: 1px solid blue; */
+}
+
+/* 右側三欄橫向排列 */
+.footer-menu>ul{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 50px;
+    /* border: 1px solid red; */
+}
+
+/* 每一欄 */
+.footer-menu-column{
+    flex: 1;
+    text-align: left;
+    /* border: 1px solid yellow; */
+}
+
+/* 標題+項目都置左 */
+.footer-menu-column ul {
+    padding-left: 0;
+    /* border: 1px solid red; */
+}
+
+.footer-menu-column>li{
+    margin-bottom: 20px;
+    /* border: 1px solid red; */
+}
+
+
+.footer-menu-column>li>hr{
+    margin: 5px 0;
+}
+
+/* 欄位標題加粗 */
+.footer-menu-column>li>p{
+    font-weight: 600;
+    margin-bottom: 5px;
+    /* border: 1px solid red; */
+}
+
+.footer-menu-column>li>ul{
+    /* border: 1px solid red; */
+}
+
+.footer-info ul,
+.footer-info li {
+    list-style: none;
+}
+
+.footer-info a {
+    color:var(--ink);
+}
+
+/* 最下面版權 */
+.copyright{
+    background-color: var(--ink);
+    color: var(--mustard);
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-media{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.copyright p{
+    margin: 0;
+}
+
+.copyright a{
+    color: var(--mustard);
 }
