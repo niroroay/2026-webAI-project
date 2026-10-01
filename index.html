@@ -97,9 +97,12 @@
 
                         <!-- 公告訊息 -->
                         <li>
-                            <button type="button">
-                                公告訊息
-                            </button>
+                            <div class="mobile-main-menu-btn">
+                                <button type="button">
+                                    公告訊息
+                                </button>
+                                <i class="bi bi-chevron-compact-down"></i>
+                            </div>
                             <ul>
                                 <li><a href="#">最新消息</a></li>
                                 <li><a href="#">政策總覽</a></li>
@@ -114,9 +117,12 @@
 
                         <!-- 資源地圖 -->
                         <li>
-                            <button type="button">
-                                資源地圖
-                            </button>
+                            <div class="mobile-main-menu-btn">
+                                <button type="button">
+                                    資源地圖
+                                </button>
+                                <i class="bi bi-chevron-compact-down"></i>
+                            </div>
                             <ul>
                                 <li><a href="#">找機構</a></li>
                                 <li><a href="#">長照方向小測驗</a></li>
@@ -125,9 +131,12 @@
 
                         <!-- 服務項目 -->
                         <li>
-                            <button type="button">
-                                服務項目
-                            </button>
+                            <div class="mobile-main-menu-btn">
+                                <button type="button">
+                                    服務項目
+                                </button>
+                                <i class="bi bi-chevron-compact-down"></i>
+                            </div>
                             <ul>
                                 <li>
                                     <button type="button">
@@ -175,9 +184,12 @@
 
                         <!-- 各式下載 -->
                         <li>
-                            <button type="button">
-                                各式下載
-                            </button>
+                            <div class="mobile-main-menu-btn">
+                                <button type="button">
+                                    各式下載
+                                </button>
+                                <i class="bi bi-chevron-compact-down"></i>
+                            </div>
                             <ul>
                                 <li>
                                     <button type="button">
@@ -639,20 +651,26 @@
     </div>
 
     <script>
-        // 點選漢堡選單按鈕→顯示mobile-nav
+        // 點選漢堡選單按鈕
         const menuButton = document.querySelector('.menu-button');
         const mobileNav = document.querySelector('.mobile-nav');
 
         menuButton.addEventListener('click', function () {
+            // 開啟+關閉 mobile-nav
             mobileNav.classList.toggle('active');
+            // 關閉 search-form
+            mobileSearchForm.classList.remove('active');
         })
 
-        // 點選搜尋按鈕→顯示form
+        // 點選搜尋按鈕
         const searchButton = document.querySelector('.mobile-search');
         const mobileSearchForm = document.querySelector('.mobile-search-form');
 
         searchButton.addEventListener('click', function () {
+            // 開啟+關閉 search-form
             mobileSearchForm.classList.toggle('active');
+            // 關閉 mobile-nav
+            mobileNav.classList.remove('active');
         })
     </script>
 </body>

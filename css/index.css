@@ -272,6 +272,7 @@ a {
     /* <991時顯示手機版header */
     .mobile-header {
         display: block;
+        padding-top: 70px;
     }
 
     /* ===== 手機上方 ===== */
@@ -280,8 +281,14 @@ a {
         display: grid;
         grid-template-columns: 1fr auto 1fr;
         align-items: center;
+        height: 70px;
         padding: 15px 20px;
         background-color: #fff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
     }
 
     /* 搜尋靠左 */
@@ -319,24 +326,62 @@ a {
     .mobile-search-form.active {
         /* 顯示搜尋框 */
         display: flex;
+        position: fixed;
+        top: 70px;
+        left: 0;
         background-color: var(--deep-orange);
-        align-items: center;
+        align-items: flex-start;
         gap: 10px;
         width: 100%;
+        height: calc(100vh - 70px);
         padding: 12px 20px;
+        z-index: 999;
     }
 
     /* ===== 漢堡選單 ===== */
     .mobile-nav {
         /* 隱藏漢堡選單 */
         display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
         width: 100%;
+        height: calc(100vh - 70px);
+        overflow-y: auto;
         background-color: var(--deep-orange);
+        z-index: 999;
     }
 
     .mobile-nav.active {
         /* 顯示漢堡選單 */
         display: block;
+    }
+
+    /* 漢堡選單內容樣式 */
+    .mobile-main-menu,
+    .mobile-main-menu li{
+        list-style: none;
+    }
+
+    /* 清除漢堡選單內按鈕樣式 */
+    .mobile-main-menu>li>a,
+    .mobile-main-menu-btn>button,
+    .mobile-main-menu>li>ul>li>button{
+        border: none;
+        background:none;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .mobile-main-menu>li>a,
+    .mobile-main-menu-btn>button{
+        font-size: 2rem;
+    }
+
+    .mobile-main-menu-btn .bi{
+        color: #fff;
+        font-size: 1.5em;
+        padding-left: 10px;
     }
 }
 
