@@ -274,23 +274,34 @@ a {
         display: block;
     }
 
-    /* 上方選單橫向排列 */
-    .mobile-header-top{
-        display: flex;
+    /* ===== 手機上方 ===== */
+    /* 上方選單grid排列 */
+    .mobile-header-top {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
         align-items: center;
-        justify-content: space-between;
         padding: 15px 20px;
         background-color: #fff;
     }
 
+    /* 搜尋靠左 */
+    .mobile-search {
+        justify-self: start;
+    }
+
+    /* 漢堡選單按鈕靠右 */
+    .menu-button {
+        justify-self: end;
+    }
+
     /* LOGO大小調整 */
-    .mobile-header .logo img{
+    .mobile-header .logo img {
         width: 140px;
     }
 
     /* 搜尋按鈕+漢堡選單 清除預設按鈕樣式 */
     .mobile-search,
-    .menu-button{
+    .menu-button {
         border: none;
         background: none;
         color: var(--ink);
@@ -298,9 +309,26 @@ a {
         cursor: pointer;
     }
 
-    /* 隱藏搜尋框 */
-    .mobile-header-top form{
+    /* ===== 搜尋 ===== */
+    .mobile-search-form {
+        /* 隱藏搜尋框 */
         display: none;
+    }
+
+    .mobile-search-form.active {
+        /* 顯示搜尋框 */
+        display: block;
+    }
+
+    /* ===== 漢堡選單 ===== */
+    .mobile-nav {
+        /* 隱藏漢堡選單 */
+        display: none;
+    }
+
+    .mobile-nav.active {
+        /* 顯示漢堡選單 */
+        display: block;
     }
 }
 

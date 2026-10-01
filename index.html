@@ -69,7 +69,7 @@
                     <button type="button" class="mobile-search">
                         <i class="bi bi-search"></i>
                     </button>
-                    <form>
+                    <form class="mobile-search-form">
                         <label for="mobile-search">網站搜尋</label>
                         <input type="search" id="mobile-search" placeholder="請輸入關鍵字">
                         <button type="submit">搜尋</button>
@@ -633,6 +633,24 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        // 點選漢堡選單按鈕→顯示mobile-nav
+        const menuButton = document.querySelector('.menu-button');
+        const mobileNav = document.querySelector('.mobile-nav');
+
+        menuButton.addEventListener('click', function () {
+            mobileNav.classList.toggle('active');
+        })
+
+        // 點選搜尋按鈕→顯示form
+        const searchButton = document.querySelector('.mobile-search');
+        const mobileSearchForm = document.querySelector('.mobile-search-form');
+
+        searchButton.addEventListener('click', function () {
+            mobileSearchForm.classList.toggle('active');
+        })
+    </script>
 </body>
 
 </html>
