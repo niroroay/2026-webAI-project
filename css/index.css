@@ -25,7 +25,7 @@
 
 
 html,
-body{
+body {
     width: 100%;
     height: 100%;
     /* overflow-x: hidden; */
@@ -226,7 +226,7 @@ a {
     padding: 25px;
 }
 
-.mega-menu-list>li>button{
+.mega-menu-list>li>button {
     font-weight: 600;
     color: var(--deep-orange);
 }
@@ -260,18 +260,48 @@ a {
 
 @media (max-width: 991px) {
 
+    /* <991時隱藏電腦版header和放在外面的main-nav */
     .desktop-header {
         display: none;
-    }
-
-    .mobile-header {
-        display: block;
     }
 
     .main-nav {
         display: none;
     }
 
+    /* <991時顯示手機版header */
+    .mobile-header {
+        display: block;
+    }
+
+    /* 上方選單橫向排列 */
+    .mobile-header-top{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 20px;
+        background-color: #fff;
+    }
+
+    /* LOGO大小調整 */
+    .mobile-header .logo img{
+        width: 140px;
+    }
+
+    /* 搜尋按鈕+漢堡選單 清除預設按鈕樣式 */
+    .mobile-search,
+    .menu-button{
+        border: none;
+        background: none;
+        color: var(--ink);
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    /* 隱藏搜尋框 */
+    .mobile-header-top form{
+        display: none;
+    }
 }
 
 /* ===== */
@@ -286,7 +316,7 @@ a {
 /* ===== */
 /* 頁尾區 */
 /* ===== */
-footer{
+footer {
     background-color: var(--mustard);
     color: var(--ink);
     margin-top: 50px;
@@ -301,13 +331,13 @@ footer{
 }
 
 /* 頁尾logo */
-.footer-info img{
+.footer-info img {
     width: 180px;
     margin-bottom: 20px;
 }
 
 /* 右側三欄目錄 */
-.footer-menu{
+.footer-menu {
     flex: 1;
     min-width: 0;
     margin-left: 80px;
@@ -315,7 +345,7 @@ footer{
 }
 
 /* 右側三欄橫向排列 */
-.footer-menu>ul{
+.footer-menu>ul {
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -324,7 +354,7 @@ footer{
 }
 
 /* 每一欄 */
-.footer-menu-column{
+.footer-menu-column {
     flex: 1;
     text-align: left;
     /* border: 1px solid yellow; */
@@ -336,24 +366,24 @@ footer{
     /* border: 1px solid red; */
 }
 
-.footer-menu-column>li{
+.footer-menu-column>li {
     margin-bottom: 20px;
     /* border: 1px solid red; */
 }
 
 
-.footer-menu-column>li>hr{
+.footer-menu-column>li>hr {
     margin: 5px 0;
 }
 
 /* 欄位標題加粗 */
-.footer-menu-column>li>p{
+.footer-menu-column>li>p {
     font-weight: 600;
     margin-bottom: 5px;
     /* border: 1px solid red; */
 }
 
-.footer-menu-column>li>ul{
+.footer-menu-column>li>ul {
     /* border: 1px solid red; */
 }
 
@@ -363,11 +393,11 @@ footer{
 }
 
 .footer-info a {
-    color:var(--ink);
+    color: var(--ink);
 }
 
 /* 最下面版權 */
-.copyright{
+.copyright {
     background-color: var(--ink);
     color: var(--mustard);
     padding: 15px 50px;
@@ -376,16 +406,16 @@ footer{
     align-items: center;
 }
 
-.social-media{
+.social-media {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.copyright p{
+.copyright p {
     margin: 0;
 }
 
-.copyright a{
+.copyright a {
     color: var(--mustard);
 }
