@@ -731,6 +731,13 @@
                 document.body.classList.remove('menu-open');
             }
         }
+
+        // 切換回電腦版的時候解除body鎖定
+        window.addEventListener('resize',function(){
+            if(window.innerWidth>991){
+                document.body.classList.remove('menu-open');
+            }
+        });
     </script>
 </body>
 
