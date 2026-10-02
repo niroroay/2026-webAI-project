@@ -149,15 +149,15 @@ a {
     color: var(--soft);
     align-items: center;
     gap: 6px;
+
+    transition: background-color 0.3s ease;
 }
 
 /* 滑鼠移到第一層選單按鈕 顯示出淺色按鈕樣式 */
 .main-nav>ul>li>a:hover,
 .main-nav>ul>li>button:hover {
-    /* border: 1px solid red; */
     background-color: var(--mustard);
     border-radius: 10px;
-    /* height: 48px; */
 }
 
 /* 第一層選單三角形稍微縮小 */
@@ -169,7 +169,8 @@ a {
 .main-nav>ul>li>.submenu,
 .mega-menu>.mega-menu-list {
     /* 預設隱藏 */
-    display: none;
+    opacity: 0;
+    visibility: hidden;
 
     list-style: none;
     position: absolute;
@@ -181,6 +182,14 @@ a {
     background-color: #fff;
     box-shadow: var(--shadow);
     border-radius: 20px;
+
+    transform: translateY(-5px);
+
+    transition: 
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s ease;
+
 }
 
 /* 製作一個透明物件 避免滑鼠還沒移到第二層選單就跳掉 */
@@ -195,8 +204,11 @@ a {
 }
 
 /* 滑鼠移到第一層 顯示第二層 */
-.main-nav>ul>li:hover>.submenu {
-    display: block;
+.main-nav>ul>li:hover>.submenu,
+.mega-menu:hover>.mega-menu-list {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 /* 第二層項目 */
@@ -204,6 +216,7 @@ a {
     position: relative;
 }
 
+/* 第二層按鈕樣式 */
 .main-nav .submenu a,
 .main-nav .submenu button,
 .mega-menu .mega-menu-list a,
@@ -218,16 +231,13 @@ a {
     cursor: pointer;
 }
 
-/* 滑鼠移到megamenu 顯示第二層 */
-.mega-menu:hover>.mega-menu-list {
-    display: flex;
-    gap: 40px;
-}
-
 /* megamenu的第二層 */
 .mega-menu>.mega-menu-list {
     width: 600px;
     padding: 25px;
+
+    display: flex;
+    gap: 40px;
 }
 
 .mega-menu-list>li>button {
@@ -355,7 +365,12 @@ a {
         background-color: var(--deep-orange);
         opacity: 0;
         visibility: hidden;
-        transition: opacity 0.3s ease;
+        transform: translateY(-10px);
+
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease,
+            visibility 0.3s ease;
         
         z-index: 999;
     }
@@ -364,6 +379,7 @@ a {
         /* 顯示漢堡選單 */
         opacity: 1;
         visibility: visible;
+        transform: translateY(0);
     }
 
     /* 漢堡選單內容樣式 */
@@ -380,7 +396,7 @@ a {
 
     /* 漢堡選單內按鈕樣式 */
     .mobile-main-menu>li>a,
-    .mobile-main-menu-btn>button,
+    .menu-title,
     .mobile-main-menu>li>ul>li>button{
         border: none;
         background:none;
@@ -389,7 +405,7 @@ a {
     }
 
     /* 選單按鈕+箭頭占滿整個頁面寬度 */
-    .mobile-main-menu-btn>button,
+    .menu-title,
     .mobile-main-menu>li>a{
         width: 100%;
         display: flex;
@@ -402,31 +418,48 @@ a {
     }
 
     /* 滑鼠移入→選單按鈕+箭頭背景顏色漸變 */
-    .mobile-main-menu-btn>button:hover,
+    .menu-title:hover,
     .mobile-main-menu>li>a:hover{
      background-color: var(--mustard);
     }
 
     /* 漢堡選單內選單文字放大 */
     .mobile-main-menu>li>a,
-    .mobile-main-menu-btn>button{
+    .menu-title{
         font-size: 2rem;
     }
 
     /* 漢堡選單內箭頭 */
     .mobile-main-menu-btn .bi{
         padding-left: 10px;
-        transition: transform 0.3s ease;
+        transition: transform 0.2s ease;
     }
 
-    /* 滑鼠移入→箭頭漸轉90度 */
-    .mobile-main-menu-btn>button:hover .bi{
+    /* 滑鼠移入→箭頭微微往右移動 */
+    .menu-title:hover .bi{
+        transform: translateX(5px);
+    }
+
+    /* 滑鼠點擊→箭頭漸轉90度 */
+    .menu-title.open .bi{
         transform: rotate(90deg);
     }
 
     /* 漢堡選單第二層預設隱藏 */
     .mobile-main-menu>li>ul{
-        display: none;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+
+        transition: 
+            max-height 0.3s ease,
+            opacity 0.3s ease;
+    }
+
+    /* 漢堡選單第二層展開時 */
+    .mobile-main-menu>li>ul.open{
+        max-height: 1000px;
+        opacity: 1;
     }
 }
 

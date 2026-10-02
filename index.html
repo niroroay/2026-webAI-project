@@ -98,7 +98,7 @@
                         <!-- 公告訊息 -->
                         <li>
                             <div class="mobile-main-menu-btn">
-                                <button type="button">
+                                <button type="button" class="menu-title">
                                     公告訊息 <i class="bi bi-chevron-right"></i>
                                 </button>
                             </div>
@@ -117,7 +117,7 @@
                         <!-- 資源地圖 -->
                         <li>
                             <div class="mobile-main-menu-btn">
-                                <button type="button">
+                                <button type="button" class="menu-title">
                                     資源地圖
                                     <i class="bi bi-chevron-right"></i>
                                 </button>
@@ -131,7 +131,7 @@
                         <!-- 服務項目 -->
                         <li>
                             <div class="mobile-main-menu-btn">
-                                <button type="button">
+                                <button type="button" class="menu-title">
                                     服務項目
                                     <i class="bi bi-chevron-right"></i>
                                 </button>
@@ -184,7 +184,7 @@
                         <!-- 各式下載 -->
                         <li>
                             <div class="mobile-main-menu-btn">
-                                <button type="button">
+                                <button type="button" class="menu-title">
                                     各式下載
                                     <i class="bi bi-chevron-right"></i>
                                 </button>
@@ -650,40 +650,84 @@
     </div>
 
     <script>
-        // 點選漢堡選單按鈕
+        // ================
+        // 取得HTML元素
+        // ================
+
+        // 漢堡選單按鈕
         const menuButton = document.querySelector('.menu-button');
+
+        // 手機版選單
         const mobileNav = document.querySelector('.mobile-nav');
 
-        // 點選搜尋按鈕
+        // 搜尋按鈕
         const searchButton = document.querySelector('.mobile-search');
+
+        // 搜尋框
         const mobileSearchForm = document.querySelector('.mobile-search-form');
 
+        // 手機漢堡選單內按鈕（公告訊息、資源地圖...）
+        const menuTitles = document.querySelectorAll('.menu-title');
+
+        // ================
+        // 漢堡選單
+        // ================
 
         menuButton.addEventListener('click', function () {
             // 開啟+關閉 mobile-nav
             mobileNav.classList.toggle('active');
             // 關閉 search-form
             mobileSearchForm.classList.remove('active');
-            
+            // 控制 body 滾動
             updateBodyScroll();
         })
 
         
+        // ================
+        // 搜尋按鈕
+        // ================
+
         searchButton.addEventListener('click', function () {
             // 開啟+關閉 search-form
             mobileSearchForm.classList.toggle('active');
             // 關閉 mobile-nav
             mobileNav.classList.remove('active');
-            
+            // 控制 body 滾動
             updateBodyScroll();
         })
 
-        function updateBodyScroll(){
-            if(
+        // =========================
+        // 漢堡選單內按鈕+第二層選單
+        // =========================
+
+        menuTitles.forEach(function(button){
+            button.addEventListener('click',function(){
+                const menu = button.parentElement.nextElementSibling;
+
+                // 如果已開啟→關閉
+                if(button.classList.contains('open')){
+                    button.classList.remove('open');
+                    menu.classList.remove('open');
+                } else {
+                    // 先關閉其他選單
+                    menuTitles.forEach(function(item){
+                        item.classList.remove('open');
+                        item.parentElement.nextElementSibling.classList.remove('open');
+                    });
+
+                    // 打開目前選單
+                    button.classList.add('open');
+                    menu.classList.add('open');
+                }
+            });
+        })
+
+        function updateBodyScroll() {
+            if (
                 mobileNav.classList.contains('active') || mobileSearchForm.classList.contains('active')
-            ){
+            ) {
                 document.body.classList.add('menu-open');
-            }else{
+            } else {
                 document.body.classList.remove('menu-open');
             }
         }
