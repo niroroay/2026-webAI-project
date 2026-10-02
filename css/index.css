@@ -44,6 +44,10 @@ body {
     color: var(--ink);
 }
 
+body.menu-open{
+    overflow: hidden;
+}
+
 /* ======= */
 /* 上方選單 */
 /* ======= */
@@ -341,20 +345,25 @@ a {
     /* ===== 漢堡選單 ===== */
     .mobile-nav {
         /* 隱藏漢堡選單 */
-        display: none;
         position: fixed;
         top: 70px;
         left: 0;
         width: 100%;
         height: calc(100vh - 70px);
         overflow-y: auto;
+
         background-color: var(--deep-orange);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+        
         z-index: 999;
     }
 
     .mobile-nav.active {
         /* 顯示漢堡選單 */
-        display: block;
+        opacity: 1;
+        visibility: visible;
     }
 
     /* 漢堡選單內容樣式 */
@@ -363,7 +372,13 @@ a {
         list-style: none;
     }
 
-    /* 清除漢堡選單內按鈕樣式 */
+    /* 消除漢堡選單ul左方預設空白 */
+    .mobile-main-menu{
+        padding: 10px 20px;
+        margin: 0;
+    }
+
+    /* 漢堡選單內按鈕樣式 */
     .mobile-main-menu>li>a,
     .mobile-main-menu-btn>button,
     .mobile-main-menu>li>ul>li>button{
@@ -373,15 +388,45 @@ a {
         font-weight: 600;
     }
 
+    /* 選單按鈕+箭頭占滿整個頁面寬度 */
+    .mobile-main-menu-btn>button,
+    .mobile-main-menu>li>a{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-radius: 20px;
+        /* 背景顏色漸變 */
+        transition: background-color 0.3s ease;
+    }
+
+    /* 滑鼠移入→選單按鈕+箭頭背景顏色漸變 */
+    .mobile-main-menu-btn>button:hover,
+    .mobile-main-menu>li>a:hover{
+     background-color: var(--mustard);
+    }
+
+    /* 漢堡選單內選單文字放大 */
     .mobile-main-menu>li>a,
     .mobile-main-menu-btn>button{
         font-size: 2rem;
     }
 
+    /* 漢堡選單內箭頭 */
     .mobile-main-menu-btn .bi{
-        color: #fff;
-        font-size: 1.5em;
         padding-left: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    /* 滑鼠移入→箭頭漸轉90度 */
+    .mobile-main-menu-btn>button:hover .bi{
+        transform: rotate(90deg);
+    }
+
+    /* 漢堡選單第二層預設隱藏 */
+    .mobile-main-menu>li>ul{
+        display: none;
     }
 }
 
