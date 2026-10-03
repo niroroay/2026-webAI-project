@@ -402,8 +402,7 @@ a {
 
     /* 漢堡選單內按鈕樣式 */
     .mobile-main-menu>li>a,
-    .menu-title,
-    .mobile-main-menu>li>ul>li>button{
+    .menu-title{
         border: none;
         background:none;
         color: #fff;
@@ -460,6 +459,8 @@ a {
         transition: 
             max-height 0.3s ease,
             opacity 0.3s ease;
+
+        padding: 0;
     }
 
     /* 漢堡選單第二層展開時 */
@@ -467,6 +468,46 @@ a {
         max-height: 1000px;
         opacity: 1;
     }
+
+    /* 漢堡選單第二層標題樣式（黃色加粗） */
+    .menu-subtitle{
+        width: 100%;
+        margin-top: 10px;
+        padding-left: 12px;
+        display: block;
+        text-align: left;
+        border: none;
+        background: none;
+        font-weight: 600;
+        font-size: 1.5rem;
+        color: var(--yellow)
+    }
+
+    /* 第三層子選單 */
+    .menu-subtitle + ul{
+        padding-left: 0;
+    }
+
+    /* 第三層子選單的每個連結 */
+    .mobile-menu-title>ul>li>a,
+    .menu-subtitle +ul a{
+        display: block;
+        padding: 5px 15px;
+        color: #fff;
+        text-align: left;
+        font-size: 1.2rem;
+        border-radius: 10px;
+        /* 背景顏色漸變 */
+        transition: background-color 0.3s ease;
+    }
+
+    /* 滑鼠移入→子選單按鈕顏色漸變 */
+    .mobile-menu-title>ul>li>a:hover,
+    .menu-subtitle +ul a:hover{
+        background-color: var(--mustard);
+        }
+
+    
 }
 
 /* ===== */
