@@ -332,8 +332,42 @@
 
         <!-- 內容區 -->
         <main>
-            <!-- 大標+主視覺 -->
             <div class="hero-section">
+                <!-- BS5 輪播 -->
+                <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="./image/hero1.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./image/hero2.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./image/hero3.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <!-- 固定在輪播上方的標題+按鈕 -->
+            <div class="hero-content">
                 <h2 class="title">長照3.0</h2>
                 <h2 class="subtitle">活得好，安心老</h2>
                 <div class="hero-button">
@@ -341,6 +375,7 @@
                     <a href="#" class="btn2">長照申請</a>
                 </div>
             </div>
+
             <!-- 自我檢測+重要文章區 -->
             <div class="quick-links-section">
                 <h2>快速了解長照與補助方向</h2>

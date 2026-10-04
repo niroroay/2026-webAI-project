@@ -130,6 +130,7 @@ a {
     justify-content: center;
     align-items: center;
     list-style: none;
+    margin-bottom: 0px;
 }
 
 .main-nav>ul>li {
@@ -575,6 +576,71 @@ a {
 
     
 }
+/* ===== */
+/* 輪播區 */
+/* ===== */
+.hero-section{
+    position: relative;
+    height: 450px;
+    overflow: hidden;
+}
+
+/* 輪播高度 */
+.hero-section .carousel,
+.hero-section .carousel-inner,
+.hero-section .carousel-item{
+    height: 100%;
+}
+
+/* 圖片填滿 */
+.hero-section .carousel-item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 固定標題區 */
+.hero-content{
+    position: absolute;
+
+    left: 10%;
+    line-height: 450px;
+
+    transform: translateY(-53%);
+
+    z-index: 10;
+
+    text-align: left;
+
+    color: #fff;
+    text-shadow: var(--shadow);
+}
+
+/* 大標：長照3.0 */
+.title{
+    font-size: 3.5rem;
+    font-weight: 600;
+}
+
+/* 輪播區按鈕位置調整 */
+.hero-button{
+    transform: translateY(-45%);
+}
+
+/* 輪播區按鈕樣式 */
+.hero-button a{
+    color: #fff;
+    padding: 10px 15px;
+    margin-right: 5px;
+    border-radius: 10px;
+    background-color: var(--ink);
+}
+
+/* 輪播區「長照申請」按鈕顏色調整 */
+.hero-button .btn2{
+    background-color: var(--deep-orange);
+}
+
 
 /* ===== */
 /* 內容區 */
