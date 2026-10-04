@@ -388,6 +388,53 @@ a {
         transform: translateY(0);
     }
 
+    /* ===== 搜尋框樣式 ===== */
+    .mobile-search-content{
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        
+        padding: 20px;
+        color: #fff;
+    }
+
+    /* 搜尋框 */
+    #mobile-search{
+        flex: 1;
+        min-width: 0;
+
+        padding: 10px 15px;
+
+        border: 1px solid var(--sage);
+        border-radius: 10px;
+        outline: none;
+    }
+
+    /* 搜尋按鈕 */
+    .mobile-search-content button{
+        flex-shrink: 0;
+    
+        padding: 10px 18px;
+
+        border: none;
+        border-radius: 10px;
+
+        background-color: var(--ink);
+        color: #fff;
+        
+        cursor: pointer;
+
+        transition: background-color 0.3s ease;
+    }
+
+    .mobile-search-content button:hover{
+        background-color: var(--mustard);
+    }
+
     /* 漢堡選單內容樣式 */
     .mobile-main-menu,
     .mobile-main-menu li{
@@ -506,6 +553,25 @@ a {
     .menu-subtitle +ul a:hover{
         background-color: var(--mustard);
         }
+
+    .mobile-quick-links{
+        padding: 30px;
+        
+    }
+
+    .mobile-quick-links a{
+        color: #fff;
+        background-color: var(--ink);
+        border-radius: 20px;
+        padding: 10px 15px;
+        margin-right: 5px;
+
+        transition: background-color 0.3s ease;
+    }
+
+    .mobile-quick-links a:hover{
+        background-color: var(--mustard);
+    }
 
     
 }

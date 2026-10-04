@@ -84,9 +84,11 @@
 
                 <!-- 搜尋框 -->
                 <form class="mobile-search-form">
-                    <label for="mobile-search">網站搜尋</label>
-                    <input type="search" id="mobile-search" placeholder="請輸入關鍵字">
-                    <button type="submit">搜尋</button>
+                    <div class="mobile-search-content">
+                        <label for="mobile-search">網站搜尋</label>
+                        <input type="search" id="mobile-search" placeholder="請輸入關鍵字">
+                        <button type="submit">搜尋</button>
+                    </div>
                 </form>
 
                 <!-- 手機選單 -->
@@ -682,7 +684,7 @@
             updateBodyScroll();
         })
 
-        
+
         // ================
         // 搜尋按鈕
         // ================
@@ -700,17 +702,17 @@
         // 漢堡選單內按鈕+第二層選單
         // =========================
 
-        menuTitles.forEach(function(button){
-            button.addEventListener('click',function(){
+        menuTitles.forEach(function (button) {
+            button.addEventListener('click', function () {
                 const menu = button.parentElement.nextElementSibling;
 
                 // 如果已開啟→關閉
-                if(button.classList.contains('open')){
+                if (button.classList.contains('open')) {
                     button.classList.remove('open');
                     menu.classList.remove('open');
                 } else {
                     // 先關閉其他選單
-                    menuTitles.forEach(function(item){
+                    menuTitles.forEach(function (item) {
                         item.classList.remove('open');
                         item.parentElement.nextElementSibling.classList.remove('open');
                     });
@@ -733,8 +735,8 @@
         }
 
         // 切換回電腦版的時候解除body鎖定
-        window.addEventListener('resize',function(){
-            if(window.innerWidth>991){
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 991) {
                 document.body.classList.remove('menu-open');
             }
         });
