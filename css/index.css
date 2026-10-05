@@ -44,7 +44,7 @@ body {
     color: var(--ink);
 }
 
-body.menu-open{
+body.menu-open {
     overflow: hidden;
 }
 
@@ -186,7 +186,7 @@ a {
 
     transform: translateY(-5px);
 
-    transition: 
+    transition:
         opacity 0.3s ease,
         transform 0.3s ease,
         visibility 0.3s ease;
@@ -211,7 +211,7 @@ a {
     visibility: visible;
 }
 
-.main-nav>ul>li:hover>.submenu{
+.main-nav>ul>li:hover>.submenu {
     transform: translateY(0);
 }
 
@@ -241,7 +241,8 @@ a {
 
 /* megamenu的第二層 */
 .mega-menu>.mega-menu-list {
-    width: 600px; /*各式下載會超出視窗範圍*/
+    width: 600px;
+    /*各式下載會超出視窗範圍*/
     padding: 25px;
     display: flex;
     gap: 40px;
@@ -262,17 +263,17 @@ a {
 }
 
 /* megamenu獨立控制的動態（置中向下展開） */
-.mega-menu:hover>.mega-menu-list{
+.mega-menu:hover>.mega-menu-list {
     transform: translateX(-50%) translateY(0);
 }
 
 /* 同屬megamenu但各式下載的選單會超出螢幕範圍 所以往左挪 */
-.mega-menu:last-child > .mega-menu-list {
+.mega-menu:last-child>.mega-menu-list {
     transform: translateX(-85%) translateY(-5px);
 }
 
 /* 各式下載選單動態（向下展開） */
-.mega-menu:last-child:hover > .mega-menu-list {
+.mega-menu:last-child:hover>.mega-menu-list {
     transform: translateX(-85%) translateY(0);
 }
 
@@ -377,7 +378,7 @@ a {
             opacity 0.3s ease,
             transform 0.3s ease,
             visibility 0.3s ease;
-        
+
         z-index: 999;
     }
 
@@ -390,7 +391,7 @@ a {
     }
 
     /* ===== 搜尋框樣式 ===== */
-    .mobile-search-content{
+    .mobile-search-content {
         width: 100%;
         max-width: 100%;
         margin: 0 auto;
@@ -398,13 +399,13 @@ a {
         display: flex;
         align-items: center;
         gap: 10px;
-        
+
         padding: 20px;
         color: #fff;
     }
 
     /* 搜尋框 */
-    #mobile-search{
+    #mobile-search {
         flex: 1;
         min-width: 0;
 
@@ -416,9 +417,9 @@ a {
     }
 
     /* 搜尋按鈕 */
-    .mobile-search-content button{
+    .mobile-search-content button {
         flex-shrink: 0;
-    
+
         padding: 10px 18px;
 
         border: none;
@@ -426,40 +427,40 @@ a {
 
         background-color: var(--ink);
         color: #fff;
-        
+
         cursor: pointer;
 
         transition: background-color 0.3s ease;
     }
 
-    .mobile-search-content button:hover{
+    .mobile-search-content button:hover {
         background-color: var(--mustard);
     }
 
     /* 漢堡選單內容樣式 */
     .mobile-main-menu,
-    .mobile-main-menu li{
+    .mobile-main-menu li {
         list-style: none;
     }
 
     /* 消除漢堡選單ul左方預設空白 */
-    .mobile-main-menu{
+    .mobile-main-menu {
         padding: 10px 20px;
         margin: 0;
     }
 
     /* 漢堡選單內按鈕樣式 */
     .mobile-main-menu>li>a,
-    .menu-title{
+    .menu-title {
         border: none;
-        background:none;
+        background: none;
         color: #fff;
         font-weight: 600;
     }
 
     /* 選單按鈕+箭頭占滿整個頁面寬度 */
     .menu-title,
-    .mobile-main-menu>li>a{
+    .mobile-main-menu>li>a {
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -472,39 +473,39 @@ a {
 
     /* 滑鼠移入→選單按鈕+箭頭背景顏色漸變 */
     .menu-title:hover,
-    .mobile-main-menu>li>a:hover{
-     background-color: var(--mustard);
+    .mobile-main-menu>li>a:hover {
+        background-color: var(--mustard);
     }
 
     /* 漢堡選單內選單文字放大 */
     .mobile-main-menu>li>a,
-    .menu-title{
+    .menu-title {
         font-size: 2rem;
     }
 
     /* 漢堡選單內箭頭 */
-    .mobile-main-menu-btn .bi{
+    .mobile-main-menu-btn .bi {
         padding-left: 10px;
         transition: transform 0.2s ease;
     }
 
     /* 滑鼠移入→箭頭微微往右移動 */
-    .menu-title:hover .bi{
+    .menu-title:hover .bi {
         transform: translateX(5px);
     }
 
     /* 滑鼠點擊→箭頭漸轉90度 */
-    .menu-title.open .bi{
+    .menu-title.open .bi {
         transform: rotate(90deg);
     }
 
     /* 漢堡選單第二層預設隱藏 */
-    .mobile-main-menu>li>ul{
+    .mobile-main-menu>li>ul {
         max-height: 0;
         overflow: hidden;
         opacity: 0;
 
-        transition: 
+        transition:
             max-height 0.3s ease,
             opacity 0.3s ease;
 
@@ -512,13 +513,13 @@ a {
     }
 
     /* 漢堡選單第二層展開時 */
-    .mobile-main-menu>li>ul.open{
+    .mobile-main-menu>li>ul.open {
         max-height: 1000px;
         opacity: 1;
     }
 
     /* 漢堡選單第二層標題樣式（黃色加粗） */
-    .menu-subtitle{
+    .menu-subtitle {
         width: 100%;
         margin-top: 10px;
         padding-left: 12px;
@@ -532,13 +533,13 @@ a {
     }
 
     /* 第三層子選單 */
-    .menu-subtitle + ul{
+    .menu-subtitle+ul {
         padding-left: 0;
     }
 
     /* 第三層子選單的每個連結 */
     .mobile-menu-title>ul>li>a,
-    .menu-subtitle +ul a{
+    .menu-subtitle+ul a {
         display: block;
         padding: 5px 15px;
         color: #fff;
@@ -551,16 +552,16 @@ a {
 
     /* 滑鼠移入→子選單按鈕顏色漸變 */
     .mobile-menu-title>ul>li>a:hover,
-    .menu-subtitle +ul a:hover{
+    .menu-subtitle+ul a:hover {
         background-color: var(--mustard);
-        }
-
-    .mobile-quick-links{
-        padding: 30px;
-        
     }
 
-    .mobile-quick-links a{
+    .mobile-quick-links {
+        padding: 30px;
+
+    }
+
+    .mobile-quick-links a {
         color: #fff;
         background-color: var(--ink);
         border-radius: 20px;
@@ -570,16 +571,34 @@ a {
         transition: background-color 0.3s ease;
     }
 
-    .mobile-quick-links a:hover{
+    .mobile-quick-links a:hover {
         background-color: var(--mustard);
     }
 
-    
+
 }
+/* ===== */
+/* 內容區 */
+/* ===== */
+main{
+    width: 100%;
+}
+
+.main-container{
+    max-width: 1180px;
+    margin: 30px auto;
+    text-align: center;
+}
+
+.main-container h2{
+    font-size: 2rem;
+    font-weight: 600;
+}
+
 /* ===== */
 /* 輪播區 */
 /* ===== */
-.hero-section{
+.hero-section {
     position: relative;
     height: 450px;
     overflow: hidden;
@@ -588,25 +607,25 @@ a {
 /* 輪播高度 */
 .hero-section .carousel,
 .hero-section .carousel-inner,
-.hero-section .carousel-item{
+.hero-section .carousel-item {
     height: 100%;
 }
 
 /* 圖片填滿 */
-.hero-section .carousel-item img{
+.hero-section .carousel-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
 /* 固定標題區 */
-.hero-content{
+.hero-content {
     position: absolute;
 
     left: 10%;
-    line-height: 450px;
+    top: 50%;
 
-    transform: translateY(-53%);
+    transform: translateY(-50%);
 
     z-index: 10;
 
@@ -617,34 +636,88 @@ a {
 }
 
 /* 大標：長照3.0 */
-.title{
+.title {
     font-size: 3.5rem;
     font-weight: 600;
 }
 
 /* 輪播區按鈕位置調整 */
-.hero-button{
-    transform: translateY(-45%);
+.hero-button {
+    margin-top: 20px;
 }
 
-/* 輪播區按鈕樣式 */
-.hero-button a{
-    color: #fff;
-    padding: 10px 15px;
+/* 輪播區按鈕初始設定 */
+.hero-button .btn1,
+.hero-button .btn2 {
     margin-right: 5px;
     border-radius: 10px;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
     background-color: var(--ink);
 }
 
 /* 輪播區「長照申請」按鈕顏色調整 */
-.hero-button .btn2{
+.hero-button .btn2 {
     background-color: var(--deep-orange);
+
+    transition: background-color 0.3s ease;
 }
 
+/* 隱藏箭頭 */
+.hero-button .btn1 i,
+.hero-button .btn2 i {
+    opacity: 0;
+    transform: translateX(-8px);
+    max-width: 0;
+    overflow: hidden;
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        max-width 0.3s ease,
+        margin-left 0.3s ease;
+}
 
-/* ===== */
-/* 內容區 */
-/* ===== */
+/* 滑鼠移到「查找附近長照服務」按鈕 顏色變淡 */
+.hero-button .btn1:hover{
+    background-color: var(--muted);
+}
+
+/* 滑鼠移到「長照申請」按鈕 顏色變淡 */
+.hero-button .btn2:hover {
+    background-color: var(--mustard);
+}
+
+/* 箭頭向右滑出 */
+.hero-button .btn1:hover i,
+.hero-button .btn2:hover i {
+    opacity: 1;
+    transform: translateX(0);
+    max-width: 20px;
+    margin-left: 8px;
+}
+
+/* ================== */
+/* 自我檢測+重要文章區 */
+/* ================== */
+.main-container .box{
+    padding: 15px 0;
+}
+
+.quick-links-section a{
+    border-radius: 10px;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: var(--ink);
+}
+
+.quick-links-section a:hover{
+    background-color: var(--muted);
+}
+
 .card-img {
     width: 100%;
     height: 200px;
