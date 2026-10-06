@@ -577,22 +577,32 @@ a {
 
 
 }
+
 /* ===== */
 /* 內容區 */
 /* ===== */
-main{
+main {
     width: 100%;
 }
 
-.main-container{
+.main-container {
     max-width: 1180px;
     margin: 30px auto;
     text-align: center;
 }
 
-.main-container h2{
+.main-container h2 {
     font-size: 2rem;
     font-weight: 600;
+}
+
+hr {
+    border: 0;
+    height: 3px;
+    background-color: var(--muted);
+    width: 100%;
+    margin: 20px auto;
+
 }
 
 /* ===== */
@@ -680,7 +690,7 @@ main{
 }
 
 /* 滑鼠移到「查找附近長照服務」按鈕 顏色變淡 */
-.hero-button .btn1:hover{
+.hero-button .btn1:hover {
     background-color: var(--muted);
 }
 
@@ -701,11 +711,11 @@ main{
 /* ================== */
 /* 自我檢測+重要文章區 */
 /* ================== */
-.main-container .box{
-    padding: 15px 0;
+.main-container .box {
+    padding: 30px 0;
 }
 
-.quick-links-section a{
+.quick-links-section a {
     border-radius: 10px;
     color: #fff;
     display: inline-flex;
@@ -714,12 +724,12 @@ main{
     background-color: var(--ink);
 }
 
-.quick-links-section a:hover{
+.quick-links-section a:hover {
     background-color: var(--muted);
 }
 
 /* 重要文章卡片調整 */
-.card{
+.card {
     height: 100%;
     padding: 12px;
     border-radius: 10px;
@@ -728,7 +738,7 @@ main{
     transition: transform 0.3s ease;
 }
 
-.card:hover{
+.card:hover {
     transform: translateY(-5px);
 }
 
@@ -741,22 +751,49 @@ main{
     border-radius: 8px;
 }
 
-.card-body{
+.card-body {
     padding: 12px;
 }
 
-.card-text{
+.card-text {
     line-height: 1.6;
     margin-bottom: 0;
 }
 
-.ellipsis-3{
+.ellipsis-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     margin-bottom: 0.5rem;
+}
+
+/* ========== */
+/* 服務項目區 */
+/* ========== */
+.service-section .container {
+    max-width: 1180px;
+}
+
+.service-item{
+    padding: 10px;
+}
+
+.service-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+
+    /* 固定寬高 */
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 12px;
+
+    background-color: var(--soft);
+    border-radius: 50%;
+    flex-shrink: 0;
 }
 
 /* ===== */
