@@ -1,0 +1,745 @@
+:root {
+    --white: #ffffff;
+    --ink: #2c2c2c;
+    --muted: #6b6b6b;
+    --line: #e6e6e6;
+    --surface: #fafaf8;
+    --soft: #f4f5f2;
+    --sage: #dae1dd;
+    --yellow: #f2d680;
+    --mustard: #d99a25;
+    --orange: #d98723;
+    --deep-orange: #d9731a;
+    --dark: #25231f;
+    --shadow: 0 12px 30px rgba(33, 31, 27, .07);
+    --radius: 18px;
+    --max: 1180px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* outline: 1px solid red; */
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    /* overflow-x: hidden; */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    display: block;
+    font-family: sans-serif;
+    font-size: 1em;
+    line-height: 1.7;
+    background-color: #fff;
+    color: var(--ink);
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+/* ======= */
+/* 上方選單 */
+/* ======= */
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo img {
+    width: 181px;
+}
+
+.desktop-quick-links {
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.header-links {
+    /* border: 1px solid red; */
+    margin-right: 10px;
+}
+
+.header-links>a {
+    margin-left: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--ink);
+}
+
+.search-form {
+    border: 1px solid var(--sage);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.search-form>input {
+    border: none;
+    outline: none;
+}
+
+.search-form>button {
+    border: none;
+    background-color: transparent;
+}
+
+.search-form>button>i {
+    font-size: 0.8em;
+    padding: 10px;
+}
+
+.search-form input,
+.search-form button {
+    margin-left: 5px;
+}
+
+/* ========= */
+/* 主要導覽列 */
+/* ========= */
+.main-nav {
+    background-color: var(--deep-orange);
+    /* 永遠固定在頁面上方 */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-nav>ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin-bottom: 0px;
+}
+
+.main-nav>ul>li {
+    position: relative;
+}
+
+/* 第一層選單 */
+.main-nav>ul>li>a,
+.main-nav>ul>li>button {
+    display: flex;
+    padding: 15px 25px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--soft);
+    align-items: center;
+    gap: 6px;
+
+    transition: background-color 0.3s ease;
+}
+
+/* 滑鼠移到第一層選單按鈕 顯示出淺色按鈕樣式 */
+.main-nav>ul>li>a:hover,
+.main-nav>ul>li>button:hover {
+    background-color: var(--mustard);
+    border-radius: 10px;
+}
+
+/* 第一層選單三角形稍微縮小 */
+.main-nav .bi {
+    font-size: .7rem;
+}
+
+/* 第二層選單 */
+.main-nav>ul>li>.submenu,
+.mega-menu>.mega-menu-list {
+    /* 預設隱藏 */
+    opacity: 0;
+    visibility: hidden;
+
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+    padding: 10px;
+    min-width: 180px;
+    background-color: #fff;
+    box-shadow: var(--shadow);
+    border-radius: 20px;
+
+    transform: translateY(-5px);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s ease;
+
+}
+
+/* 製作一個透明物件 避免滑鼠還沒移到第二層選單就跳掉 */
+.main-nav>ul>li>.submenu::before,
+.mega-menu>.mega-menu-list::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+}
+
+/* 滑鼠移到第一層 顯示第二層 */
+.main-nav>ul>li:hover>.submenu,
+.mega-menu:hover>.mega-menu-list {
+    opacity: 1;
+    visibility: visible;
+}
+
+.main-nav>ul>li:hover>.submenu {
+    transform: translateY(0);
+}
+
+/* 第二層項目 */
+.main-nav .submenu>li {
+    position: relative;
+}
+
+/* 第二層按鈕樣式 */
+.main-nav .submenu a,
+.main-nav .submenu button,
+.mega-menu .mega-menu-list a,
+.mega-menu .mega-menu-list button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    background: none;
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+/* ================== */
+/* ==== megamenu ==== */
+/* ================== */
+
+/* megamenu的第二層 */
+.mega-menu>.mega-menu-list {
+    width: 600px;
+    /*各式下載會超出視窗範圍*/
+    padding: 25px;
+    display: flex;
+    gap: 40px;
+
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* megamenu的第二層標題加粗 */
+.mega-menu-list>li>button {
+    font-weight: 600;
+    color: var(--deep-orange);
+}
+
+/* megamenu的第二層選單等寬 */
+.mega-menu-list>li {
+    flex: 1;
+}
+
+/* megamenu獨立控制的動態（置中向下展開） */
+.mega-menu:hover>.mega-menu-list {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 同屬megamenu但各式下載的選單會超出螢幕範圍 所以往左挪 */
+.mega-menu:last-child>.mega-menu-list {
+    transform: translateX(-85%) translateY(-5px);
+}
+
+/* 各式下載選單動態（向下展開） */
+.mega-menu:last-child:hover>.mega-menu-list {
+    transform: translateX(-85%) translateY(0);
+}
+
+/* megamenu的第三層 */
+.mega-menu-list .mega-submenu {
+    display: block;
+    position: static;
+    padding: 0;
+    margin-top: 5px;
+    min-width: auto;
+    box-shadow: none;
+}
+
+/* megamenu的第三層項目 */
+.mega-submenu>li {
+    list-style: none;
+}
+
+/* ====== */
+/* 手機版 */
+/* ====== */
+.mobile-header {
+    display: none;
+}
+
+@media (max-width: 991px) {
+
+    /* <991時隱藏電腦版header和放在外面的main-nav */
+    .desktop-header {
+        display: none;
+    }
+
+    .main-nav {
+        display: none;
+    }
+
+    /* <991時顯示手機版header */
+    .mobile-header {
+        display: block;
+        padding-top: 70px;
+    }
+
+    /* ===== 手機上方 ===== */
+    /* 上方選單grid排列 */
+    .mobile-header-top {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        
+        height: 70px;
+        padding: 0 20px;
+
+        align-items: center;
+
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        border-bottom: 1px solid var(--soft);
+    }
+
+    /* 搜尋靠左 */
+    .mobile-search {
+        justify-self: start;
+    }
+
+    /* 漢堡選單按鈕靠右 */
+    .menu-button {
+        justify-self: end;
+    }
+
+    /* LOGO大小調整 */
+    .mobile-header .logo img {
+        display: block;
+        width: 140px;
+    }
+
+    /* ===== 漢堡選單+搜尋框 ===== */
+    /* 搜尋按鈕+漢堡選單 清除預設按鈕樣式 */
+    .mobile-search,
+    .menu-button {
+        border: none;
+        background: none;
+        color: var(--ink);
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    /* 搜尋按鈕+漢堡選單 預設隱藏 */
+    .mobile-search-form,
+    .mobile-nav {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        overflow-y: auto;
+
+        background-color: var(--deep-orange);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease,
+            visibility 0.3s ease;
+
+        z-index: 999;
+    }
+
+    /* 搜尋按鈕+漢堡選單 漸漸向下展開 */
+    .mobile-search-form.active,
+    .mobile-nav.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    /* ===== 搜尋框樣式 ===== */
+    .mobile-search-content {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        padding: 20px;
+        color: #fff;
+    }
+
+    /* 搜尋框 */
+    #mobile-search {
+        flex: 1;
+        min-width: 0;
+
+        padding: 10px 15px;
+
+        border: 1px solid var(--sage);
+        border-radius: 10px;
+        outline: none;
+    }
+
+    /* 搜尋按鈕 */
+    .mobile-search-content button {
+        flex-shrink: 0;
+
+        padding: 10px 18px;
+
+        border: none;
+        border-radius: 10px;
+
+        background-color: var(--ink);
+        color: #fff;
+
+        cursor: pointer;
+
+        transition: background-color 0.3s ease;
+    }
+
+    .mobile-search-content button:hover {
+        background-color: var(--mustard);
+    }
+
+    /* 漢堡選單內容樣式 */
+    .mobile-main-menu,
+    .mobile-main-menu li {
+        list-style: none;
+    }
+
+    /* 消除漢堡選單ul左方預設空白 */
+    .mobile-main-menu {
+        padding: 10px 20px;
+        margin: 0;
+    }
+
+    /* 漢堡選單內按鈕樣式 */
+    .mobile-main-menu>li>a,
+    .menu-title {
+        border: none;
+        background: none;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    /* 選單按鈕+箭頭占滿整個頁面寬度 */
+    .menu-title,
+    .mobile-main-menu>li>a {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-radius: 20px;
+        /* 背景顏色漸變 */
+        transition: background-color 0.3s ease;
+    }
+
+    /* 滑鼠移入→選單按鈕+箭頭背景顏色漸變 */
+    .menu-title:hover,
+    .mobile-main-menu>li>a:hover {
+        background-color: var(--mustard);
+    }
+
+    /* 漢堡選單內選單文字放大 */
+    .mobile-main-menu>li>a,
+    .menu-title {
+        font-size: 2rem;
+    }
+
+    /* 漢堡選單內箭頭 */
+    .mobile-main-menu-btn .bi {
+        padding-left: 10px;
+        transition: transform 0.2s ease;
+    }
+
+    /* 滑鼠移入→箭頭微微往右移動 */
+    .menu-title:hover .bi {
+        transform: translateX(5px);
+    }
+
+    /* 滑鼠點擊→箭頭漸轉90度 */
+    .menu-title.open .bi {
+        transform: rotate(90deg);
+    }
+
+    /* 漢堡選單第二層預設隱藏 */
+    .mobile-main-menu>li>ul {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+
+        transition:
+            max-height 0.3s ease,
+            opacity 0.3s ease;
+
+        padding: 0;
+    }
+
+    /* 漢堡選單第二層展開時 */
+    .mobile-main-menu>li>ul.open {
+        max-height: 1000px;
+        opacity: 1;
+    }
+
+    /* 漢堡選單第二層標題樣式（黃色加粗） */
+    .menu-subtitle {
+        width: 100%;
+        margin-top: 10px;
+        padding-left: 12px;
+        display: block;
+        text-align: left;
+        border: none;
+        background: none;
+        font-weight: 600;
+        font-size: 1.5rem;
+        color: var(--yellow)
+    }
+
+    /* 第三層子選單 */
+    .menu-subtitle+ul {
+        padding-left: 0;
+    }
+
+    /* 第三層子選單的每個連結 */
+    .mobile-menu-title>ul>li>a,
+    .menu-subtitle+ul a {
+        display: block;
+        padding: 5px 15px;
+        color: #fff;
+        text-align: left;
+        font-size: 1.2rem;
+        border-radius: 10px;
+        /* 背景顏色漸變 */
+        transition: background-color 0.3s ease;
+    }
+
+    /* 滑鼠移入→子選單按鈕顏色漸變 */
+    .mobile-menu-title>ul>li>a:hover,
+    .menu-subtitle+ul a:hover {
+        background-color: var(--mustard);
+    }
+
+    .mobile-quick-links {
+        padding: 30px;
+
+    }
+
+    .mobile-quick-links a {
+        color: #fff;
+        background-color: var(--ink);
+        border-radius: 20px;
+        padding: 10px 15px;
+        margin-right: 5px;
+
+        transition: background-color 0.3s ease;
+    }
+
+    .mobile-quick-links a:hover {
+        background-color: var(--mustard);
+    }
+
+
+}
+
+
+/* ===== */
+/* 頁尾區 */
+/* ===== */
+footer {
+    background-color: var(--soft);
+    color: var(--ink);
+    margin-top: 50px;
+}
+
+/* 頁尾目錄 */
+.footer-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 60px;
+    padding: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 頁尾logo */
+.footer-info img {
+    width: 180px;
+    max-width: 100%;
+}
+
+/* 右側三欄目錄 */
+.footer-menu {
+    flex: 1;
+    min-width: 0;
+    margin-left: 80px;
+    /* border: 1px solid blue; */
+}
+
+/* 右側三欄橫向排列 */
+.footer-menu>ul {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+    /* border: 1px solid red; */
+}
+
+/* 每一欄 */
+.footer-menu-column {
+    flex: 1;
+    text-align: left;
+    /* border: 1px solid yellow; */
+}
+
+/* 標題+項目都置左 */
+.footer-menu-column ul {
+    padding-left: 0;
+    /* border: 1px solid red; */
+}
+
+.footer-menu-column>li {
+    margin-bottom: 20px;
+    /* border: 1px solid red; */
+}
+
+
+.footer-menu-column>li>hr {
+    margin: 5px 0;
+}
+
+/* 欄位標題加粗 */
+.footer-menu-column>li>p {
+    font-weight: 600;
+    margin-bottom: 5px;
+    /* border: 1px solid red; */
+}
+
+.footer-menu-column>li>ul {
+    /* border: 1px solid red; */
+}
+
+.footer-info ul,
+.footer-info li {
+    list-style: none;
+}
+
+.footer-info a {
+    color: var(--ink);
+    transition: color 0.3s ease;
+}
+
+.footer-info a:hover {
+    color: var(--deep-orange);
+}
+
+
+/* 最下面版權 */
+.copyright {
+    background-color: var(--muted);
+    color: #fff;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-media {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.copyright p {
+    margin: 0;
+}
+
+.copyright a {
+    color: var(--soft);
+    transition: color 0.3s ease;
+}
+
+.copyright a:hover {
+    color: var(--yellow);
+}
+
+@media (max-width: 992px) {
+
+    .footer-info{
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 30px;
+        gap: 30px;
+    }
+
+    .footer-menu{
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .footer-menu>ul{
+        justify-content: center;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .footer-info {
+        padding: 35px 25px;
+    }
+
+    .footer-info img{
+        width: 150px;
+    }
+}
+
+@media (max-width: 576px){
+
+    .copyright{
+        padding: 15px 25px;
+        flex-direction: column;
+    }
+}

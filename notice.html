@@ -4,34 +4,889 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>長照資訊網</title>
+    <title>公告訊息｜長照資訊網</title>
+
+    <!-- Bootstrap5 CSS+Bundle -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+
+    <!-- Bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- header+footer css -->
+    <link rel="stylesheet" href="./css/header+footer.css">
+
+    <!-- notice css -->
+    <link rel="stylesheet" href="./css/notice.css">
+
+    <!-- 瀏覽器favicon -->
+    <link rel="icon" href="./image/favicon.png">
 </head>
 
 <body>
     <div class="site-wrapper">
-        <!-- 頁首2個導覽列 -->
+        <!-- 頁首導覽列 -->
         <header>
-            <div class="header-top"></div>
-            <div class="main-nav"></div>
+            <!-- ====== -->
+            <!-- 電腦版 -->
+            <!-- ====== -->
+            <div class="desktop-header">
+
+                <!-- 第1個導覽列 -->
+                <div class="header-top">
+
+                    <!-- logo -->
+                    <a class="logo" href="./index.html">
+                        <h1><img src="./image/logo.png" alt="長照資訊網"></h1>
+                    </a>
+
+                    <!-- 上方選單最右側 -->
+                    <div class="desktop-quick-links">
+
+                        <!-- 工具連結 -->
+                        <div class="header-links">
+                            <a href="#">網站導覽</a>
+                            <a href="https://www.email.mohw.gov.tw/">部長信箱</a>
+                            <a href="https://www.mohw.gov.tw/">衛生福利部</a>
+                        </div>
+
+                        <!-- 搜尋 -->
+                        <form class="search-form">
+                            <input type="search" id="search" placeholder="請輸入關鍵字">
+                            <button type="submit"><i class="bi bi-search"></i></button>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ====== -->
+            <!-- 手機版 -->
+            <!-- ====== -->
+            <div class="mobile-header">
+
+                <!-- 手機上方 -->
+                <div class="mobile-header-top">
+                    <!-- 搜尋 -->
+                    <button type="button" class="mobile-search">
+                        <i class="bi bi-search"></i>
+                    </button>
+                    <!-- Logo -->
+                    <a class="logo" href="./index.html">
+                        <img src="./image/logo.png" alt="長照服務專區">
+                    </a>
+                    <!-- 漢堡按鈕 -->
+                    <button type="button" class="menu-button">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </div>
+
+                <!-- 搜尋框 -->
+                <form class="mobile-search-form">
+                    <div class="mobile-search-content">
+                        <label for="mobile-search">網站搜尋</label>
+                        <input type="search" id="mobile-search" placeholder="請輸入關鍵字">
+                        <button type="submit">搜尋</button>
+                    </div>
+                </form>
+
+                <!-- 手機選單 -->
+                <nav class="mobile-nav">
+
+                    <!-- 主要導覽列 -->
+                    <ul class="mobile-main-menu">
+
+                        <!-- 公告訊息 -->
+                        <li class="mobile-menu-title">
+                            <div class="mobile-main-menu-btn">
+                                <button type="button" class="menu-title">
+                                    公告訊息 <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                            <ul>
+                                <li><a href="./notice.html">最新消息</a></li>
+                                <li><a href="./notice.html">政策總覽</a></li>
+                                <li><a href="./notice.html">公開資訊</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 長照申請 -->
+                        <li class="mobile-menu-title">
+                            <a href="./apply.html">長照申請</a>
+                        </li>
+
+                        <!-- 資源地圖 -->
+                        <li class="mobile-menu-title">
+                            <div class="mobile-main-menu-btn">
+                                <button type="button" class="menu-title">
+                                    資源地圖
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                            <ul>
+                                <li><a href="./find.html">找機構</a></li>
+                                <li><a href="./self-check.html">長照方向小測驗</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 服務項目 -->
+                        <li class="mobile-menu-title">
+                            <div class="mobile-main-menu-btn">
+                                <button type="button" class="menu-title">
+                                    服務項目
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                            <ul>
+                                <li>
+                                    <button type="button" class="menu-subtitle">
+                                        照顧服務
+                                    </button>
+                                    <ul>
+                                        <li><a href="#">居家服務</a></li>
+                                        <li><a href="#">日間照顧</a></li>
+                                        <li><a href="#">家庭托顧</a></li>
+                                        <li><a href="#">住宿式長照</a></li>
+                                        <li><a href="#">小規模多機能</a></li>
+                                        <li><a href="#">社區整體照顧</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <button type="button" class="menu-subtitle">
+                                        輔具相關
+                                    </button>
+                                    <ul>
+                                        <li><a href="#">輔具租借</a></li>
+                                        <li><a href="#">輔具補助</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <button type="button" class="menu-subtitle">
+                                        其他服務
+                                    </button>
+                                    <ul>
+                                        <li><a href="#">交通接送</a></li>
+                                        <li><a href="#">出院準備</a></li>
+                                        <li><a href="#">失智照護</a></li>
+                                        <li><a href="#">喘息服務</a></li>
+                                        <li><a href="#">外籍看護</a></li>
+                                        <li><a href="#">餐飲服務</a></li>
+                                        <li><a href="#">照顧指引</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- 常見問題 -->
+                        <li class="mobile-menu-title">
+                            <a href="#">常見問題</a>
+                        </li>
+
+                        <!-- 各式下載 -->
+                        <li class="mobile-menu-title">
+                            <div class="mobile-main-menu-btn">
+                                <button type="button" class="menu-title">
+                                    各式下載
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                            <ul>
+                                <li>
+                                    <button type="button" class="menu-subtitle">
+                                        統計專區
+                                    </button>
+                                    <ul>
+                                        <li><a href="#">長照3.0相關統計表</a></li>
+                                        <li><a href="#">長照2.0相關統計表</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <button type="button" class="menu-subtitle">
+                                        檔案下載
+                                    </button>
+                                    <ul>
+                                        <li><a href="#">長照識別LOGO及相關標章</a></li>
+                                        <li><a href="#">各式影音、平面文宣及活動</a></li>
+                                        <li><a href="#">授權說明</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!-- 次要導覽列 -->
+                    <div class="mobile-quick-links">
+                        <a href="#">網站導覽</a>
+                        <a href="#">部長信箱</a>
+                        <a href="#">衛生福利部</a>
+                    </div>
+                </nav>
+
+            </div>
+
         </header>
+
+        <!-- 電腦版第2個導覽列 -->
+        <nav class="main-nav">
+            <ul>
+                <!-- 公告訊息 -->
+                <li>
+                    <button type="button">公告訊息 <i class="bi bi-caret-down-fill"></i></button>
+                    <ul class="submenu">
+                        <li><a href="./notice.html">最新消息</a></li>
+                        <li><a href="./notice.html">政策總覽</a></li>
+                        <li><a href="./notice.html">公開資訊</a></li>
+                    </ul>
+                </li>
+
+                <!-- 長照申請 -->
+                <li>
+                    <a href="./apply.html">長照申請</a>
+                </li>
+
+                <!-- 資源地圖 -->
+                <li>
+                    <button type="button">資源地圖 <i class="bi bi-caret-down-fill"></i></button>
+                    <ul class="submenu">
+                        <li><a href="./find.html">找機構</a></li>
+                        <li><a href="./self-check.html">長照方向小測驗</a></li>
+                    </ul>
+                </li>
+
+
+                <!-- 服務項目 -->
+                <li class="mega-menu">
+                    <button type="button">服務項目 <i class="bi bi-caret-down-fill"></i></button>
+                    <ul class="mega-menu-list">
+
+                        <!-- 照顧服務 -->
+                        <li>
+                            <button type="button">照顧服務</button>
+                            <ul class="mega-submenu">
+                                <li><a href="#">居家服務</a></li>
+                                <li><a href="#">日間照顧</a></li>
+                                <li><a href="#">家庭托顧</a></li>
+                                <li><a href="#">住宿式長照</a></li>
+                                <li><a href="#">小規模多機能</a></li>
+                                <li><a href="#">社區整體照顧</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 輔具相關 -->
+                        <li>
+                            <button type="button">輔具相關</button>
+                            <ul class="mega-submenu">
+                                <li><a href="#">輔具租借</a></li>
+                                <li><a href="#">輔具補助</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 其他服務 -->
+                        <li>
+                            <button type="button">其他服務</button>
+                            <ul class="mega-submenu">
+                                <li><a href="#">交通接送</a></li>
+                                <li><a href="#">出院準備</a></li>
+                                <li><a href="#">失智照護</a></li>
+                                <li><a href="#">喘息服務</a></li>
+                                <li><a href="#">外籍看護</a></li>
+                                <li><a href="#">餐飲服務</a></li>
+                                <li><a href="#">照顧指引</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <!-- 常見問題 -->
+                <li>
+                    <a href="#">常見問題</a>
+                </li>
+
+                <!-- 各式下載 -->
+                <li class="mega-menu">
+                    <button type="button">各式下載 <i class="bi bi-caret-down-fill"></i></button>
+                    <ul class="mega-menu-list">
+                        <!-- 統計專區 -->
+                        <li>
+                            <button type="button">統計專區</button>
+                            <ul class="mega-submenu">
+                                <li><a href="#">長照3.0相關統計表</a></li>
+                                <li><a href="#">長照2.0相關統計表</a></li>
+                            </ul>
+                        </li>
+                        <!-- 檔案下載 -->
+                        <li>
+                            <button type="button">檔案下載</button>
+                            <ul class="mega-submenu">
+                                <li><a href="#">長照識別LOGO及相關標章</a></li>
+                                <li><a href="#">各式影音、平面文宣及活動</a></li>
+                                <li><a href="#">授權說明</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
 
         <!-- 內容區 -->
         <main>
-            <div class="article-section">
+            <div class="main-container">
+
                 <h1>公告訊息</h1>
                 <!-- 類別按鈕 -->
-                <div class="category-filter"></div>
+                <div class="category-filter">
+                    <ul>
+                        <li><button type="button" class="category-btn active" data-category="news">最新消息</button></li>
+                        <li><button type="button" class="category-btn" data-category="policy">政策總覽</button></li>
+                        <li><button type="button" class="category-btn" data-category="info">公開資訊</button></li>
+                    </ul>
+                </div>
+                
                 <!-- 文章卡片 -->
-                <div class="category-grid"></div>
+                <div class="category-grid">
+                    <div class="cards box text-start">
+                        <div class="container">
+                            <div class="row justify-content-center g-4">
+
+                                <!-- 卡片 -->
+                                <a href="./notice.html" class="col-md-6 text-dark notice-card" data-category="news">
+                                    <div class="card">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">長照申請怎麼開始？</h5>
+                                                    <p class="card-text ellipsis-3">先評估需求 → 申請 →
+                                                        由專業團隊銜接服務。可先填入基本資料，了解準備文件清單。</p>
+                                                    <small class="text-muted mt-auto d-block text-end">...繼續閱讀</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- 卡片 -->
+                                <a href="./notice.html" class="col-md-6 text-dark notice-card" data-category="news">
+                                    <div class="card">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">長照申請怎麼開始？</h5>
+                                                    <p class="card-text ellipsis-3">先評估需求 → 申請 →
+                                                        由專業團隊銜接服務。可先填入基本資料，了解準備文件清單。</p>
+                                                    <small class="text-muted mt-auto d-block text-end">...繼續閱讀</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- 卡片 -->
+                                <a href="./notice.html" class="col-md-6 text-dark notice-card" data-category="news">
+                                    <div class="card">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">長照申請怎麼開始？</h5>
+                                                    <p class="card-text ellipsis-3">先評估需求 → 申請 →
+                                                        由專業團隊銜接服務。可先填入基本資料，了解準備文件清單。</p>
+                                                    <small class="text-muted mt-auto d-block text-end">...繼續閱讀</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- 卡片 -->
+                                <a href="./notice.html" class="col-md-6 text-dark notice-card" data-category="news">
+                                    <div class="card">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">長照申請怎麼開始？</h5>
+                                                    <p class="card-text ellipsis-3">先評估需求 → 申請 →
+                                                        由專業團隊銜接服務。可先填入基本資料，了解準備文件清單。</p>
+                                                    <small class="text-muted mt-auto d-block text-end">...繼續閱讀</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- 卡片 -->
+                                <a href="./notice.html" class="col-md-6 text-dark notice-card" data-category="policy">
+                                    <div class="card">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">長照申請怎麼開始？</h5>
+                                                    <p class="card-text ellipsis-3">先評估需求 → 申請 →
+                                                        由專業團隊銜接服務。可先填入基本資料，了解準備文件清單。</p>
+                                                    <small class="text-muted mt-auto d-block text-end">...繼續閱讀</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- 卡片 -->
+                                <a href="./notice.html" class="col-md-6 text-dark notice-card" data-category="policy">
+                                    <div class="card">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">長照申請怎麼開始？</h5>
+                                                    <p class="card-text ellipsis-3">先評估需求 → 申請 →
+                                                        由專業團隊銜接服務。可先填入基本資料，了解準備文件清單。</p>
+                                                    <small class="text-muted mt-auto d-block text-end">...繼續閱讀</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- 卡片 -->
+                                <a href="./notice.html" class="col-md-6 text-dark notice-card" data-category="policy">
+                                    <div class="card">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">長照申請怎麼開始？</h5>
+                                                    <p class="card-text ellipsis-3">先評估需求 → 申請 →
+                                                        由專業團隊銜接服務。可先填入基本資料，了解準備文件清單。</p>
+                                                    <small class="text-muted mt-auto d-block text-end">...繼續閱讀</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- 卡片 -->
+                                <a href="./notice.html" class="col-md-6 text-dark notice-card" data-category="policy">
+                                    <div class="card">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">長照申請怎麼開始？</h5>
+                                                    <p class="card-text ellipsis-3">先評估需求 → 申請 →
+                                                        由專業團隊銜接服務。可先填入基本資料，了解準備文件清單。</p>
+                                                    <small class="text-muted mt-auto d-block text-end">...繼續閱讀</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- 卡片 -->
+                                <a href="./notice.html" class="col-md-6 text-dark notice-card" data-category="policy">
+                                    <div class="card">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">長照申請怎麼開始？</h5>
+                                                    <p class="card-text ellipsis-3">先評估需求 → 申請 →
+                                                        由專業團隊銜接服務。可先填入基本資料，了解準備文件清單。</p>
+                                                    <small class="text-muted mt-auto d-block text-end">...繼續閱讀</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- 卡片 -->
+                                <a href="./notice.html" class="col-md-6 text-dark notice-card" data-category="info">
+                                    <div class="card">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">長照申請怎麼開始？</h5>
+                                                    <p class="card-text ellipsis-3">先評估需求 → 申請 →
+                                                        由專業團隊銜接服務。可先填入基本資料，了解準備文件清單。</p>
+                                                    <small class="text-muted mt-auto d-block text-end">...繼續閱讀</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- 卡片 -->
+                                <a href="./notice.html" class="col-md-6 text-dark notice-card" data-category="info">
+                                    <div class="card">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">長照申請怎麼開始？</h5>
+                                                    <p class="card-text ellipsis-3">先評估需求 → 申請 →
+                                                        由專業團隊銜接服務。可先填入基本資料，了解準備文件清單。</p>
+                                                    <small class="text-muted mt-auto d-block text-end">...繼續閱讀</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- 卡片 -->
+                                <a href="./notice.html" class="col-md-6 text-dark notice-card" data-category="info">
+                                    <div class="card">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">長照申請怎麼開始？</h5>
+                                                    <p class="card-text ellipsis-3">先評估需求 → 申請 →
+                                                        由專業團隊銜接服務。可先填入基本資料，了解準備文件清單。</p>
+                                                    <small class="text-muted mt-auto d-block text-end">...繼續閱讀</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- 卡片 -->
+                                <a href="./notice.html" class="col-md-6 text-dark notice-card" data-category="info">
+                                    <div class="card">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">長照申請怎麼開始？</h5>
+                                                    <p class="card-text ellipsis-3">先評估需求 → 申請 →
+                                                        由專業團隊銜接服務。可先填入基本資料，了解準備文件清單。</p>
+                                                    <small class="text-muted mt-auto d-block text-end">...繼續閱讀</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- 卡片 -->
+                                <a href="./notice.html" class="col-md-6 text-dark notice-card" data-category="info">
+                                    <div class="card">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">長照申請怎麼開始？</h5>
+                                                    <p class="card-text ellipsis-3">先評估需求 → 申請 →
+                                                        由專業團隊銜接服務。可先填入基本資料，了解準備文件清單。</p>
+                                                    <small class="text-muted mt-auto d-block text-end">...繼續閱讀</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- 卡片 -->
+                                <a href="./notice.html" class="col-md-6 text-dark notice-card" data-category="info">
+                                    <div class="card">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="./image/p1.jpg" class="img-fluid card-img" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">長照申請怎麼開始？</h5>
+                                                    <p class="card-text ellipsis-3">先評估需求 → 申請 →
+                                                        由專業團隊銜接服務。可先填入基本資料，了解準備文件清單。</p>
+                                                    <small class="text-muted mt-auto d-block text-end">...繼續閱讀</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 頁面切換 -->
+                 <div class="pagination">
+                    <button type="button" id="prevPage">上一頁</button>
+
+                    <div id="pageNumbers"></div>
+
+                    <button type="button" id="nextPage">下一頁</button>
+                 </div>
+
             </div>
         </main>
 
         <!-- 頁尾 -->
-         <footer>
-            <div class="footer-info"></div>
-            <div class="copyright"></div>
-         </footer>
+        <footer>
+            <div class="footer-info">
+                <div class="footer-logo">
+                    <a href="./index.html"><img src="./image/logo.png" alt="長照資訊網"></a>
+                </div>
+
+                <div class="footer-menu">
+                    <ul>
+                        <div class="footer-menu-column">
+                            <!-- 公告訊息 -->
+                            <li>
+                                <p>公告訊息</p>
+                                <hr>
+                                <ul>
+                                    <li><a href="./notice.html">最新消息</a></li>
+                                    <li><a href="./notice.html">政策總覽</a></li>
+                                    <li><a href="./notice.html">公開資訊</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- 長照申請 -->
+                            <li>
+                                <p>長照申請</p>
+                                <hr>
+                                <ul>
+                                    <li><a href="./apply.html">長照申請</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- 資源地圖 -->
+                            <li>
+                                <p>資源地圖</p>
+                                <hr>
+                                <ul>
+                                    <li><a href="./find.html">找機構</a></li>
+                                    <li><a href="./self-check.html">長照方向小測驗</a></li>
+                                </ul>
+                            </li>
+                        </div>
+
+                        <div class="footer-menu-column">
+                            <!-- 服務項目 -->
+                            <li>
+                                <p>服務項目</p>
+                                <hr>
+                                <ul>
+                                    <li><a href="#">照顧服務</a></li>
+                                    <li><a href="#">交通接送</a></li>
+                                    <li><a href="#">出院準備</a></li>
+                                    <li><a href="#">輔具租借</a></li>
+                                    <li><a href="#">輔具補助</a></li>
+                                    <li><a href="#">失智照護</a></li>
+                                    <li><a href="#">喘息服務</a></li>
+                                    <li><a href="#">外籍看護</a></li>
+                                    <li><a href="#">餐飲服務</a></li>
+                                    <li><a href="#">照顧指引</a></li>
+                                </ul>
+                            </li>
+                        </div>
+
+                        <div class="footer-menu-column">
+                            <!-- 常見問題 -->
+                            <li>
+                                <p>常見問題</p>
+                                <hr>
+                                <ul>
+                                    <li><a href="#">常見問題</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- 各式下載 -->
+                            <li>
+                                <p>各式下載</p>
+                                <hr>
+                                <ul>
+                                    <li><a href="#">統計專區</a></li>
+                                    <li><a href="#">檔案下載</a></li>
+                                </ul>
+                            </li>
+                        </div>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 長照資訊網</p>
+                <div class="social-media">
+                    <a href="#"><i class="bi bi-youtube"></i></a>
+                    <a href="#"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-line"></i></a>
+                </div>
+            </div>
+        </footer>
     </div>
+
+    <script>
+        // ================
+        // 取得HTML元素
+        // ================
+
+        // 漢堡選單按鈕
+        const menuButton = document.querySelector('.menu-button');
+
+        // 手機版選單
+        const mobileNav = document.querySelector('.mobile-nav');
+
+        // 搜尋按鈕
+        const searchButton = document.querySelector('.mobile-search');
+
+        // 搜尋框
+        const mobileSearchForm = document.querySelector('.mobile-search-form');
+
+        // 手機漢堡選單內按鈕（公告訊息、資源地圖...）
+        const menuTitles = document.querySelectorAll('.menu-title');
+
+        // ================
+        // 漢堡選單
+        // ================
+
+        menuButton.addEventListener('click', function () {
+            // 開啟+關閉 mobile-nav
+            mobileNav.classList.toggle('active');
+            // 關閉 search-form
+            mobileSearchForm.classList.remove('active');
+            // 控制 body 滾動
+            updateBodyScroll();
+        })
+
+
+        // ================
+        // 搜尋按鈕
+        // ================
+
+        searchButton.addEventListener('click', function () {
+            // 開啟+關閉 search-form
+            mobileSearchForm.classList.toggle('active');
+            // 關閉 mobile-nav
+            mobileNav.classList.remove('active');
+            // 控制 body 滾動
+            updateBodyScroll();
+        })
+
+        // =========================
+        // 漢堡選單內按鈕+第二層選單
+        // =========================
+
+        menuTitles.forEach(function (button) {
+            button.addEventListener('click', function () {
+                const menu = button.parentElement.nextElementSibling;
+
+                // 如果已開啟→關閉
+                if (button.classList.contains('open')) {
+                    button.classList.remove('open');
+                    menu.classList.remove('open');
+                } else {
+                    // 先關閉其他選單
+                    menuTitles.forEach(function (item) {
+                        item.classList.remove('open');
+                        item.parentElement.nextElementSibling.classList.remove('open');
+                    });
+
+                    // 打開目前選單
+                    button.classList.add('open');
+                    menu.classList.add('open');
+                }
+            });
+        })
+
+        function updateBodyScroll() {
+            if (
+                mobileNav.classList.contains('active') || mobileSearchForm.classList.contains('active')
+            ) {
+                document.body.classList.add('menu-open');
+            } else {
+                document.body.classList.remove('menu-open');
+            }
+        }
+
+        // 切換回電腦版的時候解除body鎖定
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 991) {
+                document.body.classList.remove('menu-open');
+            }
+        });
+
+        // =========================
+        // 公告分類切換
+        // =========================
+
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const noticeCards = document.querySelectorAll('.notice-card');
+
+        categoryButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                // 取得目前按鈕的分類
+                const category = button.dataset.category;
+
+                // 控制按鈕active
+                categoryButtons.forEach(function (item) {
+                    item.classList.remove('active');
+                })
+
+                button.classList.add('active');
+
+                // 顯示符合分類的文章
+                noticeCards.forEach(function (card) {
+
+                    if (card.dataset.category === category) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                })
+            })
+        });
+
+        // =========================
+        // 預設顯示最新消息分類的文章
+        // =========================
+
+        noticeCards.forEach(function(card){
+            if(card.dataset.category === 'news'){
+                card.style.display = '';
+            }else{
+                card.style.display = 'none';
+            }
+        });
+
+    </script>
 </body>
 
 </html>
