@@ -24,6 +24,7 @@
 
     <!-- 瀏覽器favicon -->
     <link rel="icon" href="./image/favicon.png">
+    
 </head>
 
 <body>
@@ -347,7 +348,7 @@
                         <li><button type="button" class="category-btn" data-category="info">公開資訊</button></li>
                     </ul>
                 </div>
-                
+
                 <!-- 文章卡片 -->
                 <div class="category-grid">
                     <div class="cards box text-start">
@@ -645,13 +646,13 @@
                 </div>
 
                 <!-- 頁面切換 -->
-                 <div class="pagination">
+                <div class="pagination">
                     <button type="button" id="prevPage">上一頁</button>
 
                     <div id="pageNumbers"></div>
 
                     <button type="button" id="nextPage">下一頁</button>
-                 </div>
+                </div>
 
             </div>
         </main>
@@ -878,10 +879,10 @@
         // 預設顯示最新消息分類的文章
         // =========================
 
-        noticeCards.forEach(function(card){
-            if(card.dataset.category === 'news'){
+        noticeCards.forEach(function (card) {
+            if (card.dataset.category === 'news') {
                 card.style.display = '';
-            }else{
+            } else {
                 card.style.display = 'none';
             }
         });
