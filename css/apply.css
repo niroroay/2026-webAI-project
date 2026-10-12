@@ -1,0 +1,124 @@
+:root {
+    --white: #ffffff;
+    --ink: #2c2c2c;
+    --muted: #6b6b6b;
+    --line: #e6e6e6;
+    --surface: #fafaf8;
+    --soft: #f4f5f2;
+    --sage: #dae1dd;
+    --yellow: #f2d680;
+    --mustard: #d99a25;
+    --orange: #d98723;
+    --deep-orange: #d9731a;
+    --dark: #25231f;
+    --shadow: 0 12px 30px rgba(33, 31, 27, .07);
+    --radius: 18px;
+    --max: 1180px;
+}
+
+/* =========================
+   內容區
+   ========================= */
+
+/* 調整置中 */
+main {
+    width: 100%;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 45px auto 30px;
+    padding: 0 48px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.main-container h1 {
+    font-weight: 600;
+}
+
+.main-container h2 {
+    font-weight: 600;
+}
+
+/* 調整每個區域上下空間 */
+.main-container .box {
+    padding: 30px 0;
+}
+
+hr {
+    border: 0;
+    height: 3px;
+    background-color: var(--muted);
+    width: 100%;
+    margin: 20px auto;
+
+}
+
+/* 「你需要長照嗎」欄位底色 */
+.self-check-section{
+    width: 100%;
+    background-color: var(--soft);
+    padding: 30px 48px;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0 0 30px;
+}
+
+.self-check-section a {
+    border-radius: 10px;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: var(--ink);
+
+    transition: background-color 0.3s ease;
+}
+
+.self-check-section a:hover {
+    background-color: var(--muted);
+}
+
+/* 「長照服務對象」的純文字卡片 */
+.box2{
+    background-color: var(--orange);
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    min-width: 150px;
+    padding: 24px 16px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* 小標籤在方塊左上角 */
+.card-badge{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    font-size: 0.8rem;
+    line-height: 1.4;
+    background-color: var(--yellow);
+    color: var(--ink);
+    border-radius: 12px 0 8px 0;
+
+    max-width: 90%;
+    text-align: left;
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+
+.box2 p{
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.6;
+}
