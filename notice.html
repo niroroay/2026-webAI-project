@@ -353,7 +353,7 @@
                 <div class="category-grid">
                     <div class="cards box text-start">
                         <div class="container">
-                            <div class="row justify-content-center g-4">
+                            <div class="row justify-content-start g-4">
 
                                 <!-- 卡片 -->
                                 <a href="./notice.html" class="col-md-6 text-dark notice-card" data-category="news">
@@ -845,47 +845,124 @@
         });
 
         // =========================
-        // 公告分類切換
+        // 公告分類+頁碼切換
         // =========================
 
+        // 取得分類按鈕+文章卡片
         const categoryButtons = document.querySelectorAll('.category-btn');
         const noticeCards = document.querySelectorAll('.notice-card');
 
+        // 取得分頁元素
+        const prevPage = document.querySelector('#prevPage');
+        const nextPage = document.querySelector('#nextPage');
+        const pageNumbers = document.querySelector('#pageNumbers');
+
+        // 每頁顯示4篇文章
+        const cardsPerPage = 4;
+
+        // 紀錄分類+頁碼
+        let currentCategory = 'news';
+        let currentPage = 1;
+
+        // 顯示符合分類+頁碼的文章
+        function showCards(){
+            // 篩選出符合目前分類的文章
+            const filterCards = Array.from(noticeCards).filter(function(card){
+                return card.dataset.category === currentCategory;
+            });
+
+            // 計算總頁數
+            const totalPages = Math.ceil(filterCards.length / cardsPerPage);
+
+            //計算目前頁面要顯示的文章範圍
+            const startIndex = (currentPage - 1)*cardsPerPage;
+            const endIndex = startIndex + cardsPerPage;
+            
+            // 先隱藏所有文章
+            noticeCards.forEach(function(card){
+                card.style.display = 'none';
+            });
+
+            // 顯示目前頁面的文章
+            filterCards.forEach(function(card,index){
+                if(index>=startIndex && index<endIndex){
+                    card.style.display='';
+                }
+            });
+
+            // 清空原本的頁碼
+            pageNumbers.innerHTML ='';
+
+            // 自動產生頁碼按鈕
+            for(let i=1; i<=totalPages;i++){
+                const button = document.createElement('button');
+
+                button.type="button";
+                button.textContent=i;
+                button.classList.add('page-btn');
+
+                // 標示目前所在的頁碼
+                if(i===currentPage){
+                    button.classList.add('active');
+                }
+
+                // 點頁碼時切換文章
+                button.addEventListener('click',function(){
+                    currentPage=i;
+                    showCards();
+                });
+                
+                // 把每個頁碼加入HTML
+                pageNumbers.appendChild(button);
+
+                // 控制上一頁、下一頁是否可點擊
+                prevPage.disabled = currentPage === 1;
+                nextPage.disabled = currentPage === totalPages;
+            }
+        }
+
+        // =========================
+        // 公告分類切換
+        // =========================
         categoryButtons.forEach(function (button) {
             button.addEventListener('click', function () {
-                // 取得目前按鈕的分類
-                const category = button.dataset.category;
+                // 取得用戶選擇的分類
+                currentCategory = button.dataset.category;
 
                 // 控制按鈕active
                 categoryButtons.forEach(function (item) {
                     item.classList.remove('active');
-                })
+                });
 
                 button.classList.add('active');
 
-                // 顯示符合分類的文章
-                noticeCards.forEach(function (card) {
+                // 切換分類後，回到第1頁
+                currentPage = 1;
 
-                    if (card.dataset.category === category) {
-                        card.style.display = '';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                })
+                showCards();
             })
         });
 
         // =========================
-        // 預設顯示最新消息分類的文章
+        // 上一頁、下一頁
         // =========================
-
-        noticeCards.forEach(function (card) {
-            if (card.dataset.category === 'news') {
-                card.style.display = '';
-            } else {
-                card.style.display = 'none';
+        prevPage.addEventListener('click',function(){
+            if(currentPage>1){
+                currentPage--;
+                showCards();
             }
         });
+
+        nextPage.addEventListener('click',function(){
+            currentPage++;
+            showCards();
+        })
+
+        // =========================
+        // 載入網頁時預設顯示最新消息
+        // =========================
+
+        showCards();
 
     </script>
 </body>
