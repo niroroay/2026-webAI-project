@@ -24,7 +24,7 @@
 
     <!-- 瀏覽器favicon -->
     <link rel="icon" href="./image/favicon.png">
-    
+
 </head>
 
 <body>
@@ -110,9 +110,9 @@
                                 </button>
                             </div>
                             <ul>
-                                <li><a href="./notice.html">最新消息</a></li>
-                                <li><a href="./notice.html">政策總覽</a></li>
-                                <li><a href="./notice.html">公開資訊</a></li>
+                                <li><a href="./notice.html?category=news">最新消息</a></li>
+                                <li><a href="./notice.html?category=policy">政策總覽</a></li>
+                                <li><a href="./notice.html?category=info">公開資訊</a></li>
                             </ul>
                         </li>
 
@@ -239,9 +239,9 @@
                 <li>
                     <button type="button">公告訊息 <i class="bi bi-caret-down-fill"></i></button>
                     <ul class="submenu">
-                        <li><a href="./notice.html">最新消息</a></li>
-                        <li><a href="./notice.html">政策總覽</a></li>
-                        <li><a href="./notice.html">公開資訊</a></li>
+                        <li><a href="./notice.html?category=news">最新消息</a></li>
+                        <li><a href="./notice.html?category=policy">政策總覽</a></li>
+                        <li><a href="./notice.html?category=info">公開資訊</a></li>
                     </ul>
                 </li>
 
@@ -865,9 +865,9 @@
         let currentPage = 1;
 
         // 顯示符合分類+頁碼的文章
-        function showCards(){
+        function showCards() {
             // 篩選出符合目前分類的文章
-            const filterCards = Array.from(noticeCards).filter(function(card){
+            const filterCards = Array.from(noticeCards).filter(function (card) {
                 return card.dataset.category === currentCategory;
             });
 
@@ -875,50 +875,52 @@
             const totalPages = Math.ceil(filterCards.length / cardsPerPage);
 
             //計算目前頁面要顯示的文章範圍
-            const startIndex = (currentPage - 1)*cardsPerPage;
+            const startIndex = (currentPage - 1) * cardsPerPage;
             const endIndex = startIndex + cardsPerPage;
-            
+
             // 先隱藏所有文章
-            noticeCards.forEach(function(card){
+            noticeCards.forEach(function (card) {
                 card.style.display = 'none';
             });
 
             // 顯示目前頁面的文章
-            filterCards.forEach(function(card,index){
-                if(index>=startIndex && index<endIndex){
-                    card.style.display='';
+            filterCards.forEach(function (card, index) {
+                if (index >= startIndex && index < endIndex) {
+                    card.style.display = '';
                 }
             });
 
             // 清空原本的頁碼
-            pageNumbers.innerHTML ='';
+            pageNumbers.innerHTML = '';
 
             // 自動產生頁碼按鈕
-            for(let i=1; i<=totalPages;i++){
+            for (let i = 1; i <= totalPages; i++) {
                 const button = document.createElement('button');
 
-                button.type="button";
-                button.textContent=i;
+                button.type = "button";
+                button.textContent = i;
                 button.classList.add('page-btn');
 
                 // 標示目前所在的頁碼
-                if(i===currentPage){
+                if (i === currentPage) {
                     button.classList.add('active');
                 }
 
                 // 點頁碼時切換文章
-                button.addEventListener('click',function(){
-                    currentPage=i;
+                button.addEventListener('click', function () {
+                    currentPage = i;
+                    updateURL();
                     showCards();
                 });
-                
+
                 // 把每個頁碼加入HTML
                 pageNumbers.appendChild(button);
-
-                // 控制上一頁、下一頁是否可點擊
-                prevPage.disabled = currentPage === 1;
-                nextPage.disabled = currentPage === totalPages;
             }
+
+            // 控制上一頁、下一頁是否可點擊
+            prevPage.disabled = currentPage === 1;
+            nextPage.disabled = currentPage >= totalPages;
+
         }
 
         // =========================
@@ -929,6 +931,9 @@
                 // 取得用戶選擇的分類
                 currentCategory = button.dataset.category;
 
+                // 切換分類後，回到第1頁
+                currentPage = 1;
+
                 // 控制按鈕active
                 categoryButtons.forEach(function (item) {
                     item.classList.remove('active');
@@ -936,9 +941,8 @@
 
                 button.classList.add('active');
 
-                // 切換分類後，回到第1頁
-                currentPage = 1;
-
+                // 更新網址與文章
+                updateURL();
                 showCards();
             })
         });
@@ -946,23 +950,111 @@
         // =========================
         // 上一頁、下一頁
         // =========================
-        prevPage.addEventListener('click',function(){
-            if(currentPage>1){
+        prevPage.addEventListener('click', function () {
+            if (currentPage > 1) {
                 currentPage--;
+                updateURL();
                 showCards();
             }
         });
 
-        nextPage.addEventListener('click',function(){
+        nextPage.addEventListener('click', function () {
             currentPage++;
+            updateURL();
             showCards();
         })
 
-        // =========================
-        // 載入網頁時預設顯示最新消息
-        // =========================
 
+        /* =========================
+           網頁載入時讀取網址
+        ========================= */
+
+        // 取得網址中的分類與頁碼
+        const pageInfo = getPageInfo();
+
+        currentCategory = pageInfo.category;
+        currentPage = pageInfo.page;
+
+        // 篩選目前分類的文章，確認頁碼是否超出範圍
+        const filteredCards = Array.from(noticeCards).filter(function (card) {
+            return card.dataset.category === currentCategory;
+        });
+
+        const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
+
+        // 如果網址頁碼超過實際總頁數，回到第 1 頁
+        if (currentPage > Math.max(totalPages, 1)) {
+            currentPage = 1;
+        }
+
+        // 更新分類按鈕 active 樣式
+        categoryButtons.forEach(function (button) {
+            button.classList.toggle(
+                'active',
+                button.dataset.category === currentCategory
+            );
+        });
+
+        // 顯示文章
         showCards();
+
+        // 將修正後的分類與頁碼同步到網址
+        updateURL();
+
+        /* =========================
+           讀取網址中的分類與頁碼
+        ========================= */
+
+        function getPageInfo() {
+
+            // 取得網址參數
+            const params = new URLSearchParams(window.location.search);
+
+            // 讀取分類，預設為 news
+            let category = params.get('category') || 'news';
+
+            // 讀取頁碼，預設為第 1 頁
+            let page = Number(params.get('page')) || 1;
+
+            // 確認分類是否有效
+            const validCategories = ['news', 'policy', 'info'];
+
+            if (!validCategories.includes(category)) {
+                category = 'news';
+            }
+
+            // 確認頁碼是正整數
+            if (!Number.isInteger(page) || page < 1) {
+                page = 1;
+            }
+
+            return {
+                category: category,
+                page: page
+            };
+        }
+
+
+        /* =========================
+           更新網址參數
+        ========================= */
+
+        function updateURL() {
+
+            const params = new URLSearchParams();
+
+            params.set('category', currentCategory);
+            params.set('page', currentPage);
+
+            // 更新網址，但不重新載入網頁
+            history.replaceState(
+                null,
+                '',
+                window.location.pathname + '?' + params.toString()
+            );
+        }
+
+
 
     </script>
 </body>
