@@ -94,6 +94,17 @@ hr {
     position: relative;
 }
 
+.box2 p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
 /* 方塊左上角小標籤 */
 .card-badge{
     position: absolute;
