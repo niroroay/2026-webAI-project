@@ -56,10 +56,13 @@ hr {
 
 }
 
-/* 「你需要長照嗎」欄位底色 */
-.self-check-section{
+/* ================ 
+「你需要長照嗎」欄位 
+================ */
+.self-check-section {
     width: 100%;
     background-color: var(--soft);
+    border-radius: 15px;
     padding: 30px 48px;
     box-sizing: border-box;
     text-align: center;
@@ -81,10 +84,12 @@ hr {
     background-color: var(--muted);
 }
 
-/* 「長照服務對象」的純文字卡片 */
-.box2{
-    background-color: var(--orange);
-    color: #fff;
+/* ======================= 
+「長照服務對象」的純文字卡片 
+======================= */
+.box2 {
+    background-color: var(--yellow);
+    color: var(--ink);
     width: 100%;
     height: 100%;
     min-width: 150px;
@@ -94,19 +99,18 @@ hr {
     position: relative;
 }
 
-.box2 p{
+.box2 p {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 
     margin: 0;
-    font-weight: 600;
     line-height: 1.6;
 }
 
 /* 方塊左上角小標籤 */
-.card-badge{
+.card-badge {
     position: absolute;
     top: 0;
     left: 0;
@@ -114,18 +118,17 @@ hr {
     display: block;
     width: fit-content;
     max-width: 90%;
-    padding: 5px 10px;
+    padding: 10px 15px;
     box-sizing: border-box;
 
     font-size: 0.8rem;
     line-height: 1.4;
-    background-color: var(--yellow);
-    color: var(--ink);
+    color: var(--muted);
     border-radius: 12px 0 8px 0;
     text-align: left;
 }
 
-.box2-content{
+.box2-content {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -134,8 +137,102 @@ hr {
     min-height: 100px;
 }
 
-.box2-content p{
+.box2-content p {
     margin: 0;
-    font-weight: 600;
     line-height: 1.6;
+}
+
+/* =======================
+「申請方式」欄位
+======================= */
+.method .card {
+    border-radius: 6px;
+}
+
+.method .card-body small,
+.method .card-body span {
+    margin-bottom: 10px;
+}
+
+.method .card-body small {
+    background-color: var(--soft);
+    padding: 3px;
+    border-radius: 5px;
+
+    display: block;
+}
+
+.method .card-body span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 4.8em;
+    line-height: 1.6;
+}
+
+.method .card-body a {
+    width: 100%;
+    margin-right: 5px;
+    border-radius: 10px;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    background-color: var(--deep-orange);
+
+    transition: background-color 0.3s ease;
+}
+
+/* 隱藏箭頭 */
+.method .card-body i {
+    opacity: 0;
+    transform: translateX(-8px);
+    max-width: 0;
+    overflow: hidden;
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        max-width 0.3s ease,
+        margin-left 0.3s ease;
+}
+
+/* 滑鼠移到按鈕 顏色變淡 */
+.method .card-body a:hover {
+    background-color: var(--mustard);
+}
+
+/* 箭頭向右滑出 */
+.method .card-body a:hover i,
+.method .card-body a:hover i {
+    opacity: 1;
+    transform: translateX(0);
+    max-width: 20px;
+    margin-left: 8px;
+}
+
+/* =======================
+「申請流程」欄位
+======================= */
+.process .card{
+    border-radius: 6px;
+}
+.process h2 {
+    margin-bottom: 32px;
+}
+
+.process h3{
+    font-weight: 600;
+    font-size: 1.3em;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.process span{
+    /* border: 1px solid red; */
+    text-align: justify;
 }
