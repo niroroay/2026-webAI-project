@@ -1,0 +1,88 @@
+:root {
+    --white: #ffffff;
+    --ink: #2c2c2c;
+    --muted: #6b6b6b;
+    --line: #e6e6e6;
+    --surface: #fafaf8;
+    --soft: #f4f5f2;
+    --sage: #dae1dd;
+    --yellow: #f2d680;
+    --mustard: #d99a25;
+    --orange: #d98723;
+    --deep-orange: #d9731a;
+    --dark: #25231f;
+    --shadow: 0 12px 30px rgba(33, 31, 27, .07);
+    --radius: 18px;
+    --max: 1180px;
+}
+
+/* =========================
+   內容區
+   ========================= */
+
+/* 調整置中 */
+main {
+    width: 100%;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 45px auto 30px;
+    padding: 0 48px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.main-container h1 {
+    font-weight: 600;
+}
+
+/* 調整每個區域上下空間 */
+.main-container .box {
+    padding: 30px 0;
+}
+
+/* =========================
+   搜尋篩選區
+   ========================= */
+.filter-panel {
+    background-color: var(--soft);
+    border-radius: 15px;
+    min-height: 200px;
+    box-sizing: border-box;
+    text-align: start;
+}
+
+.filter-panel .container{
+    padding: 0 30px 10px;
+}
+
+/* 主要需求 */
+.needs-filter-title{
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* 需求按鈕 原始樣式 */
+.needs-filter .btn{
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--sage);
+
+    transition: background-color .3s ease;
+}
+
+/* 需求按鈕動態 滑鼠移過去變淡黃色 */
+.needs-filter .btn:hover{
+    background-color: var(--yellow);
+}
+
+/* 需求按鈕動態 按下選取後 */
+.needs-filter .btn-check:checked + .btn,
+.needs-filter .btn-check:checked + .btn:hover {
+    background-color: var(--orange);
+    color: var(--white);
+}

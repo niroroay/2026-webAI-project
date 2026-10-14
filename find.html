@@ -336,64 +336,101 @@
 
         <!-- 內容區 -->
         <main>
-            <!-- 標題區 -->
-            <div class="title">
-                <h1>長照服務資源搜尋</h1>
-                <p>選取地區，需求及服務類型，快速找到適合的長照資源</p>
-            </div>
-
-            <!-- 搜尋篩選區 -->
-            <div class="filter-panel">
-                <label class="field"></label>
-                <span>關鍵字</span>
-                <input type="search">
-                <label class="field"></label>
-                <span>縣市</span>
-                <select id="citySelect">
-                    <option value="所有縣市">所有縣市</option>
-                    <option value="台北市">台北市</option>
-                    <option value="新北市">新北市</option>
-                    <option value="桃園市">桃園市</option>
-                </select>
-                <label class="field"></label>
-                <span>行政區</span>
-                <select id="citySelect">
-                    <option value="所有行政區">所有行政區</option>
-                    <option value="大安區">大安區</option>
-                    <option value="信義區">信義區</option>
-                    <option value="中山區">中山區</option>
-                </select>
-                <div class="field">
-                    <span>主要需求</span>
-                    <label>
-                        <input type="radio" name="service" value="失智照護">失智照護
-                    </label>
-                    <label>
-                        <input type="radio" name="service" value="居家服務">居家服務
-                    </label>
-                    <label>
-                        <input type="radio" name="service" value="日照中心">日照中心
-                    </label>
-                    <label>
-                        <input type="radio" name="service" value="住宿機構">住宿機構
-                    </label>
+            <div class="main-container">
+                <!-- 標題區 -->
+                <div class="title box">
+                    <h1>長照服務資源搜尋</h1>
+                    <p>選取地區，需求及服務類型，快速找到適合的長照資源</p>
                 </div>
-            </div>
 
-            <!-- 搜尋結果區 -->
-            <div class="result-panel">
-                <div class="category-filter">
-                    <label class="btn">
-                        <input type="radio" name="result-view" value="清單">清單
-                    </label>
+                <!-- 搜尋篩選區 -->
+                <div class="filter-panel box">
+                    <div class="container">
+                        <div class="row g-3">
 
-                    <label class="btn">
-                        <input type="radio" name="result-view" value="顯示地圖">顯示地圖
-                    </label>
+                            <!-- 關鍵字搜尋 -->
+                            <div class="col-12 col-md-4">
+                                <label for="keyword" class="filter-label">關鍵字</label>
+                                <input type="text" class="form-control" id="keyword" placeholder="請輸入關鍵字">
+                            </div>
 
-                    <button type="button" class="btn">下載結果（xlsx）</button>
+                            <!-- 下拉選擇縣市 -->
+                            <div class="col-12 col-md-4">
+                                <label for="city" class="filter-label">縣市</label>
+                                <select class="form-select" id="city">
+                                    <option value="" selected>所有縣市</option>
+                                    <option value="台北市">台北市</option>
+                                    <option value="新北市">新北市</option>
+                                    <option value="桃園市">桃園市</option>
+                                </select>
+                            </div>
+
+                            <!-- 下拉選擇行政區 -->
+                            <div class="col-12 col-md-4">
+                                <label for="district" class="filter-label">行政區</label>
+                                <select class="form-select" id="district">
+                                    <option value="" selected>所有行政區</option>
+                                    <option value="大安區">大安區</option>
+                                    <option value="信義區">信義區</option>
+                                    <option value="中山區">中山區</option>
+                                </select>
+                            </div>
+
+                            <!-- 主要需求 -->
+                            <div class="col-12">
+                                <fieldset class="needs-filter">
+                                    <span class="needs-filter-title">主要需求</span>
+
+                                    <div class="row g-2">
+
+                                        <div class="col-12 col-sm-3 col-md-2">
+                                            <input type="checkbox" class="btn-check" id="need-dementia" name="needs"
+                                                value="失智照護">
+                                            <label class="btn"
+                                                for="need-dementia">失智照護</label>
+                                        </div>
+
+                                        <div class="col-12 col-sm-3 col-md-2">
+                                            <input type="checkbox" class="btn-check" id="need-home" name="needs"
+                                                value="居家服務">
+                                            <label class="btn" for="need-home">居家服務</label>
+                                        </div>
+
+                                        <div class="col-12 col-sm-3 col-md-2">
+                                            <input type="checkbox" class="btn-check" id="need-daycare" name="needs"
+                                                value="日照中心">
+                                            <label class="btn" for="need-daycare">日照中心</label>
+                                        </div>
+
+                                        <div class="col-12 col-sm-3 col-md-2">
+                                            <input type="checkbox" class="btn-check" id="need-residential" name="needs"
+                                                value="住宿機構">
+                                            <label class="btn" for="need-residential">住宿機構</label>
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-                <div class="map"></div>
+
+                <!-- 搜尋結果區 -->
+                <div class="result-panel box">
+                    <div class="category-filter">
+                        <label class="btn">
+                            <input type="radio" name="result-view" value="清單">清單
+                        </label>
+
+                        <label class="btn">
+                            <input type="radio" name="result-view" value="顯示地圖">顯示地圖
+                        </label>
+
+                        <button type="button" class="btn">下載結果（xlsx）</button>
+                    </div>
+                    <div class="map"></div>
+                </div>
             </div>
 
         </main>
