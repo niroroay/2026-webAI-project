@@ -19,7 +19,12 @@
     <!-- header+footer css -->
     <link rel="stylesheet" href="./css/header+footer.css">
 
-    <!-- index css -->
+
+    <!-- Leaflet 地圖 css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+
+    <!-- 自己的css -->
     <link rel="stylesheet" href="./css/find.css">
 
     <!-- 瀏覽器favicon -->
@@ -338,7 +343,7 @@
         <main>
             <div class="main-container">
                 <!-- 標題區 -->
-                <div class="title box">
+                <div class="title">
                     <h1>長照服務資源搜尋</h1>
                     <p>選取地區，需求及服務類型，快速找到適合的長照資源</p>
                 </div>
@@ -370,9 +375,6 @@
                                 <label for="district" class="filter-label">行政區</label>
                                 <select class="form-select" id="district">
                                     <option value="" selected>所有行政區</option>
-                                    <option value="大安區">大安區</option>
-                                    <option value="信義區">信義區</option>
-                                    <option value="中山區">中山區</option>
                                 </select>
                             </div>
 
@@ -386,8 +388,7 @@
                                         <div class="col-12 col-sm-3 col-md-2">
                                             <input type="checkbox" class="btn-check" id="need-dementia" name="needs"
                                                 value="失智照護">
-                                            <label class="btn"
-                                                for="need-dementia">失智照護</label>
+                                            <label class="btn" for="need-dementia">失智照護</label>
                                         </div>
 
                                         <div class="col-12 col-sm-3 col-md-2">
@@ -418,17 +419,29 @@
 
                 <!-- 搜尋結果區 -->
                 <div class="result-panel box">
+
+                    <!-- 切換按鈕 -->
                     <div class="category-filter">
-                        <label class="btn">
-                            <input type="radio" name="result-view" value="清單">清單
+
+                        <label class="result-btn active">
+                            <input type="radio" class="view-radio" name="result-view" value="list" checked>
+                            清單
                         </label>
 
-                        <label class="btn">
-                            <input type="radio" name="result-view" value="顯示地圖">顯示地圖
+                        <label class="result-btn">
+                            <input type="radio" class="view-radio" name="result-view" value="map">
+                            顯示地圖
                         </label>
 
-                        <button type="button" class="btn">下載結果（xlsx）</button>
+                        <button type="button" class="download-btn" id="download-btn">
+                            下載結果（xlsx）
+                        </button>
+
                     </div>
+
+                    <!-- 搜尋結果內容 後續由JS產生 -->
+                    <div id="result-content"></div>
+
                     <div class="map"></div>
                 </div>
             </div>
@@ -532,6 +545,18 @@
         </footer>
     </div>
 
+
+    <!-- Excel 匯出套件 -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+
+    <!-- Leaflet 地圖套件 -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- 你原本的程式 -->
+    <script src="./js/find.js"></script>
+
+
+    <!-- JS -->
     <script>
         // ================
         // 取得HTML元素
@@ -621,6 +646,563 @@
                 document.body.classList.remove('menu-open');
             }
         });
+
+
+        /* =========================
+           1. 假資料
+           ========================= */
+
+
+        const facilities = [
+            {
+                name: "台北市大安區長照服務中心",
+                city: "台北市",
+                district: "大安區",
+                types: ["居家服務", "失智照護"],
+                address: "台北市大安區範例路 100 號",
+                phone: "02-1234-5678",
+                lat: 25.026,
+                lng: 121.543
+            },
+            {
+                name: "台北市信義區居家服務中心",
+                city: "台北市",
+                district: "信義區",
+                types: ["居家服務"],
+                address: "台北市信義區範例路 110 號",
+                phone: "02-1111-2222",
+                lat: 25.033,
+                lng: 121.565
+            },
+            {
+                name: "新北市板橋區日照中心",
+                city: "新北市",
+                district: "板橋區",
+                types: ["日照中心"],
+                address: "新北市板橋區範例路 200 號",
+                phone: "02-2345-6789",
+                lat: 25.014,
+                lng: 121.464
+            },
+            {
+                name: "桃園市桃園區住宿機構",
+                city: "桃園市",
+                district: "桃園區",
+                types: ["住宿機構", "失智照護"],
+                address: "桃園市桃園區範例路 300 號",
+                phone: "03-3456-7890",
+                lat: 24.993,
+                lng: 121.301
+            }
+        ];
+
+
+        // 儲存目前已收藏的機構名稱
+        const favoriteFacilities = new Set();
+
+
+        /* =========================
+           2. 取得 HTML 元素
+           ========================= */
+
+        const keywordInput = document.querySelector("#keyword");
+        const citySelect = document.querySelector("#city");
+        const districtSelect = document.querySelector("#district");
+
+        const needCheckboxes = document.querySelectorAll(
+            'input[name="needs"]'
+        );
+
+        const viewRadios = document.querySelectorAll(
+            'input[name="result-view"]'
+        );
+
+        const resultContent = document.querySelector("#result-content");
+        const downloadBtn = document.querySelector("#download-btn");
+
+
+        /* =========================
+           3. 行政區資料
+           ========================= */
+
+        const cityDistricts = {
+            "台北市": ["大安區", "信義區", "中山區"],
+            "新北市": ["板橋區", "新店區", "中和區"],
+            "桃園市": ["桃園區", "中壢區", "龜山區"]
+        };
+
+
+        // 根據縣市更新行政區選單
+        function updateDistricts() {
+
+            const selectedCity = citySelect.value;
+
+            // 先清空原本的行政區選項
+            districtSelect.innerHTML = `
+        <option value="">所有行政區</option>
+    `;
+
+            // 找出這個縣市有哪些行政區
+            const districts = cityDistricts[selectedCity] || [];
+
+            districts.forEach(function (district) {
+
+                const option = document.createElement("option");
+
+                option.value = district;
+                option.textContent = district;
+
+                districtSelect.appendChild(option);
+
+            });
+
+        }
+
+
+        /* =========================
+           4. 篩選資料
+           ========================= */
+
+        function filterFacilities() {
+
+            // 取得輸入的關鍵字，並去除前後空白
+            const keyword = keywordInput.value.trim().toLowerCase();
+
+            // 取得選取的縣市及行政區
+            const selectedCity = citySelect.value;
+            const selectedDistrict = districtSelect.value;
+
+            // 取得所有已勾選的需求
+            const selectedNeeds = [];
+
+            needCheckboxes.forEach(function (checkbox) {
+
+                if (checkbox.checked) {
+                    selectedNeeds.push(checkbox.value);
+                }
+
+            });
+
+
+            // 篩選符合條件的機構
+            const filteredFacilities = facilities.filter(function (facility) {
+
+                // 關鍵字：搜尋名稱、服務類型、地址及電話
+                const searchText = [
+                    facility.name,
+                    facility.city,
+                    facility.district,
+                    facility.types.join(" "),
+                    facility.address,
+                    facility.phone
+                ].join(" ").toLowerCase();
+
+                const matchKeyword = searchText.includes(keyword);
+
+                // 縣市是否符合
+                const matchCity =
+                    selectedCity === "" ||
+                    facility.city === selectedCity;
+
+                // 行政區是否符合
+                const matchDistrict =
+                    selectedDistrict === "" ||
+                    facility.district === selectedDistrict;
+
+                // 多選需求：符合其中一種即可
+                const matchNeeds =
+                    selectedNeeds.length === 0 ||
+                    selectedNeeds.every(function (need) {
+                        return facility.types.includes(need);
+                    });
+
+                // 四個條件都符合，才會留下這筆資料
+                return (
+                    matchKeyword &&
+                    matchCity &&
+                    matchDistrict &&
+                    matchNeeds
+                );
+
+            });
+
+            return filteredFacilities;
+
+        }
+
+
+        /* =========================
+           5. 顯示清單
+           ========================= */
+
+
+        function showList(data) {
+            // 切回清單時，清除原本的地圖
+            removeLeafletMap();
+
+            // 沒有符合條件的資料
+            if (data.length === 0) {
+                resultContent.innerHTML = `
+            <div class="result-empty">
+                <p>查無符合條件的長照資源，請調整搜尋條件。</p>
+            </div>
+        `;
+                return;
+            }
+
+            let listHTML = `
+        <div class="result-list">
+            <p>共找到 ${data.length} 筆結果</p>
+    `;
+
+            data.forEach(function (facility) {
+
+                // 判斷這筆機構是否已收藏
+                const isFavorite = favoriteFacilities.has(facility.name);
+
+                listHTML += `
+            <div class="result-card">
+                <h3>${facility.name}</h3>
+
+                <p>服務類型：${facility.types.join("、")}</p>
+                <p>地址：${facility.address}</p>
+                <p>電話：${facility.phone}</p>
+
+                <div class="facility-actions">
+
+                    <a href="#"
+                       class="facility-btn map-link"
+                       data-name="${facility.name}"
+                       aria-label="查看 ${facility.name} 的 Google 地圖">
+                        <i class="bi bi-geo-alt"></i>
+                        Google 地圖
+                    </a>
+
+                    <a href="tel:${facility.phone}"
+                       class="facility-btn">
+                        <i class="bi bi-telephone"></i>
+                        電話
+                    </a>
+
+                    <button type="button"
+                            class="facility-btn favorite-btn ${isFavorite ? "active" : ""}"
+                            data-name="${facility.name}"
+                            aria-pressed="${isFavorite}">
+                        <i class="bi ${isFavorite ? "bi-heart-fill" : "bi-heart"}"></i>
+                        ${isFavorite ? "已收藏" : "收藏"}
+                    </button>
+
+                </div>
+            </div>
+        `;
+
+            });
+
+            listHTML += "</div>";
+
+            resultContent.innerHTML = listHTML;
+        }
+
+
+        /* =========================
+           6. 顯示地圖預留畫面
+           ========================= */
+
+
+
+        /* =========================
+           Leaflet 地圖變數
+        ========================= */
+
+        let leafletMap = null;
+
+
+        /* =========================
+           清除舊地圖
+        ========================= */
+
+        function removeLeafletMap() {
+
+            if (leafletMap !== null) {
+                leafletMap.remove();
+                leafletMap = null;
+            }
+
+        }
+
+
+        /* =========================
+           顯示互動地圖
+        ========================= */
+
+        function showMap(data) {
+
+            // 清除前一次建立的地圖
+            removeLeafletMap();
+
+            // 沒有符合條件的機構
+            if (data.length === 0) {
+                resultContent.innerHTML = `
+            <div class="map-placeholder">
+                <p>目前沒有符合條件的長照資源。</p>
+            </div>
+        `;
+                return;
+            }
+
+            // 建立地圖容器
+            resultContent.innerHTML = `
+        <p class="map-result-count">
+            共找到 ${data.length} 筆結果
+        </p>
+
+        <div id="leaflet-map"></div>
+    `;
+
+            // 建立地圖，初始位置設在台灣
+            leafletMap = L.map("leaflet-map").setView(
+                [23.7, 121],
+                7
+            );
+
+            // 加入 OpenStreetMap 地圖圖磚
+            L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+                    maxZoom: 19,
+                    attribution:
+                        '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
+                }
+            ).addTo(leafletMap);
+
+            // 只保留有有效經緯度的機構
+            const validFacilities = data.filter(function (facility) {
+
+                return Number.isFinite(Number(facility.lat)) &&
+                    Number.isFinite(Number(facility.lng)) &&
+                    facility.lat !== "" &&
+                    facility.lng !== "";
+
+            });
+
+            // 沒有有效座標時，顯示提示
+            if (validFacilities.length === 0) {
+
+                resultContent.insertAdjacentHTML(
+                    "beforeend",
+                    `<p>這些機構尚未設定有效的經緯度。</p>`
+                );
+
+                return;
+            }
+
+            // 記錄所有圖釘的位置
+            const markerPositions = [];
+
+            // 逐筆建立機構圖釘
+            validFacilities.forEach(function (facility) {
+
+                const position = [
+                    Number(facility.lat),
+                    Number(facility.lng)
+                ];
+
+                // 在地圖上放置圖釘
+                const marker = L.marker(position).addTo(leafletMap);
+
+                // 設定點擊圖釘後顯示的資訊
+                marker.bindPopup(`
+            <div>
+                <h3>${facility.name}</h3>
+                <p>服務類型：${facility.types.join("、")}</p>
+                <p>地址：${facility.address}</p>
+                <p>電話：${facility.phone}</p>
+
+                <a
+                    href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(facility.address)}"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    在 Google 地圖中查看
+                </a>
+            </div>
+        `);
+
+                markerPositions.push(position);
+
+            });
+
+            // 只有一間機構：放大顯示
+            if (markerPositions.length === 1) {
+
+                leafletMap.setView(markerPositions[0], 15);
+
+            } else {
+
+                // 多間機構：自動調整地圖範圍
+                const bounds = L.latLngBounds(markerPositions);
+
+                leafletMap.fitBounds(bounds, {
+                    padding: [30, 30],
+                    maxZoom: 15
+                });
+
+            }
+
+        }
+
+        /* =========================
+           7. 更新搜尋結果
+           ========================= */
+
+        function updateResults() {
+
+            // 先根據篩選條件取得資料
+            const filteredData = filterFacilities();
+
+            // 判斷目前選擇清單還是地圖
+            const selectedView = document.querySelector(
+                'input[name="result-view"]:checked'
+            );
+
+            // 同步按鈕的 active 樣式
+            viewRadios.forEach(function (radio) {
+
+                radio.closest(".result-btn").classList.toggle(
+                    "active",
+                    radio.checked
+                );
+
+            });
+
+            // 顯示對應內容
+            if (!selectedView || selectedView.value === "list") {
+
+                showList(filteredData);
+
+            } else {
+
+                showMap(filteredData);
+
+            }
+
+        }
+
+
+        /* =========================
+           8. 監聽搜尋條件
+           ========================= */
+
+        // 輸入關鍵字時立即篩選
+        keywordInput.addEventListener("input", updateResults);
+
+        // 選擇縣市時，更新行政區並重新篩選
+        citySelect.addEventListener("change", function () {
+
+            updateDistricts();
+            updateResults();
+
+        });
+
+        // 選擇行政區時重新篩選
+        districtSelect.addEventListener("change", updateResults);
+
+        // 勾選需求時重新篩選
+        needCheckboxes.forEach(function (checkbox) {
+
+            checkbox.addEventListener("change", updateResults);
+
+        });
+
+        // 切換清單或地圖
+        viewRadios.forEach(function (radio) {
+
+            radio.addEventListener("change", updateResults);
+
+        });
+
+
+        /* =========================
+           9. 下載篩選後的 Excel
+           ========================= */
+
+        downloadBtn.addEventListener("click", function () {
+
+            // 取得目前篩選後的資料
+            const filteredData = filterFacilities();
+
+            if (filteredData.length === 0) {
+                alert("目前沒有符合條件的資料可以下載。");
+                return;
+            }
+
+            // 整理 Excel 欄位
+            const excelData = filteredData.map(function (facility) {
+
+                return {
+                    "機構名稱": facility.name,
+                    "縣市": facility.city,
+                    "行政區": facility.district,
+                    "服務類型": facility.types.join("、"),
+                    "地址": facility.address,
+                    "電話": facility.phone,
+                    "Google 地圖": "開啟地圖",
+                    "電話連結": "撥打電話",
+                    "收藏": "收藏機構"
+                };
+
+            });
+
+            // 建立工作表
+            const worksheet = XLSX.utils.json_to_sheet(excelData);
+
+            // 三個連結欄位：Google 地圖、電話、收藏
+            const linkColumns = [6, 7, 8];
+
+            // 從第 2 列開始設定連結（第 1 列是標題）
+            for (let i = 0; i < filteredData.length; i++) {
+
+                linkColumns.forEach(function (column) {
+
+                    const cellAddress = XLSX.utils.encode_cell({
+                        r: i + 1,
+                        c: column
+                    });
+
+                    // 設定 Excel 儲存格的超連結
+                    worksheet[cellAddress].l = {
+                        Target: "#"
+                    };
+
+                });
+
+            }
+
+            // 建立活頁簿
+            const workbook = XLSX.utils.book_new();
+
+            XLSX.utils.book_append_sheet(
+                workbook,
+                worksheet,
+                "長照服務資源"
+            );
+
+            // 下載 Excel
+            XLSX.writeFile(
+                workbook,
+                "長照服務搜尋結果.xlsx"
+            );
+
+        });
+
+        /* =========================
+           10. 網頁初始設定
+           ========================= */
+
+        // 先顯示清單及全部資料
+        updateDistricts();
+        updateResults();
+
+
     </script>
     </div>
 </body>

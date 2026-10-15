@@ -1,0 +1,85 @@
+:root {
+    --white: #ffffff;
+    --ink: #2c2c2c;
+    --muted: #6b6b6b;
+    --line: #e6e6e6;
+    --surface: #fafaf8;
+    --soft: #f4f5f2;
+    --sage: #dae1dd;
+    --yellow: #f2d680;
+    --mustard: #d99a25;
+    --orange: #d98723;
+    --deep-orange: #d9731a;
+    --dark: #25231f;
+    --shadow: 0 12px 30px rgba(33, 31, 27, .07);
+    --radius: 18px;
+    --max: 1180px;
+}
+
+/* =========================
+   內容區
+   ========================= */
+
+/* 調整置中 */
+main {
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 1180px;
+    margin: 45px auto 30px;
+    padding: 0 48px;
+    text-align: center;
+}
+
+main h1{
+    font-weight: 600;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: start;
+
+    background-color: var(--soft);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.main-container h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.main-container h3 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.main-container .form{
+    background-color: var(--yellow);
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.main-container .form p{
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+/* 調整每個區域上下空間 */
+.main-container .box {
+    padding: 30px 0;
+}
+
+/* 手機版 */
+@media(max-width:960px) {
+    .main-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+}
