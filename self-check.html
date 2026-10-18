@@ -339,32 +339,244 @@
         <main>
             <h1>長照方向小測驗</h1>
             <div class="main-container">
+
+                <!-- 左側測驗說明 -->
                 <div class="description">
                     <h2>簡單 1 分鐘<br>找出未來照顧方向</h2>
                     <p>照顧家人，不需要一開始就懂所有制度。回答幾個簡單問題，我們先陪您整理可能符合的長照服務、補助額度與下一步方向。
                     </p>
-                    <p>✓ 快速自我評估<br>
-                        ✓ 快速了解照顧與補助方向<br>
-                        ✓ 快速查找地方窗口<br>
+                    <p>
+                        ✓ 快速自我評估<br>
+                        ✓ 了解照顧需求<br>
+                        ✓ 了解補助方向<br>
+                        ✓ 查找地方服務窗口<br>
                     </p>
-                    <p>「先把複雜的長照資訊變簡單，再一起找到適合家人的照顧方式。」</p>
+                    <p>「先把複雜的長照資訊變簡單，
+                        再一起找到適合家人的照顧方式。」
+                    </p>
                 </div>
+
+                <!-- 右側測驗 -->
                 <div class="form">
                     <h2>長照初步評估</h2>
-                    <h3>STEP.1 基本資格</h3>
-                    <h4>家人目前的狀況比較接近哪一種？</h4>
-                    <p>請選擇最接近的一項</p>
-                    <label for="identity">
-                        <input type="radio" name="identity" value="65歲以上長者">65歲以上長者
-                        <input type="radio" name="identity" value="55歲以上原住民">55歲以上原住民
-                        <input type="radio" name="identity" value="失能身心障礙者">失能身心障礙者
-                        <input type="radio" name="identity" value="失智症者（不限年齡）">失智症者（不限年齡）
-                        <input type="radio" name="identity" value="急性後期整合照護（PAC）收案對象">急性後期整合照護（PAC）收案對象
-                        <input type="radio" name="identity" value="以上皆非/不確定">以上皆非/不確定
-                    </label>
-                    <div class="nextButtons">
-                        <button type="button" value="下一步">下一步</button>
+
+                    <div class="quiz-progress" aria-label="測驗進度">
+                        <span class="quiz-progress-step active" data-progress-step="0"></span>
+                        <span class="quiz-progress-step" data-progress-step="1"></span>
+                        <span class="quiz-progress-step" data-progress-step="2"></span>
                     </div>
+
+                    <!-- 第一題 -->
+                    <section class="quiz-step active" data-step="0">
+
+                        <p class="step-number">STEP.1 基本資格</p>
+                        <h3>家人目前的狀況比較接近哪一種？</h3>
+                        <p>請選擇最接近的一項</p>
+
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="radio" name="identity" value="65歲以上長者">
+                                <span>65歲以上長者</span>
+                            </label>
+
+                            <label class="quiz-option">
+                                <input type="radio" name="identity" value="55歲以上原住民">
+                                <span>55歲以上原住民</span>
+                            </label>
+
+                            <label class="quiz-option">
+                                <input type="radio" name="identity" value="失能身心障礙者">
+                                <span>失能身心障礙者</span>
+                            </label>
+
+                            <label class="quiz-option">
+                                <input type="radio" name="identity" value="失智症者（不限年齡）">
+                                <span>失智症者（不限年齡）</span>
+                            </label>
+
+                            <label class="quiz-option">
+                                <input type="radio" name="identity" value="急性後期整合照護（PAC）收案對象">
+                                <span>急性後期整合照護（PAC）收案對象</span>
+                            </label>
+
+                            <label class="quiz-option">
+                                <input type="radio" name="identity" value="以上皆非/不確定">
+                                <span>以上皆非/不確定</span>
+                            </label>
+
+                        </div>
+
+                        <div class="nextButtons">
+                            <button type="button" class="quiz-btn" value="下一步" data-next>下一步</button>
+                        </div>
+
+                    </section>
+
+                    <!-- 第二題 -->
+                    <section class="quiz-step" data-step="1">
+
+                        <p class="step-number">STEP.2 照顧需求</p>
+                        <h3>目前最需要哪方面的協助？</h3>
+                        <p>請選擇最接近目前需求的一項</p>
+
+                        <div class="quiz-options">
+
+                            <label class="quiz-option">
+                                <input type="radio" name="need" value="希望在家接受照顧">
+                                <span>
+                                    <strong>希望在家接受照顧</strong>
+                                    <small>如：居家服務、專業服務、輔具等</small>
+                                </span>
+                            </label>
+
+
+
+                            <label class="quiz-option">
+                                <input type="radio" name="need" value="白天需要日間照顧">
+                                <span>
+                                    <strong>白天需要日間照顧</strong>
+                                    <small>僅白天需要照顧，晚上回家</small>
+                                </span>
+                            </label>
+
+                            <label class="quiz-option">
+                                <input type="radio" name="need" value="全天住宿照顧">
+                                <span>
+                                    <strong>全天住宿照顧</strong>
+                                    <small>如：護理之家、住宿式機構</small>
+                                </span>
+                            </label>
+
+                            <label class="quiz-option">
+                                <input type="radio" name="need" value="家中已有外籍看護">
+                                <span>
+                                    <strong>家中已有外籍看護</strong>
+                                    <small>仍可能使用部分長照服務</small>
+                                </span>
+                            </label>
+
+                            <label class="quiz-option">
+                                <input type="radio" name="need" value="還不確定">
+                                <span>
+                                    <strong>還不確定</strong>
+                                </span>
+                            </label>
+
+                        </div>
+                        </label>
+
+                        <div class="nextButtons">
+                            <button type="button" class="quiz-btn secondary" value="上一步" data-prev>上一步</button>
+                            <button type="button" class="quiz-btn" value="下一步" data-next>下一步</button>
+                        </div>
+
+                    </section>
+
+                    <!-- 第三題 -->
+                    <section class="quiz-step" data-step="2">
+
+                        <p class="step-number">STEP.3 生活協助</p>
+                        <h3>日常生活中，有哪些事情需要他人幫忙？</h3>
+                        <p>可複選；僅用於初步了解照顧需求，不等同政府正式CMS評估</p>
+
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="checkbox" name="care" value="用餐">
+                                <span>用餐</span>
+                            </label>
+
+                            <label class="quiz-option">
+                                <input type="checkbox" name="care" value="洗澡">
+                                <span>洗澡</span>
+                            </label>
+
+                            <label class="quiz-option">
+                                <input type="checkbox" name="care" value="更衣">
+                                <span>更衣</span>
+                            </label>
+
+                            <label class="quiz-option">
+                                <input type="checkbox" name="care" value="如廁">
+                                <span>如廁</span>
+                            </label>
+
+                            <label class="quiz-option">
+                                <input type="checkbox" name="care" value="起身、移位">
+                                <span>起身、移位</span>
+                            </label>
+
+                            <label class="quiz-option">
+                                <input type="checkbox" name="care" value="行走">
+                                <span>行走</span>
+                            </label>
+
+                        </div>
+
+                        <div class="care-count">
+                            <progress id="progressBar" value="0" max="6"></progress>
+                            <p>已選擇<span id="count">0</span>/6項</p>
+                        </div>
+
+                        <div class="nextButtons">
+                            <button type="button" class="quiz-btn secondary" value="下一步" data-prev>上一步</button>
+                            <button type="button" class="quiz-btn" value="看結果" id="show-result">看結果</button>
+                        </div>
+
+                    </section>
+
+                    <!-- 測驗結果 -->
+                    <section class="quiz-step" data-step="3">
+
+                        <p class="step-number">✓ 初步評估完成</p>
+                        <h3 id="result-title"></h3>
+                        <p id="result-description"></p>
+
+                        <div class="result-summary">
+
+                            <p class="result-section-intro">
+                                依照您的回答，建議先從這裡開始
+                            </p>
+
+                            <!-- 主要建議卡片 -->
+                            <div class="result-card" id="main-result-card"></div>
+
+                            <!-- 兩張延伸服務卡片 -->
+                            <p class="result-section-intro">您也可以一起了解</p>
+                            <div class="secondary-services" id="secondary-services"></div>
+
+                            <!-- 長照補助懶人包 -->
+                            <h4>長照補助資訊</h4>
+                            <div class="result-point" id="main-subsidy"></div>
+
+                            <!-- 依照選擇的選項 顯示可能適用的補助 -->
+                            <h4>可能適用的長照補助資訊</h4>
+                            <p class="subsidy-description">
+                                以下是依照您的選擇整理出的參考項目，
+                                實際適用資格、額度及部分負擔仍需由照管專員評估。
+                            </p>
+
+                            <div class="result-grid" id="possible-subsidies"></div>
+
+                            <p class="result-notice">
+                                本測驗僅供初步資訊整理，不代表正式長照資格認定或補助核定。
+                                實際給付依長照需要等級、身分別、服務內容及照管專員評估而定。
+                            </p>
+
+                        </div>
+
+                        <div class="nextButtons">
+                            <button type="button" class="quiz-btn secondary" data-prev>
+                                返回修改答案
+                            </button>
+
+                            <button type="button" class="quiz-btn" value="重新評估" data-reset>
+                                重新評估
+                            </button>
+                        </div>
+                    </section>
+
+                    <p id="quiz-error" class="quiz-error" role="alert" aria-live="polite"></p>
+
                 </div>
             </div>
         </main>
@@ -555,6 +767,538 @@
                 document.body.classList.remove('menu-open');
             }
         });
+
+
+        /* =========================
+           長照方向小測驗
+        ========================= */
+
+        // 取得所有題目區塊，包含最後的結果頁
+        const quizSteps = document.querySelectorAll(".quiz-step");
+
+        // 記錄目前顯示哪一個區塊
+        let currentStep = 0;
+
+        const quizError = document.getElementById("quiz-error");
+
+
+        // =========================
+        // 顯示指定題目
+        // =========================
+
+        function showStep(step) {
+
+            currentStep = step;
+
+            quizSteps.forEach(function (item, index) {
+                item.classList.toggle("active", index === step);
+            });
+
+            // 更新上方的測驗進度
+            document.querySelectorAll("[data-progress-step]").forEach(
+                function (item, index) {
+                    item.classList.toggle(
+                        "active",
+                        step === 3 || index <= step
+                    );
+                }
+            );
+
+            if (quizError) {
+                quizError.textContent = "";
+            }
+
+            // 回到第三題時，同步更新已勾選項目數量
+            updateCareCount();
+
+            // 切換到結果頁時，捲動到表單上方
+            if (step === 3) {
+                document.querySelector(".form").scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        }
+
+
+        // =========================
+        // 取得單選答案
+        // =========================
+
+        function getAnswer(name) {
+
+            const selected = document.querySelector(
+                `input[name="${name}"]:checked`
+            );
+
+            return selected ? selected.value : "";
+        }
+
+
+        // =========================
+        // 取得第三題的複選答案
+        // =========================
+
+        function getCareAnswers() {
+
+            const selected = document.querySelectorAll(
+                'input[name="care"]:checked'
+            );
+
+            return Array.from(selected).map(function (item) {
+                return item.value;
+            });
+        }
+
+
+        // =========================
+        // 第三題即時計數
+        // =========================
+
+        function updateCareCount() {
+
+            const selectedCount = getCareAnswers().length;
+
+            document.getElementById("count").textContent = selectedCount;
+            document.getElementById("progressBar").value = selectedCount;
+        }
+
+        // 勾選或取消勾選時，更新計數
+        document.querySelectorAll('input[name="care"]').forEach(
+            function (checkbox) {
+
+                checkbox.addEventListener("change", updateCareCount);
+
+            }
+        );
+
+
+        // =========================
+        // 下一步
+        // =========================
+
+        document.querySelectorAll("[data-next]").forEach(
+            function (button) {
+
+                button.addEventListener("click", function () {
+
+                    // 第 1 題檢查 identity，第 2 題檢查 need
+                    const questionNames = ["identity", "need"];
+                    const questionName = questionNames[currentStep];
+
+                    if (!getAnswer(questionName)) {
+
+                        quizError.textContent = "請先選擇一個答案，再繼續。";
+                        return;
+
+                    }
+
+                    showStep(currentStep + 1);
+
+                });
+
+            }
+        );
+
+
+        // =========================
+        // 上一步
+        // =========================
+
+        document.querySelectorAll("[data-prev]").forEach(
+            function (button) {
+
+                button.addEventListener("click", function () {
+
+                    showStep(currentStep - 1);
+
+                });
+
+            }
+        );
+
+
+        // =========================
+        // 主要結果卡片資料
+        // =========================
+
+        function createMainCard(title, emoji, description) {
+
+            return `
+        <div class="result-emoji">${emoji}</div>
+
+        <h4>${title}</h4>
+
+        <p>${description}</p>
+
+        <a href="./find.html" class="result-link">
+            查看長照資源
+        </a>
+    `;
+        }
+
+
+        // =========================
+        // 延伸服務卡片
+        // =========================
+
+
+        function createServiceCard(emoji, title, description, linkText) {
+            return `
+        <div class="service-card">
+
+            <div class="result-emoji">${emoji}</div>
+
+            <h4>${title}</h4>
+
+            <p>${description}</p>
+
+            <a href="./find.html" class="result-link">
+                ${linkText}
+            </a>
+
+        </div>
+    `;
+        }
+
+
+
+        // =========================
+        // 補助項目卡片
+        // =========================
+
+        function createSubsidyCard(title, amount, description) {
+
+            return `
+        <div class="subsidy-item">
+            <h5>${title}</h5>
+
+            <span class="subsidy-amount">${amount}</span>
+
+            <p>${description}</p>
+        </div>
+    `;
+        }
+
+
+        // =========================
+        // 看結果
+        // =========================
+
+        document.getElementById("show-result").addEventListener(
+            "click",
+            function () {
+
+                const identity = getAnswer("identity");
+                const need = getAnswer("need");
+                const care = getCareAnswers();
+
+                // 前兩題必須回答
+                if (!identity || !need) {
+                    quizError.textContent =
+                        "請確認前兩題都已作答，再查看結果。";
+                    return;
+                }
+
+                // 取得結果頁容器
+                const resultTitle = document.getElementById("result-title");
+                const resultDescription =
+                    document.getElementById("result-description");
+
+                const mainCard = document.getElementById("main-result-card");
+                const secondaryServices =
+                    document.getElementById("secondary-services");
+
+                const mainSubsidy = document.getElementById("main-subsidy");
+                const possibleSubsidies =
+                    document.getElementById("possible-subsidies");
+
+
+                // =========================
+                // 判斷主要照顧方向
+                // =========================
+
+                let mainTitle;
+                let mainEmoji;
+                let mainDescription;
+
+                if (need === "全天住宿照顧") {
+
+                    mainTitle = "優先了解住宿式照顧";
+                    mainEmoji = "🏠";
+                    mainDescription =
+                        "可先比較住宿式照顧機構的服務內容、收費與照顧安排。" +
+                        "住宿式機構的補助制度與居家、社區式長照給付不同，" +
+                        "建議另外確認適用方案。";
+
+                } else if (need === "還不確定") {
+
+                    mainTitle = "先整理照顧需求與申請方向";
+                    mainEmoji = "🧭";
+                    mainDescription =
+                        "建議先整理家人的生活狀況、需要協助的項目與所在地，" +
+                        "再向長照服務窗口詢問可用的服務與正式評估方式。";
+
+                } else if (need === "家中已有外籍看護") {
+
+                    mainTitle = "確認外籍看護家庭可搭配的長照服務";
+                    mainEmoji = "🤝";
+                    mainDescription =
+                        "家中聘有外籍看護，仍可進一步確認部分社區式照顧、" +
+                        "專業服務、交通接送、輔具與喘息服務的適用條件。";
+
+                } else {
+
+                    mainTitle = "優先了解居家或社區照顧";
+                    mainEmoji = "💚";
+                    mainDescription =
+                        "可依照目前的生活協助需求，了解居家服務、日間照顧、" +
+                        "專業服務及輔具等資源，再由長照窗口協助確認資格。";
+
+                }
+
+                resultTitle.textContent = "你的初步照顧方向";
+                resultDescription.textContent =
+                    "以下依照你的選擇整理建議，並非正式資格判定。";
+
+                mainCard.innerHTML = createMainCard(
+                    mainTitle,
+                    mainEmoji,
+                    mainDescription
+                );
+
+
+                // =========================
+                // 產生兩張延伸服務卡
+                // =========================
+
+                let serviceOne;
+                let serviceTwo;
+
+                if (identity === "失智症者（不限年齡）") {
+
+                    serviceOne = createServiceCard(
+                        "🧠",
+                        "失智社區服務據點",
+                        "可詢問認知促進、社會參與及家屬支持等服務。",
+                        "查找相關資源"
+                    );
+
+                } else if (need === "白天需要日間照顧") {
+
+                    serviceOne = createServiceCard(
+                        "☀️",
+                        "日間照顧中心",
+                        "了解白天照顧、活動安排及接送等服務。",
+                        "查找日照資源"
+                    );
+
+                } else {
+
+                    serviceOne = createServiceCard(
+                        "🏡",
+                        "居家服務",
+                        "可了解到宅協助日常生活、身體照顧等服務。",
+                        "查找居家資源"
+                    );
+
+                }
+
+                serviceTwo = createServiceCard(
+                    "🩺",
+                    "居家護理",
+                    "若有傷口、管路或其他醫療照護需求，可詢問醫療院所的居家護理服務；其適用規定與長照給付不同。",
+                    "了解相關資源"
+                );
+
+                secondaryServices.innerHTML = serviceOne + serviceTwo;
+
+
+                // =========================
+                // 長照補助概覽
+                // =========================
+
+                let mainDirection;
+
+                if (need === "家中已有外籍看護") {
+
+                    mainDirection =
+                        "外籍看護家庭：可再確認符合條件的社區式照顧、" +
+                        "專業服務、交通接送、輔具及喘息服務。各項服務有不同限制。";
+
+                } else if (need === "全天住宿照顧") {
+
+                    mainDirection =
+                        "住宿式照顧：應優先確認機構費用及住宿式服務補助方案，" +
+                        "不要直接套用居家與社區式長照的月給付額度。";
+
+                } else {
+
+                    mainDirection =
+                        "居家／社區照顧：可依正式評估結果確認照顧及專業服務、" +
+                        "交通接送、輔具與居家無障礙改善、喘息服務等項目。";
+
+                }
+
+                mainSubsidy.innerHTML = `
+            <p><strong>主要照顧方向</strong></p>
+            <p>${mainDirection}</p>
+
+            <p><strong>照顧及專業服務月給付額度參考</strong></p>
+            <p>每月 NT$10,020–36,180，依長照需要等級而異。</p>
+
+            <p><strong>部分負擔參考</strong></p>
+            <p>照顧及專業服務：低收入戶通常為 0%、中低收入戶 5%、一般戶 16%。</p>
+
+            <p class="subsidy-description">
+                此處為官方給付額度範圍，不代表個人每月可領現金。
+                實際額度與自付金額依正式評估、服務使用量及適用規定計算；
+                交通、輔具及喘息服務的額度與部分負擔另有規則。
+            </p>
+        `;
+
+
+                // =========================
+                // 依答案整理可能相關的補助
+                // =========================
+
+                let subsidyCards = [];
+
+                // 住宿式照顧不直接套用居家／社區式給付
+                if (need === "全天住宿照顧") {
+
+                    subsidyCards.push(
+                        createSubsidyCard(
+                            "住宿式服務補助",
+                            "依適用方案確認",
+                            "應確認機構類型、入住條件及當年度補助規定；" +
+                            "此測驗不直接推算住宿補助金額。"
+                        )
+                    );
+
+                } else {
+
+                    // 照顧及專業服務
+                    subsidyCards.push(
+                        createSubsidyCard(
+                            "照顧及專業服務",
+                            "每月 NT$10,020–36,180",
+                            "依長照需要等級分級給付。此為給付額度上限範圍，" +
+                            "不是直接發給個人的現金，也不代表每個人都能使用最高額度。"
+                        )
+                    );
+
+                    // 交通接送：有行走／移位需求，或日照需求時提示
+                    if (
+                        care.includes("行走") ||
+                        care.includes("起身、移位") ||
+                        need === "白天需要日間照顧"
+                    ) {
+
+                        subsidyCards.push(
+                            createSubsidyCard(
+                                "交通接送",
+                                "就醫接送約每月 NT$1,680–2,400",
+                                "額度依所在地區分類，並須符合服務規定；" +
+                                "社區式服務接送與就醫交通接送是不同項目，不能混為一談。"
+                            )
+                        );
+
+                    }
+
+                    // 輔具與居家無障礙改善
+                    if (
+                        care.includes("洗澡") ||
+                        care.includes("如廁") ||
+                        care.includes("起身、移位") ||
+                        care.includes("行走")
+                    ) {
+
+                        subsidyCards.push(
+                            createSubsidyCard(
+                                "輔具／居家無障礙改善",
+                                "依輔具組別與資格確認",
+                                "可詢問扶手、移位輔具、沐浴及居家環境改善等項目。" +
+                                "自 2026 年 7 月起，相關給付分組額度有調整，" +
+                                "應以實際評估及最新公告為準。"
+                            )
+                        );
+
+                    }
+
+                    // 喘息服務：照顧需求較多或外籍看護家庭
+                    if (
+                        care.length >= 2 ||
+                        need === "家中已有外籍看護"
+                    ) {
+
+                        subsidyCards.push(
+                            createSubsidyCard(
+                                "喘息服務",
+                                "每年約 NT$32,340–48,510",
+                                "依長照需要等級及適用條件而異；" +
+                                "可詢問到宅、日間或住宿式喘息服務的安排。"
+                            )
+                        );
+
+                    }
+
+                    // 居家護理為醫療服務，不直接算入長照額度
+                    if (need === "希望在家接受照顧") {
+
+                        subsidyCards.push(
+                            createSubsidyCard(
+                                "居家護理／醫療照護",
+                                "依醫療需求及健保規定確認",
+                                "如有傷口、管路或其他醫療照護需求，" +
+                                "可詢問醫療院所的居家護理服務；此項不直接等同長照補助。"
+                            )
+                        );
+
+                    }
+
+                }
+
+                possibleSubsidies.innerHTML = subsidyCards.join("");
+
+
+                // 顯示結果頁
+                showStep(3);
+
+            }
+        );
+
+
+        // =========================
+        // 重新評估
+        // =========================
+
+        document.querySelectorAll("[data-reset]").forEach(
+            function (button) {
+
+                button.addEventListener("click", function () {
+
+                    // 清除第一、二題單選與第三題複選
+                    document.querySelectorAll(
+                        'input[name="identity"], input[name="need"], input[name="care"]'
+                    ).forEach(function (input) {
+
+                        input.checked = false;
+
+                    });
+
+                    updateCareCount();
+                    showStep(0);
+
+                });
+
+            }
+        );
+
+
+        // 初始顯示第一題
+        showStep(0);
+
     </script>
     </div>
 </body>
