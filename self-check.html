@@ -371,7 +371,7 @@
 
                         <p class="step-number">STEP.1 基本資格</p>
                         <h3>家人目前的狀況比較接近哪一種？</h3>
-                        <p>請選擇最接近的一項</p>
+                        <small>請選擇最接近的一項</small>
 
                         <div class="quiz-options">
                             <label class="quiz-option">
@@ -417,7 +417,7 @@
 
                         <p class="step-number">STEP.2 照顧需求</p>
                         <h3>目前最需要哪方面的協助？</h3>
-                        <p>請選擇最接近目前需求的一項</p>
+                        <small>請選擇最接近目前需求的一項</small>
 
                         <div class="quiz-options">
 
@@ -477,7 +477,7 @@
 
                         <p class="step-number">STEP.3 生活協助</p>
                         <h3>日常生活中，有哪些事情需要他人幫忙？</h3>
-                        <p>可複選；僅用於初步了解照顧需求，不等同政府正式CMS評估</p>
+                        <small>可複選；僅用於初步了解照顧需求，不等同政府正式CMS評估</small>
 
                         <div class="quiz-options">
                             <label class="quiz-option">
@@ -529,27 +529,27 @@
 
                         <p class="step-number">✓ 初步評估完成</p>
                         <h3 id="result-title"></h3>
-                        <p id="result-description"></p>
+                        <small id="result-description"></small>
 
                         <div class="result-summary">
 
-                            <p class="result-section-intro">
+                            <h3 class="result-section-intro">
                                 依照您的回答，建議先從這裡開始
-                            </p>
+                            </h3>
 
                             <!-- 主要建議卡片 -->
                             <div class="result-card" id="main-result-card"></div>
 
                             <!-- 兩張延伸服務卡片 -->
-                            <p class="result-section-intro">您也可以一起了解</p>
+                            <h3 class="result-section-intro">您也可以一起了解</h3>
                             <div class="secondary-services" id="secondary-services"></div>
 
                             <!-- 長照補助懶人包 -->
-                            <h4>長照補助資訊</h4>
+                            <h3>長照補助資訊</h3>
                             <div class="result-point" id="main-subsidy"></div>
 
                             <!-- 依照選擇的選項 顯示可能適用的補助 -->
-                            <h4>可能適用的長照補助資訊</h4>
+                            <h3>可能適用的長照補助資訊</h3>
                             <p class="subsidy-description">
                                 以下是依照您的選擇整理出的參考項目，
                                 實際適用資格、額度及部分負擔仍需由照管專員評估。
@@ -557,10 +557,10 @@
 
                             <div class="result-grid" id="possible-subsidies"></div>
 
-                            <p class="result-notice">
+                            <small class="result-notice">
                                 本測驗僅供初步資訊整理，不代表正式長照資格認定或補助核定。
                                 實際給付依長照需要等級、身分別、服務內容及照管專員評估而定。
-                            </p>
+                            </small>
 
                         </div>
 
@@ -971,7 +971,7 @@
 
             return `
         <div class="subsidy-item">
-            <h5>${title}</h5>
+            <h4>${title}</h4>
 
             <span class="subsidy-amount">${amount}</span>
 
@@ -1141,20 +1141,20 @@
                 }
 
                 mainSubsidy.innerHTML = `
-            <p><strong>主要照顧方向</strong></p>
+            <h4>主要照顧方向</h4>
             <p>${mainDirection}</p>
 
-            <p><strong>照顧及專業服務月給付額度參考</strong></p>
+            <h4>照顧及專業服務月給付額度參考</h4>
             <p>每月 NT$10,020–36,180，依長照需要等級而異。</p>
 
-            <p><strong>部分負擔參考</strong></p>
+            <h4>部分負擔參考</h4>
             <p>照顧及專業服務：低收入戶通常為 0%、中低收入戶 5%、一般戶 16%。</p>
 
-            <p class="subsidy-description">
+            <p class="subsidy-description"><small>
                 此處為官方給付額度範圍，不代表個人每月可領現金。
                 實際額度與自付金額依正式評估、服務使用量及適用規定計算；
                 交通、輔具及喘息服務的額度與部分負擔另有規則。
-            </p>
+            </small></p>
         `;
 
 

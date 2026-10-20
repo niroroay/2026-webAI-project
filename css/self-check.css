@@ -38,7 +38,7 @@ main h1 {
 
 .main-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     gap: 20px;
     width: 100%;
     box-sizing: border-box;
@@ -57,22 +57,22 @@ main h1 {
 .main-container .form {
     min-width: 0;
     box-sizing: border-box;
-    background-color: #fffdf7;
+    background-color: var(--surface);
     padding: 30px;
-    border: 1px solid rgba(44, 44, 44, 0.08);
+    border: 1px solid var(--line);
     border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(33, 31, 27, 0.06);
 }
 
-.main-container .form > h2 {
+.main-container .form>h2 {
+    font-weight: 600;
     margin-bottom: 24px;
     padding-bottom: 16px;
     border-bottom: 1px solid var(--line);
 }
 
 .main-container .form p {
-    font-size: 0.8rem;
-    color: var(--muted);
+    font-size: 1em;
+    color: var(--ink);
 }
 
 /* 調整每個區域上下空間 */
@@ -110,6 +110,7 @@ main h1 {
 }
 
 .description h2 {
+    font-weight: 600;
     line-height: 1.5;
     margin-bottom: 24px;
 }
@@ -120,25 +121,25 @@ main h1 {
 }
 
 /* 步驟標籤 */
-.step-number{
+.step-number {
     display: inline-block;
     margin: 0 0 14px;
     padding: 6px 12px;
     border-radius: 20px;
-    background-color: #f7e8bd;
+    background-color: var(--yellow);
     color: #72501b !important;
-    font-size: 0.82rem !important;
+    font-size: 1rem !important;
     font-weight: 600;
 }
 
 /* 題目標題與說明 */
 .quiz-step h3 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     line-height: 1.6;
     margin-bottom: 8px;
 }
 
-.quiz-step > p:not(.step-number) {
+.quiz-step>p:not(.step-number) {
     line-height: 1.7;
 }
 
@@ -185,7 +186,7 @@ main h1 {
     align-items: flex-start;
     gap: 10px;
     padding: 13px 15px;
-    border: 1px solid rgba(44, 44, 44, 0.18);
+    border: 1px solid var(--line);
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.65);
     cursor: pointer;
@@ -284,7 +285,7 @@ main h1 {
 /* 上一步、返回修改答案 */
 .quiz-btn.secondary {
     background-color: #ffffff;
-    border-color: #d8d3c8;
+    border-color: var(--line);
     color: var(--ink);
 }
 
@@ -338,14 +339,15 @@ main h1 {
 
 /* 結果頁的標題與說明 */
 .quiz-step[data-step="3"] #result-title {
-    margin: 0 0 12px;
+    margin: 0;
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.5;
 }
 
 .quiz-step[data-step="3"] #result-description {
-    margin: 0 0 26px;
+    display: block;
+    margin: 0 0 30px;
     color: var(--muted);
     line-height: 1.8;
 }
@@ -370,26 +372,28 @@ main h1 {
 
 /* 卡片圖示 */
 .result-emoji {
-    margin-bottom: 12px;
+    margin: 0 3px 12px 0;
     font-size: 2rem;
     line-height: 1.3;
+    display: inline-flex;
 }
 
 /* 卡片標題 */
 #main-result-card h4,
 #secondary-services h4 {
     margin: 0 0 12px;
-    font-size: 1.15rem;
-    font-weight: 700;
+    font-size: 1.2rem;
+    font-weight: 600;
     line-height: 1.6;
+    display: inline-flex;
 }
 
 /* 卡片說明文字 */
 #main-result-card p,
 #secondary-services p {
     margin: 0 0 18px;
-    color: var(--muted);
-    font-size: 0.95rem;
+    color: var(--ink);
+    font-size: 1em;
     line-height: 1.9;
 }
 
@@ -398,6 +402,7 @@ main h1 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
     margin-top: 4px;
     padding: 10px 16px;
     border-radius: 8px;
@@ -416,12 +421,12 @@ main h1 {
 /* 延伸服務：兩張卡片分開排列 */
 #secondary-services {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 16px;
 }
 
 /* 延伸服務的單張卡片 */
-#secondary-services > div {
+#secondary-services>div {
     min-width: 0;
     padding: 22px;
     background: #fff;
@@ -445,14 +450,15 @@ main h1 {
     line-height: 1.9;
 }
 
-#main-subsidy p strong {
+#main-subsidy h4 {
     display: block;
     margin-top: 16px;
     color: var(--ink);
-    font-size: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
-#main-subsidy p:first-child strong {
+#main-subsidy h4:first-of-type {
     margin-top: 0;
 }
 
@@ -463,7 +469,6 @@ main h1 {
     background: var(--soft);
     border-radius: 10px;
     color: var(--muted);
-    font-size: 0.85rem;
 }
 
 /* 補助項目列表 */
@@ -481,9 +486,9 @@ main h1 {
     line-height: 1.8;
 }
 
-#possible-subsidies .subsidy-item h5 {
+#possible-subsidies .subsidy-item h4 {
     margin: 0 0 10px;
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     font-weight: 700;
     line-height: 1.6;
 }
@@ -491,19 +496,23 @@ main h1 {
 #possible-subsidies .subsidy-amount {
     display: inline-block;
     margin-bottom: 12px;
-    padding: 5px 10px;
-    border-radius: 6px;
+    padding: 5px 15px;
+    border-radius: 20px;
     background: #fff0df;
     color: var(--deep-orange);
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 700;
 }
 
 #possible-subsidies .subsidy-item p {
     margin: 0;
-    color: var(--muted);
-    font-size: 0.9rem;
+    color: var(--ink);
+    font-size: 1em;
     line-height: 1.9;
+}
+
+.result-notice {
+    color: var(--muted);
 }
 
 /* 結果頁底部按鈕與內容拉開距離 */
@@ -511,8 +520,10 @@ main h1 {
     margin-top: 32px;
 }
 
-/* 手機版 */
-@media(max-width:960px) {
+
+
+/* 螢幕 */
+@media(max-width:1140px) {
     .main-container {
         display: grid;
         grid-template-columns: 1fr;
@@ -520,6 +531,7 @@ main h1 {
     }
 }
 
+/* 手機版 */
 @media (max-width: 576px) {
 
     .secondary-services,
@@ -549,12 +561,12 @@ main h1 {
         padding: 20px 16px;
     }
 
-    .main-container .form > h2 {
+    .main-container .form>h2 {
         font-size: 1.4rem;
     }
 
     .quiz-step h3 {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
     }
 
     .quiz-option {
@@ -574,7 +586,6 @@ main h1 {
     .nextButtons .quiz-btn {
         flex: 1;
         padding: 11px 8px;
-        font-size: 0.9rem;
     }
 
     .quiz-step[data-step="3"] #result-title {
@@ -598,12 +609,7 @@ main h1 {
         padding: 18px;
     }
 
-    #secondary-services {
-        grid-template-columns: 1fr;
-        gap: 14px;
-    }
-
-    #secondary-services > div {
+    #secondary-services>div {
         padding: 18px;
     }
 
