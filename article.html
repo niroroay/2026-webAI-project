@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>長照申請｜長照資訊網</title>
+
+    <!-- Bootstrap5 CSS+Bundle -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+
+    <!-- Bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- header+footer css -->
+    <link rel="stylesheet" href="./css/header+footer.css">
+
+    <!-- article css -->
+    <link rel="stylesheet" href="./css/article.css">
+
+    <!-- 瀏覽器favicon -->
+    <link rel="icon" href="./image/favicon.png">
+</head>
+
+<body>
+    <div class="site-wrapper">
+        <!-- 頁首導覽列 -->
+        <header>
+            <!-- ====== -->
+            <!-- 電腦版 -->
+            <!-- ====== -->
+            <div class="desktop-header">
+
+                <!-- 第1個導覽列 -->
+                <div class="header-top">
+
+                    <!-- logo -->
+                    <a class="logo" href="./index.html">
+                        <h1><img src="./image/logo.png" alt="長照資訊網"></h1>
+                    </a>
+
+                    <!-- 上方選單最右側 -->
+                    <div class="desktop-quick-links">
+
+                        <!-- 工具連結 -->
+                        <div class="header-links">
+                            <a href="#">網站導覽</a>
+                            <a href="https://www.email.mohw.gov.tw/">部長信箱</a>
+                            <a href="https://www.mohw.gov.tw/">衛生福利部</a>
+                        </div>
+
+                        <!-- 搜尋 -->
+                        <form class="search-form">
+                            <input type="search" id="search" placeholder="請輸入關鍵字">
+                            <button type="submit"><i class="bi bi-search"></i></button>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ====== -->
+            <!-- 手機版 -->
+            <!-- ====== -->
+            <div class="mobile-header">
+
+                <!-- 手機上方 -->
+                <div class="mobile-header-top">
+                    <!-- 搜尋 -->
+                    <button type="button" class="mobile-search">
+                        <i class="bi bi-search"></i>
+                    </button>
+                    <!-- Logo -->
+                    <a class="logo" href="./index.html">
+                        <img src="./image/logo.png" alt="長照服務專區">
+                    </a>
+                    <!-- 漢堡按鈕 -->
+                    <button type="button" class="menu-button">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </div>
+
+                <!-- 搜尋框 -->
+                <form class="mobile-search-form">
+                    <div class="mobile-search-content">
+                        <label for="mobile-search">網站搜尋</label>
+                        <input type="search" id="mobile-search" placeholder="請輸入關鍵字">
+                        <button type="submit">搜尋</button>
+                    </div>
+                </form>
+
+                <!-- 手機選單 -->
+                <nav class="mobile-nav">
+
+                    <!-- 主要導覽列 -->
+                    <ul class="mobile-main-menu">
+
+                        <!-- 公告訊息 -->
+                        <li class="mobile-menu-title">
+                            <div class="mobile-main-menu-btn">
+                                <button type="button" class="menu-title">
+                                    公告訊息 <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                            <ul>
+                                <li><a href="./notice.html?category=news">最新消息</a></li>
+                                <li><a href="./notice.html?category=policy">政策總覽</a></li>
+                                <li><a href="./notice.html?category=info">公開資訊</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 長照申請 -->
+                        <li class="mobile-menu-title">
+                            <a href="./apply.html">長照申請</a>
+                        </li>
+
+                        <!-- 資源地圖 -->
+                        <li class="mobile-menu-title">
+                            <div class="mobile-main-menu-btn">
+                                <button type="button" class="menu-title">
+                                    資源地圖
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                            <ul>
+                                <li><a href="./find.html">找機構</a></li>
+                                <li><a href="./self-check.html">長照方向小測驗</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 服務項目 -->
+                        <li class="mobile-menu-title">
+                            <div class="mobile-main-menu-btn">
+                                <button type="button" class="menu-title">
+                                    服務項目
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                            <ul>
+                                <li>
+                                    <button type="button" class="menu-subtitle">
+                                        照顧服務
+                                    </button>
+                                    <ul>
+                                        <li><a href="#">居家服務</a></li>
+                                        <li><a href="#">日間照顧</a></li>
+                                        <li><a href="#">家庭托顧</a></li>
+                                        <li><a href="#">住宿式長照</a></li>
+                                        <li><a href="#">小規模多機能</a></li>
+                                        <li><a href="#">社區整體照顧</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <button type="button" class="menu-subtitle">
+                                        輔具相關
+                                    </button>
+                                    <ul>
+                                        <li><a href="#">輔具租借</a></li>
+                                        <li><a href="#">輔具補助</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <button type="button" class="menu-subtitle">
+                                        其他服務
+                                    </button>
+                                    <ul>
+                                        <li><a href="#">交通接送</a></li>
+                                        <li><a href="#">出院準備</a></li>
+                                        <li><a href="#">失智照護</a></li>
+                                        <li><a href="#">喘息服務</a></li>
+                                        <li><a href="#">外籍看護</a></li>
+                                        <li><a href="#">餐飲服務</a></li>
+                                        <li><a href="#">照顧指引</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- 常見問題 -->
+                        <li class="mobile-menu-title">
+                            <a href="#">常見問題</a>
+                        </li>
+
+                        <!-- 各式下載 -->
+                        <li class="mobile-menu-title">
+                            <div class="mobile-main-menu-btn">
+                                <button type="button" class="menu-title">
+                                    各式下載
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                            <ul>
+                                <li>
+                                    <button type="button" class="menu-subtitle">
+                                        統計專區
+                                    </button>
+                                    <ul>
+                                        <li><a href="#">長照3.0相關統計表</a></li>
+                                        <li><a href="#">長照2.0相關統計表</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <button type="button" class="menu-subtitle">
+                                        檔案下載
+                                    </button>
+                                    <ul>
+                                        <li><a href="#">長照識別LOGO及相關標章</a></li>
+                                        <li><a href="#">各式影音、平面文宣及活動</a></li>
+                                        <li><a href="#">授權說明</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!-- 次要導覽列 -->
+                    <div class="mobile-quick-links">
+                        <a href="#">網站導覽</a>
+                        <a href="#">部長信箱</a>
+                        <a href="#">衛生福利部</a>
+                    </div>
+                </nav>
+
+            </div>
+
+        </header>
+
+        <!-- 電腦版第2個導覽列 -->
+        <nav class="main-nav">
+            <ul>
+                <!-- 公告訊息 -->
+                <li>
+                    <button type="button">公告訊息 <i class="bi bi-caret-down-fill"></i></button>
+                    <ul class="submenu">
+                        <li><a href="./notice.html?category=news">最新消息</a></li>
+                        <li><a href="./notice.html?category=policy">政策總覽</a></li>
+                        <li><a href="./notice.html?category=info">公開資訊</a></li>
+                    </ul>
+                </li>
+
+                <!-- 長照申請 -->
+                <li>
+                    <a href="./apply.html">長照申請</a>
+                </li>
+
+                <!-- 資源地圖 -->
+                <li>
+                    <button type="button">資源地圖 <i class="bi bi-caret-down-fill"></i></button>
+                    <ul class="submenu">
+                        <li><a href="./find.html">找機構</a></li>
+                        <li><a href="./self-check.html">長照方向小測驗</a></li>
+                    </ul>
+                </li>
+
+
+                <!-- 服務項目 -->
+                <li class="mega-menu">
+                    <button type="button">服務項目 <i class="bi bi-caret-down-fill"></i></button>
+                    <ul class="mega-menu-list">
+
+                        <!-- 照顧服務 -->
+                        <li>
+                            <button type="button">照顧服務</button>
+                            <ul class="mega-submenu">
+                                <li><a href="#">居家服務</a></li>
+                                <li><a href="#">日間照顧</a></li>
+                                <li><a href="#">家庭托顧</a></li>
+                                <li><a href="#">住宿式長照</a></li>
+                                <li><a href="#">小規模多機能</a></li>
+                                <li><a href="#">社區整體照顧</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 輔具相關 -->
+                        <li>
+                            <button type="button">輔具相關</button>
+                            <ul class="mega-submenu">
+                                <li><a href="#">輔具租借</a></li>
+                                <li><a href="#">輔具補助</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- 其他服務 -->
+                        <li>
+                            <button type="button">其他服務</button>
+                            <ul class="mega-submenu">
+                                <li><a href="#">交通接送</a></li>
+                                <li><a href="#">出院準備</a></li>
+                                <li><a href="#">失智照護</a></li>
+                                <li><a href="#">喘息服務</a></li>
+                                <li><a href="#">外籍看護</a></li>
+                                <li><a href="#">餐飲服務</a></li>
+                                <li><a href="#">照顧指引</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <!-- 常見問題 -->
+                <li>
+                    <a href="#">常見問題</a>
+                </li>
+
+                <!-- 各式下載 -->
+                <li class="mega-menu">
+                    <button type="button">各式下載 <i class="bi bi-caret-down-fill"></i></button>
+                    <ul class="mega-menu-list">
+                        <!-- 統計專區 -->
+                        <li>
+                            <button type="button">統計專區</button>
+                            <ul class="mega-submenu">
+                                <li><a href="#">長照3.0相關統計表</a></li>
+                                <li><a href="#">長照2.0相關統計表</a></li>
+                            </ul>
+                        </li>
+                        <!-- 檔案下載 -->
+                        <li>
+                            <button type="button">檔案下載</button>
+                            <ul class="mega-submenu">
+                                <li><a href="#">長照識別LOGO及相關標章</a></li>
+                                <li><a href="#">各式影音、平面文宣及活動</a></li>
+                                <li><a href="#">授權說明</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- 內容區 -->
+        <nav class="breadcrumb" aria-label="麵包屑">
+            <a href="./index.html">首頁</a>　/　長照申請指南
+        </nav>
+
+        <main>
+            <div class="article-layout">
+                <article class="blog-post">
+                    <header class="post-header">
+                        <!-- <span class="post-category">長照申請指南</span> -->
+                        <h1>【2026最新】長照申請怎麼開始？4步驟免費申請長照2.0，服務項目與補助一次看！</h1>
+                        <p class="post-meta">發布日期：2026-01-15　｜　更新日期：2026-10-27</p>
+                        <div class="geo-summary-box">
+                            <h2>📌 快速總覽</h2>
+                            <p><strong>長照申請可以先撥打 1966
+                                    長照專線。</strong>若家中長輩因失能、失智或高齡而在日常生活中需要協助，可先提出申請並由照顧管理專員評估。基本流程分為提出申請、到府評估、擬定照顧計畫、服務開始四個步驟。實際資格、補助比例與服務安排，請以主管機關最新公告及個案評估結果為準。
+                            </p>
+                        </div>
+                    </header>
+
+                    <section class="article-section" id="who-can-apply">
+                        <h2>一、長照申請資格有哪些？誰可以申請長照服務？</h2>
+                        <p>許多人以為長照只針對臥床長輩，其實若日常生活（如沐浴、穿衣、吃飯、走動）需要他人協助，就可以進一步確認是否符合申請條件。常見評估對象包括：</p>
+                        <ul>
+                            <li><strong>65 歲以上</strong>失能長者。</li>
+                            <li><strong>55 歲以上</strong>失能原住民。</li>
+                            <li><strong>50 歲以上</strong>失智症者。</li>
+                            <li><strong>不限年齡</strong>且符合相關規定的身心障礙者。</li>
+                            <li>日常生活需要他人協助的衰弱長者。</li>
+                        </ul>
+                        <p class="note">實際申請資格與服務核定，仍須依現行長照政策及照管專員評估結果確認。</p>
+                    </section>
+
+                    <section class="article-section" id="how-to-apply">
+                        <h2>二、長照申請怎麼開始？4 步驟完成申請</h2>
+                        <p>面對家人突然出現照顧需求，不必一次弄懂所有制度。可以先從提出申請開始，再依照評估結果安排適合的服務。</p>
+
+                        <div class="step-item">
+                            <h3><span class="step-number">1</span><span>提出申請：撥打 1966 或洽詢地方窗口</span></h3>
+                            <p>可先撥打 1966 長照專線，並準備以下資訊，讓承辦人員了解目前的照顧需求：</p>
+                            <ul>
+                                <li>被照顧者的姓名、身分資料與目前居住地址。</li>
+                                <li>主要照顧者的姓名與聯絡方式。</li>
+                                <li>長輩目前的身體狀況、生活困難與照顧需求。</li>
+                            </ul>
+                            <p><em>若長輩仍在住院，可詢問醫院出院準備服務團隊，了解出院前的長照資源銜接方式。</em></p>
+                        </div>
+
+                        <div class="step-item">
+                            <h3><span class="step-number">2</span><span>照顧管理專員到府評估</span></h3>
+                            <p>提出申請後，地方照顧管理中心會依流程聯繫並安排評估，了解被照顧者的日常生活能力、家庭支持情形與實際需求，再依規定確認長照需要等級。</p>
+                        </div>
+
+                        <div class="step-item">
+                            <h3><span class="step-number">3</span><span>與個案管理師討論照顧計畫</span></h3>
+                            <p>評估完成後，相關服務人員會與家屬討論需要哪些協助、服務如何搭配，以及可使用的給付額度與部分負擔方式。</p>
+                        </div>
+
+                        <div class="step-item">
+                            <h3><span class="step-number">4</span><span>依照計畫開始使用服務</span></h3>
+                            <p>確認照顧計畫與服務安排後，即可依約使用居家服務、日間照顧、專業服務、交通接送或其他核定項目。服務內容與開始時間依個案及地方資源安排而定。</p>
+                        </div>
+                    </section>
+
+                    <section class="article-section" id="services-and-subsidies">
+                        <h2>三、長照有哪些服務？認識常見補助項目</h2>
+                        <p>長照服務可依個案需求，涵蓋日常照顧、專業服務、交通接送、輔具與居家無障礙改善，以及喘息服務等類別。實際核定項目、額度與部分負擔比例，會依長照需要等級、身分別及現行規定而有所不同。</p>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>補助類別</th>
+                                        <th>服務內容說明</th>
+                                        <th>額度參考</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>照顧及專業服務</strong></td>
+                                        <td>居家照顧、日間照顧、餐飲服務、專業復能等。</td>
+                                        <td>依長照需要等級與核定額度計算。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>交通接送服務</strong></td>
+                                        <td>協助往返就醫、復健或長照服務地點。</td>
+                                        <td>依地區與適用規定核定。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>輔具及居家無障礙改善</strong></td>
+                                        <td>輪椅、氣墊床、浴室扶手、斜坡板等相關需求。</td>
+                                        <td>依補助項目、年限及規定辦理。</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>喘息服務</strong></td>
+                                        <td>提供家庭照顧者短暫休息的支持服務。</td>
+                                        <td>依資格、服務型態與核定額度辦理。</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="note">補助金額、資格及服務規範可能隨政策調整。申請前請以政府最新公告或地方長照管理中心說明為準。</p>
+                    </section>
+
+                    <section class="article-section" id="faq">
+                        <h2>四、長照申請常見問題</h2>
+                        <dl class="faq-list">
+                            <div class="faq-item">
+                                <dt>家裡已經聘請外籍看護，還能申請長照服務嗎？</dt>
+                                <dd>仍可依現行規定評估部分服務，例如專業服務、輔具及居家無障礙改善、交通接送或符合條件的喘息服務。可向 1966 或地方長照管理中心確認個案適用項目。</dd>
+                            </div>
+                            <div class="faq-item">
+                                <dt>提出長照申請與到府評估需要付費嗎？</dt>
+                                <dd>提出申請及照顧管理專員評估本身不收取費用；正式使用服務時，是否需要部分負擔及實際金額，依身分別與服務規定而定。</dd>
+                            </div>
+                            <div class="faq-item">
+                                <dt>申請後多久可以開始使用服務？</dt>
+                                <dd>時間會依所在地、個案需求、評估安排與服務資源而不同。提出申請時可詢問承辦窗口預估的聯繫及服務安排時間。</dd>
+                            </div>
+                        </dl>
+                    </section>
+
+                    <section class="article-section" id="conclusion">
+                        <h2>五、善用長照資源，減輕照顧負擔</h2>
+                        <div class="conclusion-box">
+                            <p>照顧是一段需要長期支持的過程，不必由家人獨自承擔。當發現長輩走動不穩、記憶力改變，或日常生活開始需要協助時，可以先撥打 1966 長照專線，了解申請方式與可運用的資源。</p>
+                            <p>及早詢問並依評估結果安排服務，有助於讓長輩獲得合適的照顧，也讓家庭照顧者得到更多支持。</p>
+                        </div>
+                    </section>
+                </article>
+
+                <aside class="sidebar">
+
+                    <!-- 其他側邊資訊保留 -->
+                    <section class="side-card help-card">
+                        <h2>不知道從哪裡開始？</h2>
+                        <a class="phone-number" href="tel:1966">1966</a>
+                        <p>可先撥打長照專線，詢問申請方式與所在地可運用的服務資源。</p>
+                    </section>
+
+                    <section class="side-card">
+                        <h2>延伸閱讀</h2>
+                        <ul class="toc">
+                            <li><a href="#">補助方向與常見條件</a></li>
+                            <li><a href="#">長照服務項目介紹</a></li>
+                            <li><a href="#">查找附近長照資源</a></li>
+                        </ul>
+                    </section>
+
+                    <!-- 文章目錄：電腦版常駐，手機版可收合 -->
+                    <details class="side-card toc-card" id="article-toc">
+                        <summary class="toc-heading">
+                            <span>文章目錄</span>
+                            <i class="bi bi-chevron-down toc-arrow" aria-hidden="true"></i>
+                        </summary>
+
+                        <ul class="toc">
+                            <li><a href="#who-can-apply">一、長照申請資格</a></li>
+                            <li><a href="#how-to-apply">二、申請流程 4 步驟</a></li>
+                            <li><a href="#services-and-subsidies">三、服務與補助項目</a></li>
+                            <li><a href="#faq">四、常見問題</a></li>
+                            <li><a href="#conclusion">五、善用長照資源</a></li>
+                        </ul>
+                    </details>
+
+
+                </aside>
+            </div>
+        </main>
+
+        <!-- 頁尾 -->
+        <footer>
+            <div class="footer-info">
+                <div class="footer-logo">
+                    <a href="./index.html"><img src="./image/logo.png" alt="長照資訊網"></a>
+                </div>
+
+                <div class="footer-menu">
+                    <ul>
+                        <div class="footer-menu-column">
+                            <!-- 公告訊息 -->
+                            <li>
+                                <p>公告訊息</p>
+                                <hr>
+                                <ul>
+                                    <li><a href="./notice.html?category=news">最新消息</a></li>
+                                    <li><a href="./notice.html?category=policy">政策總覽</a></li>
+                                    <li><a href="./notice.html?category=info">公開資訊</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- 長照申請 -->
+                            <li>
+                                <p>長照申請</p>
+                                <hr>
+                                <ul>
+                                    <li><a href="./apply.html">長照申請</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- 資源地圖 -->
+                            <li>
+                                <p>資源地圖</p>
+                                <hr>
+                                <ul>
+                                    <li><a href="./find.html">找機構</a></li>
+                                    <li><a href="./self-check.html">長照方向小測驗</a></li>
+                                </ul>
+                            </li>
+                        </div>
+
+                        <div class="footer-menu-column">
+                            <!-- 服務項目 -->
+                            <li>
+                                <p>服務項目</p>
+                                <hr>
+                                <ul>
+                                    <li><a href="#">照顧服務</a></li>
+                                    <li><a href="#">交通接送</a></li>
+                                    <li><a href="#">出院準備</a></li>
+                                    <li><a href="#">輔具租借</a></li>
+                                    <li><a href="#">輔具補助</a></li>
+                                    <li><a href="#">失智照護</a></li>
+                                    <li><a href="#">喘息服務</a></li>
+                                    <li><a href="#">外籍看護</a></li>
+                                    <li><a href="#">餐飲服務</a></li>
+                                    <li><a href="#">照顧指引</a></li>
+                                </ul>
+                            </li>
+                        </div>
+
+                        <div class="footer-menu-column">
+                            <!-- 常見問題 -->
+                            <li>
+                                <p>常見問題</p>
+                                <hr>
+                                <ul>
+                                    <li><a href="#">常見問題</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- 各式下載 -->
+                            <li>
+                                <p>各式下載</p>
+                                <hr>
+                                <ul>
+                                    <li><a href="#">統計專區</a></li>
+                                    <li><a href="#">檔案下載</a></li>
+                                </ul>
+                            </li>
+                        </div>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 長照資訊網</p>
+                <div class="social-media">
+                    <a href="#"><i class="bi bi-youtube"></i></a>
+                    <a href="#"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-line"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // ================
+        // 取得HTML元素
+        // ================
+
+        // 漢堡選單按鈕
+        const menuButton = document.querySelector('.menu-button');
+
+        // 手機版選單
+        const mobileNav = document.querySelector('.mobile-nav');
+
+        // 搜尋按鈕
+        const searchButton = document.querySelector('.mobile-search');
+
+        // 搜尋框
+        const mobileSearchForm = document.querySelector('.mobile-search-form');
+
+        // 手機漢堡選單內按鈕（公告訊息、資源地圖...）
+        const menuTitles = document.querySelectorAll('.menu-title');
+
+        // ================
+        // 漢堡選單
+        // ================
+
+        menuButton.addEventListener('click', function () {
+            // 開啟+關閉 mobile-nav
+            mobileNav.classList.toggle('active');
+            // 關閉 search-form
+            mobileSearchForm.classList.remove('active');
+            // 控制 body 滾動
+            updateBodyScroll();
+        })
+
+
+        // ================
+        // 搜尋按鈕
+        // ================
+
+        searchButton.addEventListener('click', function () {
+            // 開啟+關閉 search-form
+            mobileSearchForm.classList.toggle('active');
+            // 關閉 mobile-nav
+            mobileNav.classList.remove('active');
+            // 控制 body 滾動
+            updateBodyScroll();
+        })
+
+        // =========================
+        // 漢堡選單內按鈕+第二層選單
+        // =========================
+
+        menuTitles.forEach(function (button) {
+            button.addEventListener('click', function () {
+                const menu = button.parentElement.nextElementSibling;
+
+                // 如果已開啟→關閉
+                if (button.classList.contains('open')) {
+                    button.classList.remove('open');
+                    menu.classList.remove('open');
+                } else {
+                    // 先關閉其他選單
+                    menuTitles.forEach(function (item) {
+                        item.classList.remove('open');
+                        item.parentElement.nextElementSibling.classList.remove('open');
+                    });
+
+                    // 打開目前選單
+                    button.classList.add('open');
+                    menu.classList.add('open');
+                }
+            });
+        })
+
+        function updateBodyScroll() {
+            if (
+                mobileNav.classList.contains('active') || mobileSearchForm.classList.contains('active')
+            ) {
+                document.body.classList.add('menu-open');
+            } else {
+                document.body.classList.remove('menu-open');
+            }
+        }
+
+        // 切換回電腦版的時候解除body鎖定
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 991) {
+                document.body.classList.remove('menu-open');
+            }
+        });
+
+        // =========================
+        // 讓電腦版與手機版自動切換
+        // =========================
+        const articleToc = document.getElementById("article-toc");
+        const mobileScreen = window.matchMedia("(max-width: 900px)");
+
+        // 電腦版預設展開，手機版預設收合
+        function updateToc() {
+            articleToc.open = !mobileScreen.matches;
+        }
+
+        updateToc();
+
+        // 螢幕尺寸改變時重新判斷
+        mobileScreen.addEventListener("change", updateToc);
+
+        // 手機版點擊目錄連結後，自動收合選單
+        articleToc.querySelectorAll(".toc a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                if (mobileScreen.matches) {
+                    articleToc.open = false;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
