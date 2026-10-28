@@ -758,3 +758,131 @@ footer {
         flex-direction: column;
     }
 }
+
+/* =========================
+   右側快速選單
+   ========================= */
+
+.quick-menu {
+    position: fixed;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+/* 每一個選單項目 */
+.quick-menu-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+
+    width: 54px;
+    height: 54px;
+    padding: 4px;
+
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+
+    color: var(--ink);
+    background: var(--white);
+    box-shadow: var(--shadow);
+
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition:
+        width 0.3s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+/* 滑鼠移過去或鍵盤聚焦時，向左展開 */
+.quick-menu-item:hover,
+.quick-menu-item:focus-visible {
+    width: 220px;
+    background: var(--sage);
+    box-shadow: 0 8px 22px rgba(33, 31, 27, 0.14);
+}
+
+/* ICON 圓形區域 */
+.quick-menu-icon {
+    display: flex;
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    color: var(--dark);
+    background: var(--sage);
+
+    font-size: 1.2rem;
+}
+
+/* 預設隱藏文字 */
+.quick-menu-text {
+    flex: 1;
+    overflow: hidden;
+
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-align: center;
+
+    opacity: 0;
+    transform: translateX(8px);
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.3s ease;
+}
+
+/* 展開時顯示文字 */
+.quick-menu-item:hover .quick-menu-text,
+.quick-menu-item:focus-visible .quick-menu-text {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 滑鼠移到 ICON 上時的回饋 */
+.quick-menu-item:hover .quick-menu-icon,
+.quick-menu-item:focus-visible .quick-menu-icon {
+    color: var(--white);
+    background: var(--deep-orange);
+}
+
+/* 手機版：改成容易點擊的固定選單 */
+@media (max-width: 576px) {
+    .quick-menu {
+        right: 8px;
+        gap: 10px;
+    }
+
+    .quick-menu-item {
+        width: 48px;
+        height: 48px;
+        padding: 3px;
+    }
+
+    .quick-menu-icon {
+        flex-basis: 40px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.05rem;
+    }
+
+    /* 手機沒有滑鼠，點擊連結前也能透過焦點顯示文字 */
+    .quick-menu-item:focus-visible {
+        width: min(205px, calc(100vw - 24px));
+    }
+}
