@@ -337,7 +337,7 @@ a {
         display: grid;
         grid-template-columns: 1fr auto 1fr;
         align-items: center;
-        
+
         height: 70px;
         padding: 0 20px;
 
@@ -722,19 +722,19 @@ footer {
 
 @media (max-width: 992px) {
 
-    .footer-info{
+    .footer-info {
         flex-direction: column;
         align-items: center;
         padding: 40px 30px;
         gap: 30px;
     }
 
-    .footer-menu{
+    .footer-menu {
         width: 100%;
         margin-left: 0;
     }
 
-    .footer-menu>ul{
+    .footer-menu>ul {
         justify-content: center;
         gap: 30px;
     }
@@ -746,14 +746,14 @@ footer {
         padding: 35px 25px;
     }
 
-    .footer-info img{
+    .footer-info img {
         width: 150px;
     }
 }
 
-@media (max-width: 576px){
+@media (max-width: 576px) {
 
-    .copyright{
+    .copyright {
         padding: 15px 25px;
         flex-direction: column;
     }
@@ -765,9 +765,10 @@ footer {
 
 .quick-menu {
     position: fixed;
-    top: 50%;
+    /* top: 50%; */
+    bottom: 16px;
     right: 16px;
-    transform: translateY(-50%);
+    /* transform: translateY(-50%); */
     z-index: 1000;
 
     display: flex;
@@ -809,7 +810,7 @@ footer {
 .quick-menu-item:hover,
 .quick-menu-item:focus-visible {
     width: 220px;
-    background: var(--sage);
+    background: var(--yellow);
     box-shadow: 0 8px 22px rgba(33, 31, 27, 0.14);
 }
 
@@ -830,12 +831,17 @@ footer {
     font-size: 1.2rem;
 }
 
+.quick-menu a {
+    color: inherit;
+    text-decoration: none;
+}
+
 /* 預設隱藏文字 */
 .quick-menu-text {
     flex: 1;
     overflow: hidden;
 
-    font-size: 0.92rem;
+    font-size: 1rem;
     font-weight: 600;
     text-align: center;
 
@@ -845,6 +851,67 @@ footer {
     transition:
         opacity 0.2s ease,
         transform 0.3s ease;
+}
+
+/* 每個字的基本設定 */
+.quick-menu-text span{
+    display: inline-block;
+}
+
+/* 滑鼠移到整個文字範圍時，逐字觸發動畫 */
+.quick-menu-text:hover span {
+    animation: jump 500ms ease-in-out;
+}
+
+@keyframes jump{
+    0%,
+    100%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(-10px);
+    }
+}
+
+/* 讓每個字依序跳起來 */
+.quick-menu-text:hover span:nth-child(1) {
+    animation-delay: 0ms;
+}
+
+.quick-menu-text:hover span:nth-child(2) {
+    animation-delay: 50ms;
+}
+
+.quick-menu-text:hover span:nth-child(3) {
+    animation-delay: 100ms;
+}
+
+.quick-menu-text:hover span:nth-child(4) {
+    animation-delay: 150ms;
+}
+
+.quick-menu-text:hover span:nth-child(5) {
+    animation-delay: 200ms;
+}
+
+.quick-menu-text:hover span:nth-child(6) {
+    animation-delay: 250ms;
+}
+
+.quick-menu-text:hover span:nth-child(7) {
+    animation-delay: 300ms;
+}
+
+.quick-menu-text:hover span:nth-child(8) {
+    animation-delay: 350ms;
+}
+
+.quick-menu-text:hover span:nth-child(9) {
+    animation-delay: 400ms;
+}
+
+.quick-menu-text:hover span:nth-child(10) {
+    animation-delay: 450ms;
 }
 
 /* 展開時顯示文字 */
