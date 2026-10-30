@@ -879,11 +879,25 @@
             }
         }
 
-        // 切換回電腦版的時候解除body鎖定
+        // =========================
+        // 螢幕尺寸改變時，重設手機版選單
+        // =========================
+
         window.addEventListener('resize', function () {
+
+            // 切換到電腦版時
             if (window.innerWidth > 991) {
+
+                // 關閉手機版選單
+                mobileNav.classList.remove('active');
+
+                // 關閉手機版搜尋框
+                mobileSearchForm.classList.remove('active');
+
+                // 解除 body 滾動鎖定
                 document.body.classList.remove('menu-open');
             }
+
         });
 
         // =========================
