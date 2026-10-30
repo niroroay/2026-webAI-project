@@ -598,98 +598,52 @@
                 </div>
             </div>
         </footer>
+
+        <!-- =============== -->
+        <!-- 右側浮動快速選單 -->
+        <!-- =============== -->
+        <nav class="quick-menu" aria-label="快速選單">
+
+            <!-- 1966 長照專線 -->
+            <a href="tel:1966" class="quick-menu-item">
+                <span class="quick-menu-text">1966 長照專線</span>
+                <span class="quick-menu-icon">
+                    <i class="bi bi-telephone-fill"></i>
+                </span>
+            </a>
+
+            <!-- 長照申請 -->
+            <a href="./apply.html" class="quick-menu-item">
+                <span class="quick-menu-text">怎麼申請長照？</span>
+                <span class="quick-menu-icon">
+                    <i class="bi bi-clipboard-check-fill"></i>
+                </span>
+            </a>
+
+            <!-- 資源地圖 -->
+            <a href="./find.html" class="quick-menu-item">
+                <span class="quick-menu-text">資源地圖</span>
+                <span class="quick-menu-icon">
+                    <i class="bi bi-geo-alt-fill"></i>
+                </span>
+            </a>
+
+            <!-- 長照方向小測驗 -->
+            <a href="./self-check.html" class="quick-menu-item">
+                <span class="quick-menu-text">長照方向小測驗</span>
+                <span class="quick-menu-icon">
+                    <i class="bi bi-ui-checks"></i>
+                </span>
+            </a>
+
+        </nav>
     </div>
 
+    <!-- header+footer+浮動選單的js -->
+    <script src="./js/header+footer.js"></script>
+    
+    <!-- article的js -->
     <script>
-        // ================
-        // 取得HTML元素
-        // ================
-
-        // 漢堡選單按鈕
-        const menuButton = document.querySelector('.menu-button');
-
-        // 手機版選單
-        const mobileNav = document.querySelector('.mobile-nav');
-
-        // 搜尋按鈕
-        const searchButton = document.querySelector('.mobile-search');
-
-        // 搜尋框
-        const mobileSearchForm = document.querySelector('.mobile-search-form');
-
-        // 手機漢堡選單內按鈕（公告訊息、資源地圖...）
-        const menuTitles = document.querySelectorAll('.menu-title');
-
-        // ================
-        // 漢堡選單
-        // ================
-
-        menuButton.addEventListener('click', function () {
-            // 開啟+關閉 mobile-nav
-            mobileNav.classList.toggle('active');
-            // 關閉 search-form
-            mobileSearchForm.classList.remove('active');
-            // 控制 body 滾動
-            updateBodyScroll();
-        })
-
-
-        // ================
-        // 搜尋按鈕
-        // ================
-
-        searchButton.addEventListener('click', function () {
-            // 開啟+關閉 search-form
-            mobileSearchForm.classList.toggle('active');
-            // 關閉 mobile-nav
-            mobileNav.classList.remove('active');
-            // 控制 body 滾動
-            updateBodyScroll();
-        })
-
-        // =========================
-        // 漢堡選單內按鈕+第二層選單
-        // =========================
-
-        menuTitles.forEach(function (button) {
-            button.addEventListener('click', function () {
-                const menu = button.parentElement.nextElementSibling;
-
-                // 如果已開啟→關閉
-                if (button.classList.contains('open')) {
-                    button.classList.remove('open');
-                    menu.classList.remove('open');
-                } else {
-                    // 先關閉其他選單
-                    menuTitles.forEach(function (item) {
-                        item.classList.remove('open');
-                        item.parentElement.nextElementSibling.classList.remove('open');
-                    });
-
-                    // 打開目前選單
-                    button.classList.add('open');
-                    menu.classList.add('open');
-                }
-            });
-        })
-
-        function updateBodyScroll() {
-            if (
-                mobileNav.classList.contains('active') || mobileSearchForm.classList.contains('active')
-            ) {
-                document.body.classList.add('menu-open');
-            } else {
-                document.body.classList.remove('menu-open');
-            }
-        }
-
-        // 切換回電腦版的時候解除body鎖定
-        window.addEventListener('resize', function () {
-            if (window.innerWidth > 991) {
-                document.body.classList.remove('menu-open');
-            }
-        });
-
         // =========================
         // 讓電腦版與手機版自動切換
         // =========================

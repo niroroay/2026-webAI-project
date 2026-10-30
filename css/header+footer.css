@@ -982,7 +982,7 @@ footer {
         background: var(--sage);
         box-shadow: none;
 
-        transition: none;
+        transition: background-color 0.3s ease;
     }
 
     /* 最後一個按鈕不需要右側分隔線 */
@@ -997,7 +997,7 @@ footer {
 
         width: 100%;
         min-width: 0;
-        padding: 0;
+        padding: 0 0 20px;
 
         overflow-wrap: anywhere;
         word-break: normal;
@@ -1037,6 +1037,11 @@ footer {
         font-size: 1.2rem;
     }
 
+    .quick-menu-item:hover{
+        background-color: var(--yellow);
+    }
+
+    /* 避免擋到footer，整個網頁底部增加padding */
     .site-wrapper {
         padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
     }
