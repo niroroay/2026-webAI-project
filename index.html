@@ -889,11 +889,10 @@
         // =========================
         // 右下角浮動選單動態
         // =========================
-        // 取得所有快速選單文字
+
         const quickMenuTexts = document.querySelectorAll(".quick-menu-text");
 
         quickMenuTexts.forEach(function (item) {
-            // 將每個字包進 span
             item.innerHTML = [...item.innerText]
                 .map(function (char) {
                     return `<span>${char === " " ? "&nbsp;" : char}</span>`;
