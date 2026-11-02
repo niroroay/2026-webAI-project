@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### 本機機密設定 ###
+.env
+application-local.properties
+
+### Java 執行紀錄 ###
+*.log
