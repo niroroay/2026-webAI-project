@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>長照機構 API 測試</title>
+</head>
+<body>
+    <h1>長照機構清單</h1>
+    <p id="status">資料載入中...</p>
+    <ul id="institution-list"></ul>
+
+    <script>
+        const apiUrl = "http://localhost:8080/api/institutions";
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("API 請求失敗");
+                }
+                return response.json();
+            })
+            .then(data => {
+                const list = document.querySelector("#institution-list");
+                const status = document.querySelector("#status");
+
+                status.textContent = `成功取得 ${data.length} 筆機構資料`;
+
+                data.forEach(institution => {
+                    const li = document.createElement("li");
+                    li.textContent =
+                        `${institution.institution_name}｜${institution.address ?? "地址未提供"}`;
+
+                    list.appendChild(li);
+                });
+            })
+            .catch(error => {
+                document.querySelector("#status").textContent =
+                    "載入失敗：" + error.message;
+                console.error(error);
+            });
+    </script>
+</body>
+</html>
