@@ -363,10 +363,7 @@
                             <div class="col-12 col-md-4">
                                 <label for="city" class="filter-label">縣市</label>
                                 <select class="form-select" id="city">
-                                    <option value="" selected>所有縣市</option>
-                                    <option value="台北市">台北市</option>
-                                    <option value="新北市">新北市</option>
-                                    <option value="桃園市">桃園市</option>
+                                    <option value="">所有縣市</option>
                                 </select>
                             </div>
 
@@ -374,7 +371,7 @@
                             <div class="col-12 col-md-4">
                                 <label for="district" class="filter-label">行政區</label>
                                 <select class="form-select" id="district">
-                                    <option value="" selected>所有行政區</option>
+                                    <option value="">所有行政區</option>
                                 </select>
                             </div>
 
@@ -385,29 +382,49 @@
 
                                     <div class="row g-2">
 
+                                        <!-- ★★★★★★★★★★★★★★★需求選項-ST★★★★★★★★★★★★★★★ -->
                                         <div class="col-12 col-sm-3 col-md-2">
                                             <input type="checkbox" class="btn-check" id="need-dementia" name="needs"
-                                                value="失智照護">
-                                            <label class="btn" for="need-dementia">失智照護</label>
+                                                value="居家服務">
+                                            <label class="btn" for="need-dementia">居家服務</label>
                                         </div>
 
                                         <div class="col-12 col-sm-3 col-md-2">
                                             <input type="checkbox" class="btn-check" id="need-home" name="needs"
-                                                value="居家服務">
-                                            <label class="btn" for="need-home">居家服務</label>
+                                                value="日間照顧">
+                                            <label class="btn" for="need-home">日間照顧</label>
                                         </div>
 
                                         <div class="col-12 col-sm-3 col-md-2">
                                             <input type="checkbox" class="btn-check" id="need-daycare" name="needs"
-                                                value="日照中心">
-                                            <label class="btn" for="need-daycare">日照中心</label>
+                                                value="住宿機構">
+                                            <label class="btn" for="need-daycare">住宿機構</label>
                                         </div>
 
                                         <div class="col-12 col-sm-3 col-md-2">
                                             <input type="checkbox" class="btn-check" id="need-residential" name="needs"
-                                                value="住宿機構">
-                                            <label class="btn" for="need-residential">住宿機構</label>
+                                                value="喘息服務">
+                                            <label class="btn" for="need-residential">喘息服務</label>
                                         </div>
+
+                                        <div class="col-12 col-sm-3 col-md-2">
+                                            <input type="checkbox" class="btn-check" id="need-residential" name="needs"
+                                                value="交通接送">
+                                            <label class="btn" for="need-residential">交通接送</label>
+                                        </div>
+
+                                        <div class="col-12 col-sm-3 col-md-2">
+                                            <input type="checkbox" class="btn-check" id="need-residential" name="needs"
+                                                value="輔具服務">
+                                            <label class="btn" for="need-residential">輔具服務</label>
+                                        </div>
+
+                                        <div class="col-12 col-sm-3 col-md-2">
+                                            <input type="checkbox" class="btn-check" id="need-residential" name="needs"
+                                                value="餐飲服務">
+                                            <label class="btn" for="need-residential">餐飲服務</label>
+                                        </div>
+                                        <!-- ★★★★★★★★★★★★★★★需求選項-ED★★★★★★★★★★★★★★★ -->
 
                                     </div>
                                 </fieldset>
@@ -598,53 +615,82 @@
     <script>
 
         /* =========================
-           1. 假資料
+           1. 從 API 取得機構資料
            ========================= */
 
+        // 儲存 API 取得的機構資料
+        let facilities = [];
 
-        const facilities = [
-            {
-                name: "台北市大安區長照服務中心",
-                city: "台北市",
-                district: "大安區",
-                types: ["居家服務", "失智照護"],
-                address: "台北市大安區範例路 100 號",
-                phone: "02-1234-5678",
-                lat: 25.026,
-                lng: 121.543
-            },
-            {
-                name: "台北市信義區居家服務中心",
-                city: "台北市",
-                district: "信義區",
-                types: ["居家服務"],
-                address: "台北市信義區範例路 110 號",
-                phone: "02-1111-2222",
-                lat: 25.033,
-                lng: 121.565
-            },
-            {
-                name: "新北市板橋區日照中心",
-                city: "新北市",
-                district: "板橋區",
-                types: ["日照中心"],
-                address: "新北市板橋區範例路 200 號",
-                phone: "02-2345-6789",
-                lat: 25.014,
-                lng: 121.464
-            },
-            {
-                name: "桃園市桃園區住宿機構",
-                city: "桃園市",
-                district: "桃園區",
-                types: ["住宿機構", "失智照護"],
-                address: "桃園市桃園區範例路 300 號",
-                phone: "03-3456-7890",
-                lat: 24.993,
-                lng: 121.301
+        // 後端 API 網址
+        const API_URL = "http://localhost:8080/api/institutions";
+
+        // 從後端取得機構資料
+        async function loadFacilities() {
+
+            try {
+
+                // 向後端 API 發出請求
+                const response = await fetch(API_URL);
+
+                // 確認 API 是否成功回應
+                if (!response.ok) {
+                    throw new Error("API 回應錯誤");
+                }
+
+                // 將 JSON 轉換成 JavaScript 資料
+                const apiData = await response.json();
+
+                console.log("第一筆 API 原始資料：", apiData[0]);
+
+                // 將 API 欄位轉換成前端使用的格式
+                facilities = apiData.map(function (item) {
+                    return {
+                        id: item.id,
+                        name: item.institution_name,
+                        institutionType: item.institution_type,
+
+                        // 縣市與行政區改用中文名稱
+                        city: item.city_name,
+                        district: item.district_name,
+
+                        // 保留原本的代碼，以後可能會用到
+                        cityCode: item.city_code,
+                        districtCode: item.district_code,
+
+                        address: item.address,
+                        phone: item.phone,
+                        lat: item.latitude,
+                        lng: item.longitude
+                    };
+                });
+
+                // 顯示取得的資料筆數
+                // console.log("成功取得機構資料：", facilities.length);
+                
+                console.log(
+                    "目前取得的機構種類：",
+                    [...new Set(facilities.map(f => f.institutionType))]
+                );
+
+                // API 資料載入後，產生縣市與行政區選單
+                updateCityOptions();
+
+                // 更新機構清單
+                updateResults();
+
+            } catch (error) {
+
+                console.error("取得機構資料失敗：", error);
+
+                resultContent.innerHTML = `
+            <div class="result-empty">
+                <p>目前無法取得機構資料，請稍後再試。</p>
+            </div>
+        `;
+
             }
-        ];
 
+        }
 
         // 儲存目前已收藏的機構名稱
         const favoriteFacilities = new Set();
@@ -670,41 +716,67 @@
         const downloadBtn = document.querySelector("#download-btn");
 
 
-        /* =========================
-           3. 行政區資料
-           ========================= */
+        // =========================
+        // 3. 動態產生縣市選單
+        // =========================
+        function updateCityOptions() {
 
-        const cityDistricts = {
-            "台北市": ["大安區", "信義區", "中山區"],
-            "新北市": ["板橋區", "新店區", "中和區"],
-            "桃園市": ["桃園區", "中壢區", "龜山區"]
-        };
+            const citySelect = document.getElementById("city");
+
+            // 從 API 資料中取得所有不重複的縣市
+            const cities = [...new Set(
+                facilities.map(facility => facility.city)
+            )].filter(Boolean).sort();
+
+            // 清空原本的選項
+            citySelect.innerHTML = '<option value="">全部縣市</option>';
+
+            // 將 API 取得的縣市加入選單
+            cities.forEach(city => {
+                const option = document.createElement("option");
+
+                option.value = city;
+                option.textContent = city;
+
+                citySelect.appendChild(option);
+            });
+
+            // 縣市選單更新後，同步更新行政區
+            updateDistricts();
+        }
 
 
-        // 根據縣市更新行政區選單
+        // =========================
+        // 根據縣市動態產生行政區選單
+        // =========================
         function updateDistricts() {
+
+            const citySelect = document.getElementById("city");
+            const districtSelect = document.getElementById("district");
 
             const selectedCity = citySelect.value;
 
-            // 先清空原本的行政區選項
-            districtSelect.innerHTML = `
-        <option value="">所有行政區</option>
-    `;
+            // 根據目前選擇的縣市篩選行政區
+            const districts = [...new Set(
+                facilities
+                    .filter(facility => {
+                        return !selectedCity || facility.city === selectedCity;
+                    })
+                    .map(facility => facility.district)
+            )].filter(Boolean).sort();
 
-            // 找出這個縣市有哪些行政區
-            const districts = cityDistricts[selectedCity] || [];
+            // 清空原本的行政區選項
+            districtSelect.innerHTML = '<option value="">全部行政區</option>';
 
-            districts.forEach(function (district) {
-
+            // 將行政區加入選單
+            districts.forEach(district => {
                 const option = document.createElement("option");
 
                 option.value = district;
                 option.textContent = district;
 
                 districtSelect.appendChild(option);
-
             });
-
         }
 
 
@@ -741,12 +813,15 @@
                     facility.name,
                     facility.city,
                     facility.district,
-                    facility.types.join(" "),
+                    facility.institutionType || "",
                     facility.address,
                     facility.phone
                 ].join(" ").toLowerCase();
 
-                const matchKeyword = searchText.includes(keyword);
+                const matchKeyword =
+                    facility.name.includes(keyword) ||
+                    (facility.institutionType || "").includes(keyword) ||
+                    (facility.address || "").includes(keyword);
 
                 // 縣市是否符合
                 const matchCity =
@@ -759,11 +834,7 @@
                     facility.district === selectedDistrict;
 
                 // 多選需求：符合其中一種即可
-                const matchNeeds =
-                    selectedNeeds.length === 0 ||
-                    selectedNeeds.every(function (need) {
-                        return facility.types.includes(need);
-                    });
+                const matchNeeds = true;
 
                 // 四個條件都符合，才會留下這筆資料
                 return (
@@ -813,7 +884,7 @@
             <div class="result-card">
                 <h3>${facility.name}</h3>
 
-                <p>服務類型：${facility.types.join("、")}</p>
+                <p>服務類型：${facility.institutionType || "未提供"}</p>
                 <p>地址：${facility.address}</p>
                 <p>電話：${facility.phone}</p>
 
@@ -963,7 +1034,7 @@
                 marker.bindPopup(`
             <div>
                 <h3>${facility.name}</h3>
-                <p>服務類型：${facility.types.join("、")}</p>
+                <p>服務類型：${facility.institutionType || "未提供"}</p>
                 <p>地址：${facility.address}</p>
                 <p>電話：${facility.phone}</p>
 
@@ -1091,7 +1162,7 @@
                     "機構名稱": facility.name,
                     "縣市": facility.city,
                     "行政區": facility.district,
-                    "服務類型": facility.types.join("、"),
+                    "服務類型": facility.institutionType || "未提供",
                     "地址": facility.address,
                     "電話": facility.phone,
                     "Google 地圖": "開啟地圖",
@@ -1147,9 +1218,8 @@
            10. 網頁初始設定
            ========================= */
 
-        // 先顯示清單及全部資料
-        updateDistricts();
-        updateResults();
+        // 載入 API 機構資料
+        loadFacilities();
 
 
     </script>
