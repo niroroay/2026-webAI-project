@@ -384,45 +384,45 @@
 
                                         <!-- ★★★★★★★★★★★★★★★需求選項-ST★★★★★★★★★★★★★★★ -->
                                         <div class="col-12 col-sm-3 col-md-2">
-                                            <input type="checkbox" class="btn-check" id="need-dementia" name="needs"
+                                            <input type="checkbox" class="btn-check" id="need-homecare" name="needs"
                                                 value="居家服務">
-                                            <label class="btn" for="need-dementia">居家服務</label>
-                                        </div>
-
-                                        <div class="col-12 col-sm-3 col-md-2">
-                                            <input type="checkbox" class="btn-check" id="need-home" name="needs"
-                                                value="日間照顧">
-                                            <label class="btn" for="need-home">日間照顧</label>
+                                            <label class="btn" for="need-homecare">居家服務</label>
                                         </div>
 
                                         <div class="col-12 col-sm-3 col-md-2">
                                             <input type="checkbox" class="btn-check" id="need-daycare" name="needs"
+                                                value="日間照顧">
+                                            <label class="btn" for="need-daycare">日間照顧</label>
+                                        </div>
+
+                                        <div class="col-12 col-sm-3 col-md-2">
+                                            <input type="checkbox" class="btn-check" id="need-residential" name="needs"
                                                 value="住宿機構">
-                                            <label class="btn" for="need-daycare">住宿機構</label>
+                                            <label class="btn" for="need-residential">住宿機構</label>
                                         </div>
 
                                         <div class="col-12 col-sm-3 col-md-2">
-                                            <input type="checkbox" class="btn-check" id="need-residential" name="needs"
+                                            <input type="checkbox" class="btn-check" id="need-respite" name="needs"
                                                 value="喘息服務">
-                                            <label class="btn" for="need-residential">喘息服務</label>
+                                            <label class="btn" for="need-respite">喘息服務</label>
                                         </div>
 
                                         <div class="col-12 col-sm-3 col-md-2">
-                                            <input type="checkbox" class="btn-check" id="need-residential" name="needs"
-                                                value="交通接送">
-                                            <label class="btn" for="need-residential">交通接送</label>
+                                            <input type="checkbox" class="btn-check" id="need-transportation"
+                                                name="needs" value="交通接送">
+                                            <label class="btn" for="need-transportation">交通接送</label>
                                         </div>
 
                                         <div class="col-12 col-sm-3 col-md-2">
-                                            <input type="checkbox" class="btn-check" id="need-residential" name="needs"
-                                                value="輔具服務">
-                                            <label class="btn" for="need-residential">輔具服務</label>
+                                            <input type="checkbox" class="btn-check" id="need-assistive-devices"
+                                                name="needs" value="輔具服務">
+                                            <label class="btn" for="need-assistive-devices">輔具服務</label>
                                         </div>
 
                                         <div class="col-12 col-sm-3 col-md-2">
-                                            <input type="checkbox" class="btn-check" id="need-residential" name="needs"
+                                            <input type="checkbox" class="btn-check" id="need-meal" name="needs"
                                                 value="餐飲服務">
-                                            <label class="btn" for="need-residential">餐飲服務</label>
+                                            <label class="btn" for="need-meal">餐飲服務</label>
                                         </div>
                                         <!-- ★★★★★★★★★★★★★★★需求選項-ED★★★★★★★★★★★★★★★ -->
 
@@ -601,6 +601,11 @@
         </nav>
     </div>
 
+    <!-- Toast 浮動提示訊息 -->
+    <div id="toastContainer" aria-live="polite" aria-atomic="true">
+        <div id="toastMessage"></div>
+    </div>
+
 
     <!-- Excel 匯出套件 -->
     <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
@@ -620,6 +625,33 @@
 
         // 儲存 API 取得的機構資料
         let facilities = [];
+
+        // 服務項目顯示名稱對照表
+        const serviceNameMap = {
+            "居家服務": "居家服務",
+            "日間照顧服務(BB)": "日間照顧",
+            "喘息服務": "喘息服務",
+            "交通接送服務": "交通接送",
+            "交通接送服務(DA01)": "交通接送",
+            "社區式交通接送服務(BD03)": "交通接送",
+            "輔具及居家無障礙環境改善服務": "輔具服務",
+            "營養餐飲服務": "營養餐飲"
+        };
+
+        // 轉換服務名稱，供列表、地圖及搜尋使用
+        function getServiceDisplayNames(facility) {
+            return (facility.services || [])
+                .map(service => serviceNameMap[service] || service)
+                .filter((service, index, array) => array.indexOf(service) === index)
+                .join("、") || "暫無服務資料";
+        }
+
+        // 產生機構專屬的 Google 地圖網址
+        function getGoogleMapsUrl(facility) {
+            const searchText = facility.address || facility.name;
+
+            return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(searchText)}`;
+        }
 
         // 後端 API 網址
         const API_URL = "http://localhost:8080/api/institutions";
@@ -648,6 +680,7 @@
                         id: item.id,
                         name: item.institution_name,
                         institutionType: item.institution_type,
+                        services: item.services || [],
 
                         // 縣市與行政區改用中文名稱
                         city: item.city_name,
@@ -666,7 +699,7 @@
 
                 // 顯示取得的資料筆數
                 // console.log("成功取得機構資料：", facilities.length);
-                
+
                 console.log(
                     "目前取得的機構種類：",
                     [...new Set(facilities.map(f => f.institutionType))]
@@ -813,14 +846,14 @@
                     facility.name,
                     facility.city,
                     facility.district,
-                    facility.institutionType || "",
+                    getServiceDisplayNames(facility),
                     facility.address,
                     facility.phone
                 ].join(" ").toLowerCase();
 
                 const matchKeyword =
                     facility.name.includes(keyword) ||
-                    (facility.institutionType || "").includes(keyword) ||
+                    getServiceDisplayNames(facility).includes(keyword) ||
                     (facility.address || "").includes(keyword);
 
                 // 縣市是否符合
@@ -833,8 +866,52 @@
                     selectedDistrict === "" ||
                     facility.district === selectedDistrict;
 
-                // 多選需求：符合其中一種即可
-                const matchNeeds = true;
+                // 依照使用者勾選的需求篩選機構
+                const matchNeeds = selectedNeeds.length === 0 || selectedNeeds.every(function (need) {
+
+                    // 居家服務
+                    if (need === "居家服務") {
+                        return facility.services.includes("居家服務");
+                    }
+
+                    // 日間照顧
+                    if (need === "日間照顧") {
+                        return facility.services.includes("日間照顧服務(BB)");
+                    }
+
+                    // 住宿機構：機構類型 3 或 A3
+                    if (need === "住宿機構") {
+                        return ["3", "A3"].includes(String(facility.institutionType));
+                    }
+
+                    // 喘息服務
+                    if (need === "喘息服務") {
+                        return facility.services.includes("喘息服務");
+                    }
+
+                    // 交通接送
+                    if (need === "交通接送") {
+                        return facility.services.some(function (service) {
+                            return [
+                                "交通接送服務",
+                                "交通接送服務(DA01)",
+                                "社區式交通接送服務(BD03)"
+                            ].includes(service);
+                        });
+                    }
+
+                    // 輔具服務
+                    if (need === "輔具服務") {
+                        return facility.services.includes("輔具及居家無障礙環境改善服務");
+                    }
+
+                    // 餐飲服務
+                    if (need === "餐飲服務") {
+                        return facility.services.includes("營養餐飲服務");
+                    }
+
+                    return false;
+                });
 
                 // 四個條件都符合，才會留下這筆資料
                 return (
@@ -884,14 +961,15 @@
             <div class="result-card">
                 <h3>${facility.name}</h3>
 
-                <p>服務類型：${facility.institutionType || "未提供"}</p>
+                <p>服務類型：${getServiceDisplayNames(facility)}</p>
                 <p>地址：${facility.address}</p>
                 <p>電話：${facility.phone}</p>
 
                 <div class="facility-actions">
 
-                    <a href="#"
+                    <a href="${getGoogleMapsUrl(facility)}"
                        class="facility-btn map-link"
+                       target="_blank"
                        data-name="${facility.name}"
                        aria-label="查看 ${facility.name} 的 Google 地圖">
                         <i class="bi bi-geo-alt"></i>
@@ -1034,7 +1112,7 @@
                 marker.bindPopup(`
             <div>
                 <h3>${facility.name}</h3>
-                <p>服務類型：${facility.institutionType || "未提供"}</p>
+                <p>服務類型：${getServiceDisplayNames(facility)}</p>
                 <p>地址：${facility.address}</p>
                 <p>電話：${facility.phone}</p>
 
@@ -1142,8 +1220,36 @@
 
 
         /* =========================
-           9. 下載篩選後的 Excel
-           ========================= */
+        顯示 Toast 浮動提示
+        ========================= */
+
+        let toastTimer = null;
+
+        function showToast(message) {
+
+            const toastContainer = document.getElementById("toastContainer");
+            const toastMessage = document.getElementById("toastMessage");
+
+            // 更新提示文字
+            toastMessage.textContent = message;
+
+            // 清除前一次的計時器
+            clearTimeout(toastTimer);
+
+            // 顯示提示訊息
+            toastContainer.classList.add("show");
+
+            // 3 秒後隱藏
+            toastTimer = setTimeout(function () {
+                toastContainer.classList.remove("show");
+            }, 3000);
+
+        }
+
+
+        /* =========================
+        9. 下載篩選後的 Excel
+        ========================= */
 
         downloadBtn.addEventListener("click", function () {
 
@@ -1151,7 +1257,7 @@
             const filteredData = filterFacilities();
 
             if (filteredData.length === 0) {
-                alert("目前沒有符合條件的資料可以下載。");
+                showToast("目前沒有符合條件的資料可以下載。");
                 return;
             }
 
@@ -1160,14 +1266,10 @@
 
                 return {
                     "機構名稱": facility.name,
-                    "縣市": facility.city,
-                    "行政區": facility.district,
-                    "服務類型": facility.institutionType || "未提供",
+                    "服務類型": getServiceDisplayNames(facility),
                     "地址": facility.address,
                     "電話": facility.phone,
-                    "Google 地圖": "開啟地圖",
-                    "電話連結": "撥打電話",
-                    "收藏": "收藏機構"
+                    "Google 地圖": "開啟地圖"
                 };
 
             });
@@ -1175,25 +1277,18 @@
             // 建立工作表
             const worksheet = XLSX.utils.json_to_sheet(excelData);
 
-            // 三個連結欄位：Google 地圖、電話、收藏
-            const linkColumns = [6, 7, 8];
-
-            // 從第 2 列開始設定連結（第 1 列是標題）
+            // 設定 Google 地圖超連結
             for (let i = 0; i < filteredData.length; i++) {
 
-                linkColumns.forEach(function (column) {
-
-                    const cellAddress = XLSX.utils.encode_cell({
-                        r: i + 1,
-                        c: column
-                    });
-
-                    // 設定 Excel 儲存格的超連結
-                    worksheet[cellAddress].l = {
-                        Target: "#"
-                    };
-
+                const cellAddress = XLSX.utils.encode_cell({
+                    r: i + 1,
+                    c: 4
                 });
+
+                worksheet[cellAddress].l = {
+                    Target: getGoogleMapsUrl(filteredData[i]),
+                    Tooltip: "開啟 Google 地圖"
+                };
 
             }
 

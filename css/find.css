@@ -38,7 +38,7 @@ main {
     font-weight: 600;
 }
 
-.title{
+.title {
     display: block;
     margin-bottom: 30px;
 }
@@ -146,12 +146,12 @@ main {
     background-color: var(--sage);
 }
 
-.download-btn{
+.download-btn {
     color: #fff;
     background-color: var(--ink);
 }
 
-.download-btn:hover{
+.download-btn:hover {
     background-color: var(--muted);
 }
 
@@ -218,7 +218,7 @@ main {
     color: var(--ink);
 }
 
-.result-list>p{
+.result-list>p {
     color: var(--muted);
 }
 
@@ -259,10 +259,50 @@ main {
     margin: 4px 0;
 }
 
-@media (max-width: 767.98px) {}
+/* =========================
+   Toast 浮動提示
+   ========================= */
+
+#toastContainer {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    z-index: 9999;
+
+    min-width: 280px;
+    max-width: calc(100% - 40px);
+
+    padding: 14px 22px;
+    background-color: #ffffff;
+    color: #555555;
+
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+
+    text-align: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translate(-50%, 25px);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s ease;
+}
+
+/* 顯示狀態 */
+#toastContainer.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
 
 
+/* ============== */
 /* 手機板按鈕排列 */
+/* ============== */
 @media(max-width:575px) {
     .category-filter {
         flex-wrap: wrap;

@@ -51,6 +51,33 @@ public class InstitutionController {
                 LIMIT 20
                 """;
 
-        return jdbcTemplate.queryForList(sql);
+        // 先取得機構資料
+        List<Map<String, Object>> institutions =
+                jdbcTemplate.queryForList(sql);
+
+        // 逐一取得每間機構提供的服務項目
+        for (Map<String, Object> institution : institutions) {
+
+            Long institutionId =
+                    ((Number) institution.get("id")).longValue();
+
+            String serviceSql = """
+                    SELECT service_name
+                    FROM care_services
+                    WHERE institution_id = ?
+                    ORDER BY service_name
+                    """;
+
+            List<String> services = jdbcTemplate.queryForList(
+                    serviceSql,
+                    String.class,
+                    institutionId
+            );
+
+            institution.put("services", services);
+        }
+
+        // 回傳機構資料
+        return institutions;
     }
 }
