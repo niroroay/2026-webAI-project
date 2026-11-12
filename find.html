@@ -345,7 +345,7 @@
                 <!-- 標題區 -->
                 <div class="title">
                     <h1>長照服務資源搜尋</h1>
-                    <p>選取地區，需求及服務類型，快速找到適合的長照資源</p>
+                    <p>選取地區、需求及服務類型，快速找到適合的長照資源</p>
                 </div>
 
                 <!-- 搜尋篩選區 -->
@@ -460,9 +460,16 @@
                     <div id="result-content"></div>
 
                     <div class="map"></div>
-                </div>
-            </div>
 
+                    <!-- 頁碼切換 -->
+                    <nav class="pagination-container" aria-label="機構搜尋結果頁碼">
+                        <ul id="pagination" class="pagination">
+                            <!-- JavaScript 動態產生頁碼 -->
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
         </main>
 
         <!-- 頁尾 -->
@@ -626,6 +633,12 @@
         // 儲存 API 取得的機構資料
         let facilities = [];
 
+        // 分頁資訊
+        let currentPage = 1;
+        let totalRecords = 0;
+        let totalPages = 0;
+        const pageSize = 10;
+
         // 服務項目顯示名稱對照表
         const serviceNameMap = {
             "居家服務": "居家服務",
@@ -656,37 +669,68 @@
         // 後端 API 網址
         const API_URL = "http://localhost:8080/api/institutions";
 
-        // 從後端取得機構資料
-        async function loadFacilities() {
+        // 從後端取得指定頁數的機構資料
+        async function loadFacilities(page = 1) {
 
             try {
 
-                // 向後端 API 發出請求
-                const response = await fetch(API_URL);
+                currentPage = page;
 
-                // 確認 API 是否成功回應
+                // 建立搜尋參數
+                const params = new URLSearchParams();
+
+                params.append("page", currentPage);
+                params.append("size", pageSize);
+
+                // 縣市代碼
+                if (citySelect.value) {
+                    params.append("cityCode", citySelect.value);
+                }
+
+                // 行政區代碼
+                if (districtSelect.value) {
+                    params.append("districtCode", districtSelect.value);
+                }
+
+                // 關鍵字
+                if (keywordInput.value.trim()) {
+                    params.append("keyword", keywordInput.value.trim());
+                }
+
+                // 主要需求
+                needCheckboxes.forEach(checkbox => {
+
+                    if (checkbox.checked) {
+                        params.append("needs", checkbox.value);
+                    }
+
+                });
+
+                // 向後端取得符合條件的資料
+                const response = await fetch(`${API_URL}?${params.toString()}`);
+
                 if (!response.ok) {
                     throw new Error("API 回應錯誤");
                 }
 
-                // 將 JSON 轉換成 JavaScript 資料
                 const apiData = await response.json();
 
-                console.log("第一筆 API 原始資料：", apiData[0]);
+                // 更新分頁資訊
+                totalRecords = apiData.total;
+                totalPages = apiData.totalPages;
 
-                // 將 API 欄位轉換成前端使用的格式
-                facilities = apiData.map(function (item) {
+                // 更新目前頁面的機構資料
+                facilities = apiData.data.map(function (item) {
+
                     return {
                         id: item.id,
                         name: item.institution_name,
                         institutionType: item.institution_type,
                         services: item.services || [],
 
-                        // 縣市與行政區改用中文名稱
                         city: item.city_name,
                         district: item.district_name,
 
-                        // 保留原本的代碼，以後可能會用到
                         cityCode: item.city_code,
                         districtCode: item.district_code,
 
@@ -695,21 +739,18 @@
                         lat: item.latitude,
                         lng: item.longitude
                     };
+
                 });
 
-                // 顯示取得的資料筆數
-                // console.log("成功取得機構資料：", facilities.length);
+                console.log("目前頁面資料：", facilities.length);
+                console.log("符合條件總筆數：", totalRecords);
+                console.log("總頁數：", totalPages);
 
-                console.log(
-                    "目前取得的機構種類：",
-                    [...new Set(facilities.map(f => f.institutionType))]
-                );
-
-                // API 資料載入後，產生縣市與行政區選單
-                updateCityOptions();
-
-                // 更新機構清單
+                // 更新清單或地圖
                 updateResults();
+
+                // 更新頁碼
+                renderPagination();
 
             } catch (error) {
 
@@ -727,7 +768,6 @@
 
         // 儲存目前已收藏的機構名稱
         const favoriteFacilities = new Set();
-
 
         /* =========================
            2. 取得 HTML 元素
@@ -748,71 +788,149 @@
         const resultContent = document.querySelector("#result-content");
         const downloadBtn = document.querySelector("#download-btn");
 
+        // =========================
+        // 收藏按鈕：收藏與取消收藏
+        // =========================
+
+        resultContent.addEventListener("click", function (event) {
+
+            // 確認使用者是否點擊收藏按鈕
+            const favoriteBtn = event.target.closest(".favorite-btn");
+
+            // 如果不是收藏按鈕，就不執行
+            if (!favoriteBtn) return;
+
+            // 取得機構名稱
+            const facilityName = favoriteBtn.dataset.name;
+
+            // 取得愛心圖示
+            const heartIcon = favoriteBtn.querySelector("i");
+
+            // 判斷目前是否已收藏
+            const isFavorite = favoriteFacilities.has(facilityName);
+
+            if (isFavorite) {
+
+                // 已收藏：取消收藏
+                favoriteFacilities.delete(facilityName);
+
+                favoriteBtn.classList.remove("active");
+                favoriteBtn.setAttribute("aria-pressed", "false");
+
+                heartIcon.classList.remove("bi-heart-fill");
+                heartIcon.classList.add("bi-heart");
+
+                favoriteBtn.lastChild.textContent = "收藏";
+
+            } else {
+
+                // 尚未收藏：加入收藏
+                favoriteFacilities.add(facilityName);
+
+                favoriteBtn.classList.add("active");
+                favoriteBtn.setAttribute("aria-pressed", "true");
+
+                heartIcon.classList.remove("bi-heart");
+                heartIcon.classList.add("bi-heart-fill");
+
+                favoriteBtn.lastChild.textContent = "已收藏";
+
+            }
+
+        });
+
+
 
         // =========================
         // 3. 動態產生縣市選單
         // =========================
         function updateCityOptions() {
 
-            const citySelect = document.getElementById("city");
+            const cities = [
+                { code: "63000", name: "臺北市" },
+                { code: "65000", name: "新北市" },
+                { code: "10017", name: "基隆市" },
+                { code: "68000", name: "桃園市" },
+                { code: "10018", name: "新竹市" },
+                { code: "10004", name: "新竹縣" },
+                { code: "10005", name: "苗栗縣" },
+                { code: "66000", name: "臺中市" },
+                { code: "10007", name: "彰化縣" },
+                { code: "10008", name: "南投縣" },
+                { code: "10009", name: "雲林縣" },
+                { code: "10020", name: "嘉義市" },
+                { code: "10010", name: "嘉義縣" },
+                { code: "67000", name: "臺南市" },
+                { code: "64000", name: "高雄市" },
+                { code: "10013", name: "屏東縣" },
+                { code: "10014", name: "臺東縣" },
+                { code: "10015", name: "花蓮縣" },
+                { code: "10002", name: "宜蘭縣" },
+                { code: "10016", name: "澎湖縣" },
+                { code: "09020", name: "金門縣" },
+                { code: "09007", name: "連江縣" }
+            ];
 
-            // 從 API 資料中取得所有不重複的縣市
-            const cities = [...new Set(
-                facilities.map(facility => facility.city)
-            )].filter(Boolean).sort();
-
-            // 清空原本的選項
             citySelect.innerHTML = '<option value="">全部縣市</option>';
 
-            // 將 API 取得的縣市加入選單
             cities.forEach(city => {
+
                 const option = document.createElement("option");
 
-                option.value = city;
-                option.textContent = city;
+                // value 使用縣市代碼，文字顯示縣市名稱
+                option.value = city.code;
+                option.textContent = city.name;
 
                 citySelect.appendChild(option);
+
             });
 
-            // 縣市選單更新後，同步更新行政區
-            updateDistricts();
         }
-
 
         // =========================
         // 根據縣市動態產生行政區選單
         // =========================
-        function updateDistricts() {
-
-            const citySelect = document.getElementById("city");
-            const districtSelect = document.getElementById("district");
+        async function updateDistricts() {
 
             const selectedCity = citySelect.value;
 
-            // 根據目前選擇的縣市篩選行政區
-            const districts = [...new Set(
-                facilities
-                    .filter(facility => {
-                        return !selectedCity || facility.city === selectedCity;
-                    })
-                    .map(facility => facility.district)
-            )].filter(Boolean).sort();
-
-            // 清空原本的行政區選項
+            // 重設行政區選單
             districtSelect.innerHTML = '<option value="">全部行政區</option>';
 
-            // 將行政區加入選單
-            districts.forEach(district => {
-                const option = document.createElement("option");
+            // 沒有選擇縣市就不載入行政區
+            if (!selectedCity) return;
 
-                option.value = district;
-                option.textContent = district;
+            try {
 
-                districtSelect.appendChild(option);
-            });
+                const response = await fetch(
+                    `${API_URL}/districts?cityCode=${encodeURIComponent(selectedCity)}`
+                );
+
+                if (!response.ok) {
+                    throw new Error("行政區資料取得失敗");
+                }
+
+                const districts = await response.json();
+
+                districts.forEach(district => {
+
+                    const option = document.createElement("option");
+
+                    // 使用行政區代碼
+                    option.value = district.district_code;
+                    option.textContent = district.district_name;
+
+                    districtSelect.appendChild(option);
+
+                });
+
+            } catch (error) {
+
+                console.error("取得行政區失敗：", error);
+
+            }
+
         }
-
-
         /* =========================
            4. 篩選資料
            ========================= */
@@ -849,12 +967,9 @@
                     getServiceDisplayNames(facility),
                     facility.address,
                     facility.phone
-                ].join(" ").toLowerCase();
+                ].filter(Boolean).join(" ").toLowerCase();
 
-                const matchKeyword =
-                    facility.name.includes(keyword) ||
-                    getServiceDisplayNames(facility).includes(keyword) ||
-                    (facility.address || "").includes(keyword);
+                const matchKeyword = searchText.includes(keyword);
 
                 // 縣市是否符合
                 const matchCity =
@@ -949,7 +1064,7 @@
 
             let listHTML = `
         <div class="result-list">
-            <p>共找到 ${data.length} 筆結果</p>
+            <p>共找到 ${totalRecords} 筆結果（本頁顯示 ${data.length} 筆）</p>
     `;
 
             data.forEach(function (facility) {
@@ -1051,7 +1166,7 @@
             // 建立地圖容器
             resultContent.innerHTML = `
         <p class="map-result-count">
-            共找到 ${data.length} 筆結果
+            共找到 ${totalRecords} 筆結果（本頁顯示 ${data.length} 筆）
         </p>
 
         <div id="leaflet-map"></div>
@@ -1154,15 +1269,13 @@
 
         function updateResults() {
 
-            // 先根據篩選條件取得資料
-            const filteredData = filterFacilities();
+            // 使用後端篩選後回傳的資料
+            const filteredData = facilities;
 
-            // 判斷目前選擇清單還是地圖
             const selectedView = document.querySelector(
                 'input[name="result-view"]:checked'
             );
 
-            // 同步按鈕的 active 樣式
             viewRadios.forEach(function (radio) {
 
                 radio.closest(".result-btn").classList.toggle(
@@ -1172,7 +1285,6 @@
 
             });
 
-            // 顯示對應內容
             if (!selectedView || selectedView.value === "list") {
 
                 showList(filteredData);
@@ -1185,29 +1297,135 @@
 
         }
 
+        // 動態產生頁碼
+        function renderPagination() {
 
-        /* =========================
-           8. 監聽搜尋條件
-           ========================= */
+            const pagination = document.querySelector("#pagination");
 
-        // 輸入關鍵字時立即篩選
-        keywordInput.addEventListener("input", updateResults);
+            pagination.innerHTML = "";
 
-        // 選擇縣市時，更新行政區並重新篩選
-        citySelect.addEventListener("change", function () {
+            if (totalPages <= 1) return;
 
-            updateDistricts();
-            updateResults();
+            // 上一頁
+            pagination.innerHTML += `
+        <li>
+            <button data-page="${currentPage - 1}"
+                ${currentPage === 1 ? "disabled" : ""}>
+                上一頁
+            </button>
+        </li>
+    `;
+
+            // 整理需要顯示的頁碼
+            let pages = new Set();
+
+            // 固定顯示第一頁、最後一頁
+            pages.add(1);
+            pages.add(totalPages);
+
+            // 顯示當前頁面的前兩頁與後兩頁
+            for (let i = currentPage - 2; i <= currentPage + 2; i++) {
+                if (i >= 1 && i <= totalPages) {
+                    pages.add(i);
+                }
+            }
+
+            // 頁碼由小到大排列
+            const sortedPages = [...pages].sort((a, b) => a - b);
+
+            let previousPage = 0;
+
+            sortedPages.forEach(page => {
+
+                // 如果頁碼不連續，就顯示 ...
+                if (page - previousPage > 1) {
+                    pagination.innerHTML += `
+                <li>
+                    <span>...</span>
+                </li>
+            `;
+                }
+
+                // 顯示頁碼
+                pagination.innerHTML += `
+            <li>
+                <button
+                    data-page="${page}"
+                    class="${page === currentPage ? "active" : ""}">
+                    ${page}
+                </button>
+            </li>
+        `;
+
+                previousPage = page;
+            });
+
+            // 下一頁
+            pagination.innerHTML += `
+        <li>
+            <button data-page="${currentPage + 1}"
+                ${currentPage === totalPages ? "disabled" : ""}>
+                下一頁
+            </button>
+        </li>
+    `;
+        }
+
+
+        // 點擊頁碼切換資料
+        document.querySelector("#pagination").addEventListener("click", function (event) {
+
+            const button = event.target.closest("button[data-page]");
+
+            if (!button || button.disabled) return;
+
+            const page = Number(button.dataset.page);
+
+            loadFacilities(page);
 
         });
 
-        // 選擇行政區時重新篩選
-        districtSelect.addEventListener("change", updateResults);
+        /* =========================
+        8. 監聽搜尋條件
+        ========================= */
 
-        // 勾選需求時重新篩選
+        // 輸入關鍵字時，延遲 300 毫秒再搜尋
+        let keywordTimer = null;
+
+        keywordInput.addEventListener("input", function () {
+
+            clearTimeout(keywordTimer);
+
+            keywordTimer = setTimeout(function () {
+                loadFacilities(1);
+            }, 300);
+
+        });
+
+        // 選擇縣市
+        citySelect.addEventListener("change", async function () {
+
+            // 切換縣市時，先重設行政區
+            await updateDistricts();
+
+            // 從第一頁重新搜尋
+            loadFacilities(1);
+
+        });
+
+        // 選擇行政區
+        districtSelect.addEventListener("change", function () {
+
+            loadFacilities(1);
+
+        });
+
+        // 勾選主要需求
         needCheckboxes.forEach(function (checkbox) {
 
-            checkbox.addEventListener("change", updateResults);
+            checkbox.addEventListener("change", function () {
+                loadFacilities(1);
+            });
 
         });
 
@@ -1217,7 +1435,6 @@
             radio.addEventListener("change", updateResults);
 
         });
-
 
         /* =========================
         顯示 Toast 浮動提示
@@ -1312,6 +1529,9 @@
         /* =========================
            10. 網頁初始設定
            ========================= */
+
+        // 產生縣市選單
+        updateCityOptions();
 
         // 載入 API 機構資料
         loadFacilities();
