@@ -1037,12 +1037,47 @@ footer {
         font-size: 1.2rem;
     }
 
-    .quick-menu-item:hover{
+    .quick-menu-item:hover {
         background-color: var(--yellow);
     }
 
     /* 避免擋到footer，整個網頁底部增加padding */
     .site-wrapper {
         padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    }
+}
+
+/* =========================
+   快速選單依照捲動方向顯示／隱藏
+   ========================= */
+
+/* 桌機版：預設顯示 */
+.quick-menu {
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+    will-change: transform;
+}
+
+/* 桌機版：隱藏時往右滑出畫面 */
+.quick-menu.is-hidden {
+    transform: translateX(calc(100% + 40px));
+}
+
+/* 平板、手機版 */
+@media (max-width: 991px) {
+
+    /* 預設顯示 */
+    .quick-menu {
+        transform: translateY(0);
+    }
+
+    /* 隱藏時往下滑出畫面 */
+    .quick-menu.is-hidden {
+        transform: translateY(100%);
+    }
+
+    /* 快速選單隱藏時取消底部預留空間 */
+    .site-wrapper:has(.quick-menu.is-hidden) {
+        padding-bottom: 0;
     }
 }
